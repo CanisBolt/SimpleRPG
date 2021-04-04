@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleRPG"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Character Creation" Height="400" Width="400">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="113*"/>
+        </Grid.ColumnDefinitions>
+        <RadioButton x:Name="rbHuman" Content="Human" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" GroupName="Race" Height="15" Width="58" Checked="rbHuman_Checked"/>
+        <RadioButton x:Name="rbElf" Content="Elf" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" GroupName="Race" Height="15" Width="32" Checked="rbElf_Checked"/>
+        <RadioButton x:Name="rbDwarf" Content="Dwarf" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top" GroupName="Race" Height="15" Width="50" Checked="rbDwarf_Checked"/>
+        <RadioButton x:Name="rbDogFolk" Content="DogFolk" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" GroupName="Race" Height="15" Width="63" Checked="rbDogFolk_Checked"/>
+        <RadioButton x:Name="rbCatFolk" Content="CatFolk" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" GroupName="Race" Height="15" Width="58" Checked="rbCatFolk_Checked"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="Enter Name (Max 20 chars)" VerticalAlignment="Top" Width="151" UndoLimit="20"/>
+        <Label Content="Choose the Race:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+        <RadioButton x:Name="rbMale" Content="Male" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" GroupName="Gender" Height="15" Width="58" IsChecked="True"/>
+        <RadioButton x:Name="rbGender" Content="Female" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" GroupName="Gender" Height="15" Width="63"/>
+        <RadioButton x:Name="rbOther" Content="Other" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" GroupName="Gender" Height="15" Width="50"/>
+        <Label Content="Gender:" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+        <TextBox x:Name="tBoxDescription" Grid.Column="1" HorizontalAlignment="Left" Height="198" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" IsEnabled="False"/>
+        <TextBox x:Name="tBoxStats" Grid.Column="1" HorizontalAlignment="Left" Height="151" Margin="10,213,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" IsEnabled="False"/>
+        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="36,297,0,0" VerticalAlignment="Top" Width="75" Click="btnCreate_Click" Height="20"/>
+
     </Grid>
 </Window>

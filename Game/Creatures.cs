@@ -33,6 +33,24 @@ namespace Game
             Mind = mind;
             Luck = luck;
 
+            RestoreHPMP();
+        }
+
+        // Constructor for Race class
+        public Creatures(string name, int strength, int agility, int vitality, int intelligence, int mind, int luck)
+        {
+            Name = name;
+
+            Strength = strength;
+            Agility = agility;
+            Vitality = vitality;
+            Intelligence = intelligence;
+            Mind = mind;
+            Luck = luck;
+        }
+
+        public void RestoreHPMP()
+        {
             MaxHP = Vitality * 10;
             CurrentHP = MaxHP;
 
