@@ -1,0 +1,28 @@
+﻿<Window x:Class="SimpleRPG.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleRPG"
+        mc:Ignorable="d"
+        Title="GameWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="144*"/>
+            <RowDefinition Height="275*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="149*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="#FF55E412" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="196"/>
+        <Rectangle Fill="#FFDAC812" HorizontalAlignment="Left" Height="275" VerticalAlignment="Top" Width="196" Grid.Row="1"/>
+
+        <Label x:Name="lblName" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
+        <Label x:Name="lblLevel" Content="Label" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
+        <Label x:Name="lblHP" Content="Label" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
+        <Label x:Name="lblMP" Content="Label" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
+        <Label x:Name="lblEXP" Content="Label" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
+
+    </Grid>
+</Window>

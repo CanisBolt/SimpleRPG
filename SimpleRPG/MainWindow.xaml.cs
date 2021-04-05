@@ -47,8 +47,9 @@ namespace SimpleRPG
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
+            if(tbName.Text == "" || tbName.Text == "Enter Name (Max 20 chars)") { MessageBox.Show("Please enter the name"); return; }
+            if(tbName.Text.Length > 20) { MessageBox.Show("Name is too long (max 20 characters)"); return; }
             hero.Name = tbName.Text;
-
             hero.Strength += hero.HeroRace.Strength;
             hero.Agility += hero.HeroRace.Agility;
             hero.Vitality += hero.HeroRace.Vitality;
@@ -57,6 +58,10 @@ namespace SimpleRPG
             hero.Luck += hero.HeroRace.Luck;
 
             hero.RestoreHPMP();
+
+            GameWindow gameWindow = new GameWindow(hero);
+            Close();
+            gameWindow.ShowDialog();
         }
 
         private void rbHuman_Checked(object sender, RoutedEventArgs e)
