@@ -17,12 +17,13 @@
         </Grid.ColumnDefinitions>
         <Rectangle Fill="#FF55E412" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="196"/>
         <Rectangle Fill="#FFDAC812" HorizontalAlignment="Left" Height="275" VerticalAlignment="Top" Width="196" Grid.Row="1"/>
+        <Rectangle Fill="Aqua" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="596" Grid.Column="1"/>
 
         <Label x:Name="lblName" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
         <Label x:Name="lblLevel" Content="Label" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
         <Label x:Name="lblHP" Content="Label" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
         <Label x:Name="lblMP" Content="Label" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
         <Label x:Name="lblEXP" Content="Label" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-
+        <Image x:Name="imgCharacter" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="50" Source="images/icons/characterIcon.png" ToolTip="Character Screen" MouseLeftButtonDown="OpenCharcterScreen"/>
     </Grid>
 </Window>
