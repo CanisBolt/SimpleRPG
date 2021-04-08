@@ -20,34 +20,21 @@ namespace SimpleRPG
     /// </summary>
     public partial class CharacterWindow : Window
     {
-        Hero hero;
-        public CharacterWindow(Hero _hero)
+        GameSession gameSession;
+        public CharacterWindow(GameSession _gameSession)
         {
             InitializeComponent();
-            hero = _hero;
+            gameSession = _gameSession;
+            DataContext = gameSession;
 
             UpdateInfo();
         }
         private void UpdateInfo()
         {
-            hero.MaxHP = hero.Vitality * 10;
-            hero.MaxMP = hero.Mind * 10;
+            gameSession.Hero.MaxHP = gameSession.Hero.Vitality * 10;
+            gameSession.Hero.MaxMP = gameSession.Hero.Mind * 10;
 
-            lblName.Content = hero.Name;
-            lblRace.Content = $"Race: {hero.HeroRace.Name}";
-            lblLevel.Content = $"Level: {hero.Level}";
-            lblHP.Content = $"HP: {hero.CurrentHP}/{hero.MaxHP}";
-            lblMP.Content = $"MP: {hero.CurrentMP}/{hero.MaxMP}";
-            lblEXP.Content = $"EXP: {hero.CurrentEXP}/{hero.EXPToLevel}";
-            lblStrength.Content = $"Strength: {hero.Strength}";
-            lblAgility.Content = $"Agility: {hero.Agility}";
-            lblVitality.Content = $"Vitality: {hero.Vitality}";
-            lblIntelligence.Content = $"Intelligence: {hero.Intelligence}";
-            lblMind.Content = $"Mind: {hero.Mind}";
-            lblLuck.Content = $"Luck: {hero.Luck}";
-            lblSkillPoins.Content = $"Skill Points Left: {hero.SkillPoints}";
-
-            if (hero.SkillPoints > 0)
+            if (gameSession.Hero.SkillPoints > 0)
             {
                 btnStrengthUP.Visibility = Visibility.Visible;
                 btnAgilityUP.Visibility = Visibility.Visible;
@@ -55,7 +42,7 @@ namespace SimpleRPG
                 btnIntelligenceUP.Visibility = Visibility.Visible;
                 btnMindUP.Visibility = Visibility.Visible;
                 btnLuckUP.Visibility = Visibility.Visible;
-                lblSkillPoins.Visibility = Visibility.Visible;
+                tbSkillPoints.Visibility = Visibility.Visible;
             }
             else
             {
@@ -66,49 +53,49 @@ namespace SimpleRPG
                 btnIntelligenceUP.Visibility = Visibility.Hidden;
                 btnMindUP.Visibility = Visibility.Hidden;
                 btnLuckUP.Visibility = Visibility.Hidden;
-                lblSkillPoins.Visibility = Visibility.Hidden;
+                tbSkillPoints.Visibility = Visibility.Hidden;
             }
         }
 
         private void btnStrengthUP_Click(object sender, RoutedEventArgs e)
         {
-            hero.Strength++;
-            hero.SkillPoints--; 
+            gameSession.Hero.Strength++;
+            gameSession.Hero.SkillPoints--;
             UpdateInfo();
         }
 
         private void btnAgilityUP_Click(object sender, RoutedEventArgs e)
         {
-            hero.Agility++;
-            hero.SkillPoints--; 
+            gameSession.Hero.Agility++;
+            gameSession.Hero.SkillPoints--;
             UpdateInfo();
         }
 
         private void btnVitalityUP_Click(object sender, RoutedEventArgs e)
         {
-            hero.Vitality++;
-            hero.SkillPoints--;
+            gameSession.Hero.Vitality++;
+            gameSession.Hero.SkillPoints--;
             UpdateInfo();
         }
 
         private void btnIntelligenceUP_Click(object sender, RoutedEventArgs e)
         {
-            hero.Intelligence++;
-            hero.SkillPoints--;
+            gameSession.Hero.Intelligence++;
+            gameSession.Hero.SkillPoints--;
             UpdateInfo();
         }
 
         private void btnMindUP_Click(object sender, RoutedEventArgs e)
         {
-            hero.Mind++;
-            hero.SkillPoints--;
+            gameSession.Hero.Mind++;
+            gameSession.Hero.SkillPoints--;
             UpdateInfo();
         }
 
         private void btnLuckUP_Click(object sender, RoutedEventArgs e)
         {
-            hero.Luck++;
-            hero.SkillPoints--;
+            gameSession.Hero.Luck++;
+            gameSession.Hero.SkillPoints--;
             UpdateInfo();
         }
     }

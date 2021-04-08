@@ -20,12 +20,15 @@ namespace SimpleRPG
     /// </summary>
     public partial class GameWindow : Window
     {
-        Hero hero;
-        public GameWindow(Hero _hero)
+        GameSession gameSession;
+        public GameWindow(GameSession _gameSession)
         {
             InitializeComponent();
-            hero = _hero;
-            hero.SkillPoints = 5;
+
+            gameSession = _gameSession;
+            gameSession.Hero.SkillPoints = 5;
+            DataContext = gameSession;
+
 
             UpdateInfo();
         }
@@ -34,25 +37,19 @@ namespace SimpleRPG
         {
             ChangeImages();
 
-            hero.MaxHP = hero.Vitality * 10;
-            hero.MaxMP = hero.Mind * 10;
-
-            lblName.Content = hero.Name;
-            lblLevel.Content = $"Level: {hero.Level}";
-            lblHP.Content = $"HP: {hero.CurrentHP}/{hero.MaxHP}";
-            lblMP.Content = $"MP: {hero.CurrentMP}/{hero.MaxMP}";
-            lblEXP.Content = $"EXP: {hero.CurrentEXP}/{hero.EXPToLevel}";
+            gameSession.Hero.MaxHP = gameSession.Hero.Vitality * 10;
+            gameSession.Hero.MaxMP = gameSession.Hero.Mind * 10;
         }
 
         private void ChangeImages()
         {
-            if (hero.SkillPoints > 0) imgCharacter.Source = new BitmapImage(new Uri(@"/Images/Icons/characterLevelUPIcon.png", UriKind.Relative));
+            if (gameSession.Hero.SkillPoints > 0) imgCharacter.Source = new BitmapImage(new Uri(@"/Images/Icons/characterLevelUPIcon.png", UriKind.Relative));
             else imgCharacter.Source = new BitmapImage(new Uri(@"/Images/Icons/characterIcon.png", UriKind.Relative));
         }
 
         private void OpenCharcterScreen(object sender, MouseButtonEventArgs e)
         {
-            CharacterWindow characterWindow = new CharacterWindow(hero);
+            CharacterWindow characterWindow = new CharacterWindow(gameSession);
             characterWindow.ShowDialog();
             UpdateInfo();
         }

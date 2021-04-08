@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SimpleRPG"
+        xmlns:local="clr-namespace:SimpleRPG" xmlns:game="clr-namespace:Game;assembly=Game"
         mc:Ignorable="d"
         Title="GameWindow" Height="450" Width="800">
     <Grid>
@@ -12,18 +12,36 @@
             <RowDefinition Height="275*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="49*"/>
-            <ColumnDefinition Width="149*"/>
+            <ColumnDefinition Width="23*"/>
+            <ColumnDefinition Width="65*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="#FF55E412" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="196"/>
-        <Rectangle Fill="#FFDAC812" HorizontalAlignment="Left" Height="275" VerticalAlignment="Top" Width="196" Grid.Row="1"/>
-        <Rectangle Fill="Aqua" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="596" Grid.Column="1"/>
+        <Rectangle Fill="#FF55E412" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="207"/>
+        <Rectangle Fill="#FFDAC812" HorizontalAlignment="Left" Height="275" VerticalAlignment="Top" Width="207" Grid.Row="1"/>
+        <Rectangle Fill="Aqua" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="596" Grid.Column="1" Margin="0,0,-11,0"/>
 
-        <Label x:Name="lblName" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblLevel" Content="Label" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblHP" Content="Label" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblMP" Content="Label" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblEXP" Content="Label" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Name:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Level:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="HP:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="MP:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="EXP:" Height="16"/>
+
+        <TextBlock x:Name="tbName" Text="{Binding Hero.Name}" HorizontalAlignment="Left" Margin="65,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"/>
+        <TextBlock x:Name="tbLevel" Text="{Binding Hero.Level}" HorizontalAlignment="Left" Margin="65,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"/>
+        <TextBlock x:Name="tbHP" HorizontalAlignment="Left" Margin="65,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16">
+            <Run Text="{Binding Hero.CurrentHP}"/>
+            <Run Text="/"/>
+            <Run Text="{Binding Hero.MaxHP}"/>
+        </TextBlock>
+        <TextBlock x:Name="tbMP" HorizontalAlignment="Left" Margin="65,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16">
+            <Run Text="{Binding Hero.CurrentMP}"/>
+            <Run Text="/"/>
+            <Run Text="{Binding Hero.MaxMP}"/>
+        </TextBlock>
+        <TextBlock x:Name="tbEXP" HorizontalAlignment="Left" Margin="65,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16">
+            <Run Text="{Binding Hero.CurrentEXP}"/>
+            <Run Text="/"/>
+            <Run Text="{Binding Hero.EXPToLevel}"/>
+        </TextBlock>
         <Image x:Name="imgCharacter" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="50" Source="images/icons/characterIcon.png" ToolTip="Character Screen" MouseLeftButtonDown="OpenCharcterScreen"/>
     </Grid>
 </Window>

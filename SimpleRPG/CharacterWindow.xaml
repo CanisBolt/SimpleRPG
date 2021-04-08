@@ -5,21 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleRPG"
         mc:Ignorable="d"
-        Title="CharacterWindow" Height="250" Width="440">
+        Title="CharacterWindow" Height="210" Width="440">
     <Grid>
-        <Label x:Name="lblName" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblRace" Content="Label" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblLevel" Content="Label" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblHP" Content="Label" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblMP" Content="Label" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblEXP" Content="Label" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblStrength" Content="Label" HorizontalAlignment="Left" Margin="190,11,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblAgility" Content="Label" HorizontalAlignment="Left" Margin="190,37,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblVitality" Content="Label" HorizontalAlignment="Left" Margin="190,63,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblIntelligence" Content="Label" HorizontalAlignment="Left" Margin="190,89,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblMind" Content="Label" HorizontalAlignment="Left" Margin="190,115,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblLuck" Content="Label" HorizontalAlignment="Left" Margin="190,141,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
-        <Label x:Name="lblSkillPoins" Content="Label" HorizontalAlignment="Left" Margin="10,174,0,0" VerticalAlignment="Top" Width="234" Height="26"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="Name:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="Level:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="HP:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="MP:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="EXP:" Height="16"/>
+
+        <TextBlock x:Name="tbName" Text="{Binding Hero.Name}" HorizontalAlignment="Left" Margin="77,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Height="16"/>
+        <TextBlock x:Name="tbLevel" Text="{Binding Hero.Level}" HorizontalAlignment="Left" Margin="77,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Height="16"/>
+        <TextBlock x:Name="tbHP" HorizontalAlignment="Left" Margin="77,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Height="16">
+            <Run Text="{Binding Hero.CurrentHP}"/>
+            <Run Text="/"/>
+            <Run Text="{Binding Hero.MaxHP}"/>
+        </TextBlock>
+        <TextBlock x:Name="tbMP" HorizontalAlignment="Left" Margin="77,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Height="16">
+            <Run Text="{Binding Hero.CurrentMP}"/>
+            <Run Text="/"/>
+            <Run Text="{Binding Hero.MaxMP}"/>
+        </TextBlock>
+        <TextBlock x:Name="tbEXP" HorizontalAlignment="Left" Margin="77,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Height="16">
+            <Run Text="{Binding Hero.CurrentEXP}"/>
+            <Run Text="/"/>
+            <Run Text="{Binding Hero.EXPToLevel}"/>
+        </TextBlock>
+
+        <TextBlock HorizontalAlignment="Left" Margin="190,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Strength:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Agility:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Vitality:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" Text="Intelligence:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Mind:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Luck:" Height="16"/>
+
+        <TextBlock x:Name="tbStrength" Text="{Binding Hero.Strength}" HorizontalAlignment="Left" Margin="261,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16"/>
+        <TextBlock x:Name="tbAgility" Text="{Binding Hero.Agility}" HorizontalAlignment="Left" Margin="261,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16"/>
+        <TextBlock x:Name="tbVitality" Text="{Binding Hero.Vitality}" HorizontalAlignment="Left" Margin="261,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16"/>
+        <TextBlock x:Name="tbIntelligence" Text="{Binding Hero.Intelligence}" HorizontalAlignment="Left" Margin="261,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16"/>
+        <TextBlock x:Name="tbMind" Text="{Binding Hero.Mind}" HorizontalAlignment="Left" Margin="261,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16"/>
+        <TextBlock x:Name="tbLuck" Text="{Binding Hero.Luck}" HorizontalAlignment="Left" Margin="261,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="10,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="Skill Points:" Height="16"/>
+        <TextBlock x:Name="tbSkillPoints" Text="{Binding Hero.SkillPoints}" HorizontalAlignment="Left" Margin="77,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Height="16"/>
+
         <Button x:Name="btnStrengthUP" Content="+" HorizontalAlignment="Left" Margin="385,14,0,0" VerticalAlignment="Top" Width="20" Click="btnStrengthUP_Click"/>
         <Button x:Name="btnAgilityUP" Content="+" HorizontalAlignment="Left" Margin="385,40,0,0" VerticalAlignment="Top" Width="20" Click="btnAgilityUP_Click"/>
         <Button x:Name="btnVitalityUP" Content="+" HorizontalAlignment="Left" Margin="385,65,0,0" VerticalAlignment="Top" Width="20" Click="btnVitalityUP_Click"/>

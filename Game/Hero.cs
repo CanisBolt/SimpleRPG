@@ -8,10 +8,58 @@ namespace Game
 {
     public class Hero : Creatures
     {
-        public int CurrentEXP { get; set; }
-        public int EXPToLevel { get; set; }
-        public int Money { get; set; }
-        public int SkillPoints { get; set; }
+        private int currentEXP;
+        private int expToLevel;
+        private int money;
+        private int skillPoints;
+        public int CurrentEXP
+        {
+            get
+            {
+                return currentEXP;
+            }
+            set
+            {
+                OnPropertyChanged(nameof(currentEXP));
+                currentEXP = value;
+            }
+        }
+        public int EXPToLevel
+        {
+            get
+            {
+                return expToLevel;
+            }
+            set
+            {
+                OnPropertyChanged(nameof(expToLevel));
+                expToLevel = value;
+            }
+        }
+        public int Money
+        {
+            get
+            {
+                return money;
+            }
+            set
+            {
+                OnPropertyChanged(nameof(money));
+                money = value;
+            }
+        }
+        public int SkillPoints
+        {
+            get
+            {
+                return skillPoints;
+            }
+            set
+            {
+                OnPropertyChanged(nameof(skillPoints));
+                skillPoints = value;
+            }
+        }
         public Gender HeroGender { get; set; }
         public Race HeroRace { get; set; }
 

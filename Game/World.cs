@@ -20,8 +20,12 @@ namespace Game
         public static int RaceDogFolkID = 3;
         public static int RaceCatFolkID = 4;
 
+
+        // Enemies ID
+
         static World()
         {
+            CreateEnemies();
             CreateRaces();
         }
 
@@ -41,6 +45,11 @@ namespace Game
             allRaces.Add(dwarf);
             allRaces.Add(dogFolk);
             allRaces.Add(catFolk);
+        }
+
+        private static void CreateEnemies()
+        {
+
         }
 
         public static Race RaceByID(int id)
