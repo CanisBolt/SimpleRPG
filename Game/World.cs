@@ -6,61 +6,65 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    public static class World
+    public class World
     {
-        public static Random rng = new Random();
-        public static List<Race> allRaces = new List<Race>();
+        private static List<Race> allRaces = new List<Race>();
+        private List<Location> locations = new List<Location>();
 
-
-
-        // Races ID
-        public static int RaceHumanID = 0;
-        public static int RaceElfID = 1;
-        public static int RaceDwarfID = 2;
-        public static int RaceDogFolkID = 3;
-        public static int RaceCatFolkID = 4;
-
-
-        // Enemies ID
-
-        static World()
+        internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description)
         {
-            CreateEnemies();
-            CreateRaces();
+            Location loc = new Location
+            {
+                XCoordinate = xCoordinate,
+                YCoordinate = yCoordinate,
+                Name = name,
+                Description = description
+            };
+
+            locations.Add(loc);
         }
 
-
-        private static void CreateRaces()
+        internal void CreateRaces(string name, int strength, int agility, int vitality, int intelligence, int mind, int luck, int id)
         {
-            Race human = new Race("Human", 0, 0, 0, 0, 0, 0, RaceHumanID);
-            Race elf = new Race("Elf", -2, 2, -2, 1, 0, 1, RaceElfID);
-            Race dwarf = new Race("Dwarf", 2, -2, 2, -2, 0, 0, RaceDwarfID);
-            Race dogFolk = new Race("DogFolk", -1, -2, 0, 2, 2, -1, RaceDogFolkID);
-            Race catFolk = new Race("CatFolk", -2, 2, -1, 0, -1, 2, RaceCatFolkID);
+            Race race = new Race
+            {
+                Name = name,
+                Strength = strength,
+                Agility = agility,
+                Vitality = vitality,
+                Intelligence = intelligence,
+                Mind = mind,
+                Luck = luck,
+                ID = id,
 
-            // TODO add race descriptions
+            };
 
-            allRaces.Add(human);
-            allRaces.Add(elf);
-            allRaces.Add(dwarf);
-            allRaces.Add(dogFolk);
-            allRaces.Add(catFolk);
+            allRaces.Add(race);
         }
 
-        private static void CreateEnemies()
-        {
-
-        }
 
         public static Race RaceByID(int id)
         {
-            foreach(var race in allRaces)
+            foreach (var race in allRaces)
             {
-                if(race.ID ==id)
+                if (race.ID == id)
                 {
                     return race;
                 }
             }
+            return null;
+        }
+
+        public Location LocationAt(int xCoordinate, int yCoordinate)
+        {
+            foreach (Location loc in locations)
+            {
+                if (loc.XCoordinate == xCoordinate && loc.YCoordinate == yCoordinate)
+                {
+                    return loc;
+                }
+            }
+
             return null;
         }
     }

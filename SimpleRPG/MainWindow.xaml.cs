@@ -72,31 +72,31 @@ namespace SimpleRPG
 
         private void rbHuman_Checked(object sender, RoutedEventArgs e)
         {
-            gameSession.Hero.HeroRace = World.RaceByID(World.RaceHumanID);
+            gameSession.Hero.HeroRace = World.RaceByID(0);
             UpdateInfo();
         }
 
         private void rbElf_Checked(object sender, RoutedEventArgs e)
         {
-            gameSession.Hero.HeroRace = World.RaceByID(World.RaceElfID);
+            gameSession.Hero.HeroRace = World.RaceByID(1);
             UpdateInfo();
         }
 
         private void rbDwarf_Checked(object sender, RoutedEventArgs e)
         {
-            gameSession.Hero.HeroRace = World.RaceByID(World.RaceDwarfID);
+            gameSession.Hero.HeroRace = World.RaceByID(2);
             UpdateInfo();
         }
 
         private void rbDogFolk_Checked(object sender, RoutedEventArgs e)
         {
-            gameSession.Hero.HeroRace = World.RaceByID(World.RaceDogFolkID);
+            gameSession.Hero.HeroRace = World.RaceByID(3);
             UpdateInfo();
         }
 
         private void rbCatFolk_Checked(object sender, RoutedEventArgs e)
         {
-            gameSession.Hero.HeroRace = World.RaceByID(World.RaceCatFolkID);
+            gameSession.Hero.HeroRace = World.RaceByID(4);
             UpdateInfo();
         }
     }

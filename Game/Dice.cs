@@ -8,6 +8,7 @@ namespace Game
 {
     public static class Dice
     {
+        public static Random rng = new Random();
         public static int NumberOfSides { get; set; }
         public static int NumberOfDices { get; set; }
 
@@ -16,7 +17,7 @@ namespace Game
             int number = 0;
             for(int i = 0; i < numberOfDices; i++)
             {
-                number += World.rng.Next(numberOfSides) + 1;
+                number += rng.Next(numberOfSides) + 1;
             }
             return number;
         }

@@ -53,5 +53,25 @@ namespace SimpleRPG
             characterWindow.ShowDialog();
             UpdateInfo();
         }
+
+        private void btnNorth_Click(object sender, RoutedEventArgs e)
+        {
+            gameSession.MoveNorth();
+        }
+
+        private void btnWest_Click(object sender, RoutedEventArgs e)
+        {
+            gameSession.MoveWest();
+        }
+
+        private void btnSouth_Click(object sender, RoutedEventArgs e)
+        {
+            gameSession.MoveSouth();
+        }
+
+        private void btnEast_Click(object sender, RoutedEventArgs e)
+        {
+            gameSession.MoveEast();
+        }
     }
 }

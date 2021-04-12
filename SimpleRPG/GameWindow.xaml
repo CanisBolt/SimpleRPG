@@ -17,7 +17,8 @@
         </Grid.ColumnDefinitions>
         <Rectangle Fill="#FF55E412" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="207"/>
         <Rectangle Fill="#FFDAC812" HorizontalAlignment="Left" Height="275" VerticalAlignment="Top" Width="207" Grid.Row="1"/>
-        <Rectangle Fill="Aqua" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="596" Grid.Column="1" Margin="0,0,-11,0"/>
+        <Rectangle Fill="Aqua" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="585" Grid.Column="1"/>
+        <Rectangle Fill="Coral" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="238" Grid.Row="1" Grid.Column="1" Margin="347,205,0,0"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Name:" Height="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Level:" Height="16"/>
@@ -42,6 +43,15 @@
             <Run Text="/"/>
             <Run Text="{Binding Hero.EXPToLevel}"/>
         </TextBlock>
+
+        <TextBlock Text="{Binding CurrentLocation.Name}" Margin="5,4,420,2" Width="160" Grid.Column="1"/>
+        <TextBlock Text="{Binding CurrentLocation.Description}" TextWrapping="Wrap" Margin="175,4,125,0" Width="285" Grid.Column="1"/>
+
         <Image x:Name="imgCharacter" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="50" Source="images/icons/characterIcon.png" ToolTip="Character Screen" MouseLeftButtonDown="OpenCharcterScreen"/>
+        <Button x:Name="btnNorth" Content="North" Grid.Column="1" HorizontalAlignment="Left" Margin="423,205,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Click="btnNorth_Click"/>
+        <Button x:Name="btnWest" Content="West" Grid.Column="1" HorizontalAlignment="Left" Margin="347,225,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Click="btnWest_Click"/>
+        <Button x:Name="btnEast" Content="East" Grid.Column="1" HorizontalAlignment="Left" Margin="499,225,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Click="btnEast_Click"/>
+        <Button x:Name="btnSouth" Content="South" Grid.Column="1" HorizontalAlignment="Left" Margin="423,245,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Click="btnSouth_Click"/>
+
     </Grid>
 </Window>

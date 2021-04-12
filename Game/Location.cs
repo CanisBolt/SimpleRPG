@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    public class Race : Creatures
+    public class Location
     {
-        public int ID { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
-        // TODO add some passives for each race
-
+        public int XCoordinate { get; set; }
+        public int YCoordinate { get; set; }
     }
 }

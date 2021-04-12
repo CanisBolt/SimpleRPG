@@ -7,19 +7,53 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    public class GameSession : INotifyPropertyChanged
+    public class GameSession : BaseNotificationClass
     {
+        private Location currentLocation;
+
+        public World CurrentWorld { get; set; }
         public Hero Hero { get; set; }
+        public Location CurrentLocation
+        {
+            get { return currentLocation; }
+            set
+            {
+                currentLocation = value;
+                OnPropertyChanged(nameof(CurrentLocation));
+            }
+        }
+
         public GameSession()
         {
             Hero = new Hero("", 1, 5, 5, 5, 5, 5, 5);
+
+            WorldFactory factory = new WorldFactory();
+            CurrentWorld = factory.CreateWorld();
+            CurrentLocation = CurrentWorld.LocationAt(0, 0);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
+        public void MoveNorth()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if(CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null) 
+                CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1);
+        }
+
+        public void MoveEast()
+        {
+            if (CurrentWorld.LocationAt(CurrentLocation.XCoordinate + 1, CurrentLocation.YCoordinate) != null)
+                CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate + 1, CurrentLocation.YCoordinate);
+        }
+
+        public void MoveSouth()
+        {
+            if (CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate - 1) != null)
+                CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate - 1);
+        }
+
+        public void MoveWest()
+        {
+            if (CurrentWorld.LocationAt(CurrentLocation.XCoordinate - 1, CurrentLocation.YCoordinate) != null)
+                CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate - 1, CurrentLocation.YCoordinate);
         }
     }
 }
