@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game
+namespace Game.LivingCreatures
 {
-    public class Creatures : BaseNotificationClass
+    public class Creature : BaseNotificationClass
     {
         private string name;
         private int level;
@@ -169,7 +169,7 @@ namespace Game
         public int Defence { get; set; }
         public float Evasion { get; set; }
 
-        public Creatures(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck)
+        public Creature(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck)
         {
             Name = name;
             Level = level;
@@ -185,7 +185,7 @@ namespace Game
         }
 
         // Empty Constructor for Race class
-        public Creatures()
+        public Creature()
         {
         }
 

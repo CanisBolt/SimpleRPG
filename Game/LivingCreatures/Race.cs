@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game
+namespace Game.LivingCreatures
 {
-    public class Race : Creatures
+    public class Race : Creature
     {
         public int ID { get; set; }
         public string Description { get; set; }

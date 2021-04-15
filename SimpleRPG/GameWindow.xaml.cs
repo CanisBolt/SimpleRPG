@@ -47,7 +47,7 @@ namespace SimpleRPG
             else imgCharacter.Source = new BitmapImage(new Uri(@"/Images/Icons/characterIcon.png", UriKind.Relative));
         }
 
-        private void OpenCharcterScreen(object sender, MouseButtonEventArgs e)
+        private void OpenCharacterScreen(object sender, MouseButtonEventArgs e)
         {
             CharacterWindow characterWindow = new CharacterWindow(gameSession);
             characterWindow.ShowDialog();
@@ -72,6 +72,12 @@ namespace SimpleRPG
         private void btnEast_Click(object sender, RoutedEventArgs e)
         {
             gameSession.MoveEast();
+        }
+
+        private void OpenInventory(object sender, MouseButtonEventArgs e)
+        {
+            Inventory inventory = new Inventory(gameSession);
+            inventory.Show();
         }
     }
 }

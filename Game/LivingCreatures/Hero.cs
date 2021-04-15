@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Game.Items;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game
+namespace Game.LivingCreatures
 {
-    public class Hero : Creatures
+    public class Hero : Creature
     {
         private int currentEXP;
         private int expToLevel;
@@ -62,12 +64,14 @@ namespace Game
         }
         public Gender HeroGender { get; set; }
         public Race HeroRace { get; set; }
+        public ObservableCollection<GameItems> Inventory { get; set; }
 
         public Hero(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck) : base(name, level, strength, agility, vitality, intelligence, mind, luck)
         {
             CurrentEXP = 0;
             EXPToLevel = Level * (100 * (Level * 2));
             Money = 0;
+            Inventory = new ObservableCollection<GameItems>();
         }
 
         public enum Gender
