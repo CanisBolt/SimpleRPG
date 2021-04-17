@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Game.LivingCreatures;
 using Game.Items;
+using Game.GameLocations;
 
 namespace Game
 {
@@ -33,9 +34,8 @@ namespace Game
             CurrentWorld = factory.CreateWorld();
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
 
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(1001));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(1001));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(1002));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(1));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(2));
         }
 
         public void MoveNorth()

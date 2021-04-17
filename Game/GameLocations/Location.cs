@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game
+namespace Game.GameLocations
 {
     public class Location
     {
@@ -12,5 +12,6 @@ namespace Game
         public string Description { get; set; }
         public int XCoordinate { get; set; }
         public int YCoordinate { get; set; }
+        public Region Region { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game.GameLocations;
 using Game.LivingCreatures;
 
 namespace Game
@@ -11,15 +12,29 @@ namespace Game
     {
         private static List<Race> allRaces = new List<Race>();
         private List<Location> locations = new List<Location>();
+        private List<Region> regions = new List<Region>();
 
-        internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description)
+        internal void AddRegion(string name, int id, bool isSafeRegion)
+        {
+            Region region = new Region
+            {
+                Name = name,
+                ID = id,
+                IsSafeRegion = isSafeRegion
+            };
+
+            regions.Add(region);
+        }
+
+        internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description, Region region)
         {
             Location loc = new Location
             {
                 XCoordinate = xCoordinate,
                 YCoordinate = yCoordinate,
                 Name = name,
-                Description = description
+                Description = description,
+                Region = region
             };
 
             locations.Add(loc);
@@ -41,6 +56,18 @@ namespace Game
             };
 
             allRaces.Add(race);
+        }
+
+        public Region RegionByID(int id)
+        {
+            foreach (var region in regions)
+            {
+                if (region.ID == id)
+                {
+                    return region;
+                }
+            }
+            return null;
         }
 
 
