@@ -14,13 +14,31 @@ namespace Game
         private List<Location> locations = new List<Location>();
         private List<Region> regions = new List<Region>();
 
-        internal void AddRegion(string name, int id, bool isSafeRegion)
+        // ID's
+
+        // Races
+        public static int RaceIDHuman = 0;
+        public static int RaceIDElf = 1;
+        public static int RaceIDDwarf = 2;
+        public static int RaceIDDogFolk = 3;
+        public static int RaceIDCatFolk = 4;
+
+        // Regions
+        public static int RegionIDVillage = 0;
+
+        // Enemies
+        public static int EnemyIDSnake = 0;
+        public static int EnemyIDRat = 1;
+
+        // Items
+
+
+        internal void AddRegion(string name, int id)
         {
             Region region = new Region
             {
                 Name = name,
-                ID = id,
-                IsSafeRegion = isSafeRegion
+                ID = id
             };
 
             regions.Add(region);

@@ -9,20 +9,20 @@ namespace Game
 {
     public class EnemyFactory
     {
-        public static Enemy GetMonster(int monsterID)
+        public static Enemy GetMonster(int enemyID)
         {
-            switch (monsterID)
+            switch (enemyID)
             {
-                case 1:
+                case 0:
                     Enemy snake =
-                        new Enemy("Goblin", 1, 2, 1, 2, 1, 1, 1, 1, 1, 35, 1);
+                        new Enemy("Snake", 1, 2, 1, 2, 1, 1, 1, 1, 1, 55, World.EnemyIDSnake, true);
                     return snake;
-                case 2:
+                case 1:
                     Enemy rat =
-                        new Enemy("Rat", 1, 1, 2, 2, 1, 1, 2, 1, 1, 35, 2);
+                        new Enemy("Rat", 1, 1, 2, 2, 1, 1, 2, 1, 1, 35, World.EnemyIDRat, false);
                     return rat;
                 default:
-                    throw new ArgumentException(string.Format("MonsterType '{0}' does not exist", monsterID));
+                    throw new ArgumentException(string.Format("MonsterType '{0}' does not exist", enemyID));
             }
         }
     }

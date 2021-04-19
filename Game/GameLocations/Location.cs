@@ -13,5 +13,7 @@ namespace Game.GameLocations
         public int XCoordinate { get; set; }
         public int YCoordinate { get; set; }
         public Region Region { get; set; }
+
+        // TODO add checkpoints and shops
     }
 }

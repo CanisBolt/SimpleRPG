@@ -12,7 +12,8 @@ namespace Game
 {
     public class GameSession : BaseNotificationClass
     {
-        private Location currentLocation;
+        private Location currentLocation; 
+        private Enemy currentEnemy;
 
         public World CurrentWorld { get; set; }
         public Hero Hero { get; set; }
@@ -23,6 +24,19 @@ namespace Game
             {
                 currentLocation = value;
                 OnPropertyChanged(nameof(CurrentLocation));
+
+                GetEnemyAtRegion();
+            }
+        }
+
+        public Enemy CurrentEnemy
+        {
+            get { return currentEnemy; }
+            set
+            {
+                currentEnemy = value;
+                OnPropertyChanged(nameof(currentEnemy));
+                OnPropertyChanged(nameof(HasEnemy));
             }
         }
 
@@ -32,10 +46,12 @@ namespace Game
 
             WorldFactory factory = new WorldFactory();
             CurrentWorld = factory.CreateWorld();
-            CurrentLocation = CurrentWorld.LocationAt(0, 0);
+            CurrentLocation = CurrentWorld.LocationAt(0, 0); // Starting position (home)
 
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(1));
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(2));
+
+            GetEnemyAtRegion();
         }
 
         public void MoveNorth()
@@ -60,6 +76,13 @@ namespace Game
         {
             if (CurrentWorld.LocationAt(CurrentLocation.XCoordinate - 1, CurrentLocation.YCoordinate) != null)
                 CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate - 1, CurrentLocation.YCoordinate);
+        }
+
+        public bool HasEnemy => CurrentEnemy != null;
+
+        private void GetEnemyAtRegion()
+        {
+            CurrentEnemy = CurrentLocation.Region.GetEnemy();
         }
     }
 }
