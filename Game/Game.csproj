@@ -45,7 +45,6 @@
     <Compile Include="EnemyFactory.cs" />
     <Compile Include="GameLocations\Region.cs" />
     <Compile Include="Items\ItemsFactory.cs" />
-    <Compile Include="Items\Weapons.cs" />
     <Compile Include="LivingCreatures\Creature.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="LivingCreatures\Enemy.cs" />

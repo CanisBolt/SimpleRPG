@@ -48,8 +48,10 @@ namespace Game
             CurrentWorld = factory.CreateWorld();
             CurrentLocation = CurrentWorld.LocationAt(0, 0); // Starting position (home)
 
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(1));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(2));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodStaff));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodSword));
+
+            Hero.CurrentWeapon = Hero.Inventory[0];
 
             GetEnemyAtRegion();
         }

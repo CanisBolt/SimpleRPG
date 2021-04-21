@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="Inventory" Height="400" Width="400">
     <Grid>
-        <TabControl>
+        <TabControl Margin="0,0,0,34">
             <TabItem Header="Inventory">
                 <DataGrid ItemsSource="{Binding Hero.Inventory}"
                               AutoGenerateColumns="False"
-                              HeadersVisibility="Column">
+                              HeadersVisibility="Column" Margin="0,0,0,-2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Description"
                                                 Binding="{Binding Name}"
@@ -23,6 +23,7 @@
                 </DataGrid>
             </TabItem>
         </TabControl>
-
+        <TextBlock HorizontalAlignment="Left" Margin="10,340,0,0" TextWrapping="Wrap" Text="Money:" VerticalAlignment="Top" Height="22"/>
+        <TextBlock x:Name="tbMoney" Text="{Binding Hero.Money}" HorizontalAlignment="Left" Margin="54,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="114"/>
     </Grid>
 </Window>

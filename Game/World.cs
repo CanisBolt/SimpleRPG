@@ -31,6 +31,9 @@ namespace Game
         public static int EnemyIDRat = 1;
 
         // Items
+        // Weapons
+        public static int WeaponIDWoodStaff = 0;
+        public static int WeaponIDWoodSword = 1;
 
 
         internal void AddRegion(string name, int id)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleRPG"
         mc:Ignorable="d"
-        Title="CharacterWindow" Height="210" Width="440">
+        Title="CharacterWindow" Height="510" Width="440">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="Name:" Height="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="Level:" Height="16"/>
@@ -54,5 +54,16 @@
         <Button x:Name="btnIntelligenceUP" Content="+" HorizontalAlignment="Left" Margin="385,91,0,0" VerticalAlignment="Top" Width="20" Click="btnIntelligenceUP_Click"/>
         <Button x:Name="btnMindUP" Content="+" HorizontalAlignment="Left" Margin="385,117,0,0" VerticalAlignment="Top" Width="20" Click="btnMindUP_Click"/>
         <Button x:Name="btnLuckUP" Content="+" HorizontalAlignment="Left" Margin="385,143,0,0" VerticalAlignment="Top" Width="20" Click="btnLuckUP_Click"/>
+
+
+        <!-- Current Equipment -->
+        <TextBlock HorizontalAlignment="Left" Margin="10,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Text="Current Equipment:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Weapon:" Height="22"/>
+        <TextBlock x:Name="tbWeapon" Text="{Binding Hero.CurrentWeapon.Name}" HorizontalAlignment="Left" Margin="65,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
+
+        <!-- Change Equipment -->
+        <TextBlock HorizontalAlignment="Left" Margin="230,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Weapon:" Height="22"/>
+        <ComboBox x:Name="cbWeapons" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="285,218,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbWeapons_SelectionChanged"/>
+        <TextBlock HorizontalAlignment="Left" Margin="230,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Text="Change Equipment:" Height="16"/>
     </Grid>
 </Window>

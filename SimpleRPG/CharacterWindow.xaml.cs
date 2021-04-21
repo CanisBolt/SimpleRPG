@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Game;
+using Game.Items;
 
 namespace SimpleRPG
 {
@@ -56,6 +57,14 @@ namespace SimpleRPG
                 btnLuckUP.Visibility = Visibility.Hidden;
                 tbSkillPoints.Visibility = Visibility.Hidden;
             }
+
+            foreach(var item in gameSession.Hero.Inventory)
+            {
+                if(item.Type.Equals(GameItems.ItemType.Weapon))
+                {
+                    cbWeapons.Items.Add(item);
+                }
+            }
         }
 
         private void btnStrengthUP_Click(object sender, RoutedEventArgs e)
@@ -98,6 +107,12 @@ namespace SimpleRPG
             gameSession.Hero.Luck++;
             gameSession.Hero.SkillPoints--;
             UpdateInfo();
+        }
+
+        private void cbWeapons_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            gameSession.Hero.CurrentWeapon = (GameItems)cbWeapons.SelectedItem;
+            tbWeapon.Text = gameSession.Hero.CurrentWeapon.Name;
         }
     }
 }

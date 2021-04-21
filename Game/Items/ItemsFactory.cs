@@ -14,8 +14,8 @@ namespace Game.Items
         {
             standardGameItems = new List<GameItems>();
 
-            standardGameItems.Add(new Weapons("Wood Staff", 1, 1, 1, 2));
-            standardGameItems.Add(new Weapons("Wood Sword", 2, 1, 2, 2));
+            CreateWeapon("Wood Staff", World.WeaponIDWoodStaff, 1, 1, 2);
+            CreateWeapon("Wood Sword", World.WeaponIDWoodSword, 1, 2, 2);
         }
 
         public static GameItems CreateGameItem(int itemID)
@@ -28,6 +28,11 @@ namespace Game.Items
             }
 
             return null;
+        }
+
+        private static void CreateWeapon(string name, int id, int price, int minDamage, int maxDamage)
+        {
+            standardGameItems.Add(new GameItems(name, id, price, GameItems.ItemType.Weapon, minDamage, maxDamage));
         }
     }
 }

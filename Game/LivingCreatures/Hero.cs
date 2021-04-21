@@ -14,6 +14,7 @@ namespace Game.LivingCreatures
         private int expToLevel;
         private int money;
         private int skillPoints;
+        private GameItems currentWeapon;
         public int CurrentEXP
         {
             get
@@ -64,6 +65,19 @@ namespace Game.LivingCreatures
         }
         public Gender HeroGender { get; set; }
         public Race HeroRace { get; set; }
+
+        public GameItems CurrentWeapon
+        {
+            get
+            {
+                return currentWeapon;
+            }
+            set
+            {
+                OnPropertyChanged(nameof(currentWeapon));
+                currentWeapon = value;
+            }
+        }
         public ObservableCollection<GameItems> Inventory { get; set; }
 
         public Hero(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck) : base(name, level, strength, agility, vitality, intelligence, mind, luck)
