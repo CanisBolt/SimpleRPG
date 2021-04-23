@@ -79,5 +79,11 @@ namespace SimpleRPG
             Inventory inventory = new Inventory(gameSession);
             inventory.Show();
         }
+
+        private void AttackEnemy(object sender, MouseButtonEventArgs e)
+        {
+            BattleWindow battle = new BattleWindow(gameSession);
+            battle.ShowDialog();
+        }
     }
 }

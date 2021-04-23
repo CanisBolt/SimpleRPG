@@ -165,8 +165,8 @@ namespace Game.LivingCreatures
             }
         } // Increase crit chance
 
-        public int Damage { get; set; }
-        public int Defence { get; set; }
+        public float Damage { get; set; }
+        public float Defence { get; set; }
         public float Evasion { get; set; }
 
         public Creature(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck)

@@ -137,5 +137,12 @@
   <ItemGroup>
     <Resource Include="Images\Icons\characterLevelUPIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Battle\basicAttackIcon.png" />
+    <Resource Include="Images\Icons\Battle\escapeIcon.png" />
+    <Resource Include="Images\Icons\Battle\specialAttackIcon.png" />
+    <Resource Include="Images\Icons\Battle\spellBookIcon.png" />
+    <Resource Include="Images\Icons\Battle\useItemIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

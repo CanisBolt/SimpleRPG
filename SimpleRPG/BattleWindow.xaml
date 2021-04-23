@@ -5,8 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleRPG"
         mc:Ignorable="d"
-        Title="BattleWindow" Height="450" Width="800">
+        Title="BattleWindow" Height="400" Width="500">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="78*"/>
+            <ColumnDefinition Width="59*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="0,1,0,-1">
+            <!-- Hero Stats-->
+            <TextBlock HorizontalAlignment="Left" Margin="4,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Name:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="4,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="HP:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="4,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="MP:" Height="16"/>
+
+            <TextBlock x:Name="tbHeroName" Text="{Binding Hero.Name}" HorizontalAlignment="Left" Margin="40,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" Height="16"/>
+            <TextBlock x:Name="tbHeroHP" HorizontalAlignment="Left" Margin="40,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" Height="16"><Run Text="{Binding Hero.CurrentHP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxHP}"/></TextBlock>
+            <TextBlock x:Name="tbHeroMP" HorizontalAlignment="Left" Margin="40,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" Height="16"><Run Text="{Binding Hero.CurrentMP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxMP}"/></TextBlock>
+
+        </Grid>
+        <Grid Grid.Column="1" Margin="0,1,0,-1">
+            <StackPanel Margin="31,1,120,301" Orientation="Vertical" MouseLeftButtonDown="BasicAttack" ToolTip="Basic attack">
+                <Image x:Name="imgBasicAttack" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="45" Source="Images/Icons/Battle/basicAttackIcon.png"/>
+                <Label Content="Attack" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="45"/>
+            </StackPanel>
+            <StackPanel Margin="81,1,70,301" Orientation="Vertical" MouseLeftButtonDown="SpecialAttack" ToolTip="Attack enemy with weapon skill">
+                <Image x:Name="imgSpecialAttack" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="45" Source="Images/Icons/Battle/specialAttackIcon.png"/>
+                <Label Content="Skill" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="45"/>
+            </StackPanel>
+            <StackPanel Margin="131,1,20,301" Orientation="Vertical" MouseLeftButtonDown="MagicAttack" ToolTip="Open magic book and use spell">
+                <Image x:Name="imgMagic" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="45" Source="Images/Icons/Battle/spellBookIcon.png"/>
+                <Label Content="Magic" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="45"/>
+            </StackPanel>
+            <Image x:Name="imgUseItem" HorizontalAlignment="Left" Height="42" Margin="58,70,0,0" VerticalAlignment="Top" Width="45" Source="Images/Icons/Battle/useItemIcon.png"/>
+            <Image x:Name="imgEscape" HorizontalAlignment="Left" Height="42" Margin="109,70,0,0" VerticalAlignment="Top" Width="45" Source="Images/Icons/Battle/escapeIcon.png"/>
+            <Label Content="Items" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="58,112,0,0" VerticalAlignment="Top" Height="25" Width="45"/>
+            <Label Content="Escape" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="109,112,0,0" VerticalAlignment="Top" Height="25" Width="47"/>
+            <TextBox x:Name="tbBattleLog" HorizontalAlignment="Left" Height="232" Margin="0,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196"/>
+            <!-- Battle Control-->
+        </Grid>
+        <Grid Grid.Column="3">
+            <!-- Enemy Stats-->
+            <TextBlock HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Name:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="2,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="HP:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="2,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="MP:" Height="16"/>
+            <TextBlock x:Name="tbEnemyName" Text="{Binding CurrentEnemy.Name}" HorizontalAlignment="Left" Margin="38,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" Height="16"/>
+            <TextBlock x:Name="tbEnemyHP" HorizontalAlignment="Left" Margin="38,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" Height="16"><Run Text="{Binding CurrentEnemy.CurrentHP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxHP}"/></TextBlock>
+            <TextBlock x:Name="tbEnemyMP" HorizontalAlignment="Left" Margin="38,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" Height="16"><Run Text="{Binding CurrentEnemy.CurrentMP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxMP}"/></TextBlock>
+        </Grid>
     </Grid>
 </Window>

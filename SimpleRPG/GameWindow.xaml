@@ -58,7 +58,7 @@
         <Button x:Name="btnEast" Content="East" Grid.Column="1" HorizontalAlignment="Left" Margin="499,225,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Click="btnEast_Click"/>
         <Button x:Name="btnSouth" Content="South" Grid.Column="1" HorizontalAlignment="Left" Margin="423,245,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Click="btnSouth_Click"/>
         
-        <TextBlock x:Name="tbMonsterName" Text="{Binding CurrentEnemy.Name}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="121" Height="25"/>
+        <TextBlock x:Name="tbMonsterName" Text="{Binding CurrentEnemy.Name}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="121" Height="25" MouseLeftButtonDown="AttackEnemy"/>
 
     </Grid>
 </Window>
