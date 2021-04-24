@@ -94,5 +94,11 @@ namespace Game.LivingCreatures
             Female,
             Other
         }
+
+        public override float PhysicalDamageCalculation()
+        {
+            float randomModificator = Dice.rng.Next(2, 4) * 0.4f; // TODO chance this to RNG Float
+            return randomModificator * (Strength + (Dice.rng.Next(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage) + 1));
+        }
     }
 }

@@ -189,6 +189,13 @@ namespace Game.LivingCreatures
         {
         }
 
+
+        public virtual float PhysicalDamageCalculation()
+        {
+            float randomModificator = Dice.rng.Next(2, 4) * 0.4f; // TODO chance this to RNG Float
+            return randomModificator * Strength;
+        }
+
         public void RestoreHPMP()
         {
             MaxHP = Vitality * 10;

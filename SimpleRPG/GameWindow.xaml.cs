@@ -82,8 +82,23 @@ namespace SimpleRPG
 
         private void AttackEnemy(object sender, MouseButtonEventArgs e)
         {
+            if (gameSession.CurrentEnemy == null) return;
             BattleWindow battle = new BattleWindow(gameSession);
             battle.ShowDialog();
+
+            if (battle.IsBattleWon)
+            {
+                tbLog.Text += $"{gameSession.Hero.Name} kill {gameSession.CurrentEnemy.Name}." + Environment.NewLine;
+                tbLog.Text += $"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardMoney} money." + Environment.NewLine;
+                gameSession.Hero.CurrentEXP += gameSession.CurrentEnemy.RewardEXP;
+                gameSession.Hero.Money += gameSession.CurrentEnemy.RewardMoney;
+            }
+            else
+            {
+                tbLog.Text += $"{gameSession.CurrentEnemy.Name} kill {gameSession.Hero.Name}." + Environment.NewLine;
+            }
+
+            gameSession.CurrentEnemy = null;
         }
     }
 }
