@@ -51,6 +51,9 @@ namespace Game
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodStaff));
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodSword));
 
+            Hero.SpellBook.Add(World.SpellByID(World.MagicIDFireball));
+            Hero.SpellBook.Add(World.SpellByID(World.MagicIDIceArrow));
+
             Hero.CurrentWeapon = Hero.Inventory[0];
 
             GetEnemyAtRegion();

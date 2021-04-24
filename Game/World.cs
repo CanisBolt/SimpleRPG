@@ -11,8 +11,9 @@ namespace Game
     public class World
     {
         private static List<Race> allRaces = new List<Race>();
-        private List<Location> locations = new List<Location>();
-        private List<Region> regions = new List<Region>();
+        private List<Location> allLocations = new List<Location>();
+        private List<Region> allRegions = new List<Region>();
+        private static List<Magic> allMagicSpells = new List<Magic>();
 
         // ID's
 
@@ -30,6 +31,11 @@ namespace Game
         public static int EnemyIDSnake = 0;
         public static int EnemyIDRat = 1;
 
+        // Magic
+        public static int MagicIDFireball = 0;
+        public static int MagicIDIceArrow = 1;
+        public static int MagicIDThunderStrike = 2;
+
         // Items
         // Weapons
         public static int WeaponIDWoodStaff = 0;
@@ -44,7 +50,7 @@ namespace Game
                 ID = id
             };
 
-            regions.Add(region);
+            allRegions.Add(region);
         }
 
         internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description, Region region)
@@ -58,10 +64,25 @@ namespace Game
                 Region = region
             };
 
-            locations.Add(loc);
+            allLocations.Add(loc);
         }
 
-        internal void CreateRaces(string name, int strength, int agility, int vitality, int intelligence, int mind, int luck, int id)
+        internal void AddMagic(string name, int id, string description, float spellDamage, int manaCost, float intelligenceModificator)
+        {
+            Magic magic = new Magic
+            {
+                Name = name,
+                ID = id,
+                Description = description,
+                BasicDamage = spellDamage,
+                ManaCost = manaCost,
+                IntelligenceModificator = intelligenceModificator
+            };
+
+            allMagicSpells.Add(magic);
+        }
+
+        internal void AddRace(string name, int strength, int agility, int vitality, int intelligence, int mind, int luck, int id)
         {
             Race race = new Race
             {
@@ -81,7 +102,7 @@ namespace Game
 
         public Region RegionByID(int id)
         {
-            foreach (var region in regions)
+            foreach (var region in allRegions)
             {
                 if (region.ID == id)
                 {
@@ -104,16 +125,27 @@ namespace Game
             return null;
         }
 
+        public static Magic SpellByID(int id)
+        {
+            foreach (var spell in allMagicSpells)
+            {
+                if (spell.ID == id)
+                {
+                    return spell;
+                }
+            }
+            return null;
+        }
+
         public Location LocationAt(int xCoordinate, int yCoordinate)
         {
-            foreach (Location loc in locations)
+            foreach (Location loc in allLocations)
             {
                 if (loc.XCoordinate == xCoordinate && loc.YCoordinate == yCoordinate)
                 {
                     return loc;
                 }
             }
-
             return null;
         }
     }

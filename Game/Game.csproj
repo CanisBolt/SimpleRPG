@@ -52,6 +52,7 @@
     <Compile Include="LivingCreatures\Hero.cs" />
     <Compile Include="Items\GameItems.cs" />
     <Compile Include="GameLocations\Location.cs" />
+    <Compile Include="Magic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LivingCreatures\Race.cs" />
     <Compile Include="World.cs" />

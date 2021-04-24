@@ -91,7 +91,17 @@ namespace SimpleRPG
 
         private void MagicAttack(object sender, MouseButtonEventArgs e)
         {
+            SpellBookWindow spellbook = new SpellBookWindow(gameSession);
+            spellbook.ShowDialog();
 
+            if(spellbook.IsSpellCasted)
+            {
+                gameSession.Hero.CurrentMP -= gameSession.Hero.CurrentSpell.ManaCost;
+                gameSession.Hero.Damage = gameSession.Hero.MagicDamageCalculation();
+                gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
+                tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSpell.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
+                EnemyAttack();
+            }
         }
     }
 }

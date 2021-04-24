@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Game.LivingCreatures
         private int intelligence;
         private int mind;
         private int luck;
+        private Magic currentMagic;
         public string Name 
         {
             get
@@ -169,6 +171,21 @@ namespace Game.LivingCreatures
         public float Defence { get; set; }
         public float Evasion { get; set; }
 
+        public Magic CurrentSpell
+        {
+            get
+            {
+                return currentMagic;
+            }
+            set
+            {
+                OnPropertyChanged(nameof(currentMagic));
+                currentMagic = value;
+            }
+        }
+
+        public ObservableCollection<Magic> SpellBook { get; set; }
+
         public Creature(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck)
         {
             Name = name;
@@ -180,6 +197,8 @@ namespace Game.LivingCreatures
             Intelligence = intelligence;
             Mind = mind;
             Luck = luck;
+
+            SpellBook = new ObservableCollection<Magic>();
 
             RestoreHPMP();
         }
@@ -194,6 +213,12 @@ namespace Game.LivingCreatures
         {
             float randomModificator = Dice.rng.Next(2, 4) * 0.4f; // TODO chance this to RNG Float
             return randomModificator * Strength;
+        }
+
+        public virtual float MagicDamageCalculation()
+        {
+            float randomModificator = Dice.rng.Next(2, 4) * 0.4f; // TODO chance this to RNG Float
+            return randomModificator * (CurrentSpell.BasicDamage + (Intelligence * CurrentSpell.IntelligenceModificator));
         }
 
         public void RestoreHPMP()

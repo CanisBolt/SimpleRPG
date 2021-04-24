@@ -80,6 +80,7 @@ namespace Game.LivingCreatures
         }
         public ObservableCollection<GameItems> Inventory { get; set; }
 
+
         public Hero(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck) : base(name, level, strength, agility, vitality, intelligence, mind, luck)
         {
             CurrentEXP = 0;
@@ -99,6 +100,14 @@ namespace Game.LivingCreatures
         {
             float randomModificator = Dice.rng.Next(2, 4) * 0.4f; // TODO chance this to RNG Float
             return randomModificator * (Strength + (Dice.rng.Next(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage) + 1));
+        }
+
+        public override float MagicDamageCalculation()
+        {
+            // For now, Hero using same magic damage logic as enemy.
+            // In future, apply damage buff if Hero is using a Staff
+            float randomModificator = Dice.rng.Next(2, 4) * 0.4f; // TODO chance this to RNG Float
+            return randomModificator * (CurrentSpell.BasicDamage + (Intelligence * CurrentSpell.IntelligenceModificator));
         }
     }
 }
