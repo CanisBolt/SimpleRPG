@@ -4,16 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game
+namespace Game.SpecialAttack
 {
-    public class Magic
+    public class SkillsAndMagic
     {
         public string Name { get; set; }
         public int ID { get; set; }
         public string Description { get; set; }
-        public float BasicDamage { get; set; }
+        public float BaseDamage { get; set; }
         public int ManaCost { get; set; }
-        public float IntelligenceModificator { get; set; }
+        public Enum AffectedTarger { get; set; }
 
+
+        public enum Target
+        {
+            Self,
+            Enemy
+        }
     }
 }

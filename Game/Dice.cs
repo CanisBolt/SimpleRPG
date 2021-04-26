@@ -21,5 +21,11 @@ namespace Game
             }
             return number;
         }
+
+
+        public static float GetRandomModificator()
+        {
+            return rng.Next(2, 4) * 0.4f; // TODO chance this to RNG Float
+        }
     }
 }

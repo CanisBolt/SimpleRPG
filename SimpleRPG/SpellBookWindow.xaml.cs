@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Game.SpecialAttack;
 
 namespace SimpleRPG
 {
@@ -22,9 +23,15 @@ namespace SimpleRPG
     {
         GameSession gameSession; 
         private bool isSpellCasted;
+        private bool isSkillUsed;
         public bool IsSpellCasted
         {
             get { return isSpellCasted; }
+        }
+
+        public bool IsSkillUsed
+        {
+            get { return isSkillUsed; }
         }
         public SpellBookWindow(GameSession _gameSession)
         {
@@ -32,6 +39,9 @@ namespace SimpleRPG
 
             gameSession = _gameSession;
             DataContext = gameSession;
+
+            isSpellCasted = false;
+            isSkillUsed = false;
         }
 
         private void SpellCast(object sender, MouseButtonEventArgs e)
@@ -43,6 +53,19 @@ namespace SimpleRPG
             {
                 gameSession.Hero.CurrentSpell = selectedSpell;
                 isSpellCasted = true;
+                Close();
+            }
+        }
+
+        private void SkillCast(object sender, MouseButtonEventArgs e)
+        {
+            if (dgSkillBook.SelectedItem == null) return;
+
+            WeaponSkills selectedSkill = (WeaponSkills)dgSkillBook.SelectedItem;
+            if (gameSession.Hero.CurrentMP >= selectedSkill.ManaCost)
+            {
+                gameSession.Hero.CurrentSkill = selectedSkill;
+                isSkillUsed = true;
                 Close();
             }
         }

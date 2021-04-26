@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Game.GameLocations;
 using Game.LivingCreatures;
+using Game.SpecialAttack;
 
 namespace Game
 {
@@ -14,6 +15,7 @@ namespace Game
         private List<Location> allLocations = new List<Location>();
         private List<Region> allRegions = new List<Region>();
         private static List<Magic> allMagicSpells = new List<Magic>();
+        private static List<WeaponSkills> allSkills = new List<WeaponSkills>();
 
         // ID's
 
@@ -30,11 +32,18 @@ namespace Game
         // Enemies
         public static int EnemyIDSnake = 0;
         public static int EnemyIDRat = 1;
+        public static int EnemyIDGoblin = 2;
 
         // Magic
         public static int MagicIDFireball = 0;
         public static int MagicIDIceArrow = 1;
         public static int MagicIDThunderStrike = 2;
+        public static int MagicIDSmallHeal = 3;
+
+        // Skills
+        public static int SwordSKillIDFastStrike = 0;
+        public static int SwordSKillIDHeavyStrike = 1;
+        public static int SwordSKillIDMultiHit = 2;
 
         // Items
         // Weapons
@@ -67,19 +76,37 @@ namespace Game
             allLocations.Add(loc);
         }
 
-        internal void AddMagic(string name, int id, string description, float spellDamage, int manaCost, float intelligenceModificator)
+        internal void AddMagic(string name, int id, string description, float spellDamage, int manaCost, float intelligenceModificator, Enum target)
         {
             Magic magic = new Magic
             {
                 Name = name,
                 ID = id,
                 Description = description,
-                BasicDamage = spellDamage,
+                BaseDamage = spellDamage,
                 ManaCost = manaCost,
-                IntelligenceModificator = intelligenceModificator
+                IntelligenceModificator = intelligenceModificator,
+                AffectedTarger = target
             };
 
             allMagicSpells.Add(magic);
+        }
+
+        internal void AddSkill(string name, int id, string description, float spellDamage, int manaCost, float strengthModificator, int numberOfHits, Enum target)
+        {
+            WeaponSkills skill = new WeaponSkills
+            {
+                Name = name,
+                ID = id,
+                Description = description,
+                BaseDamage = spellDamage,
+                ManaCost = manaCost,
+                StrengthModificator = strengthModificator,
+                NumberOfHits = numberOfHits,
+                AffectedTarger = target
+            };
+
+            allSkills.Add(skill);
         }
 
         internal void AddRace(string name, int strength, int agility, int vitality, int intelligence, int mind, int luck, int id)
@@ -132,6 +159,18 @@ namespace Game
                 if (spell.ID == id)
                 {
                     return spell;
+                }
+            }
+            return null;
+        }
+
+        public static WeaponSkills SkillByID(int id)
+        {
+            foreach (var skill in allSkills)
+            {
+                if (skill.ID == id)
+                {
+                    return skill;
                 }
             }
             return null;

@@ -98,16 +98,14 @@ namespace Game.LivingCreatures
 
         public override float PhysicalDamageCalculation()
         {
-            float randomModificator = Dice.rng.Next(2, 4) * 0.4f; // TODO chance this to RNG Float
-            return randomModificator * (Strength + (Dice.rng.Next(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage) + 1));
+            return Dice.GetRandomModificator() * (Strength + (Dice.rng.Next(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage) + 1));
         }
 
         public override float MagicDamageCalculation()
         {
             // For now, Hero using same magic damage logic as enemy.
             // In future, apply damage buff if Hero is using a Staff
-            float randomModificator = Dice.rng.Next(2, 4) * 0.4f; // TODO chance this to RNG Float
-            return randomModificator * (CurrentSpell.BasicDamage + (Intelligence * CurrentSpell.IntelligenceModificator));
+            return Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + (Intelligence * CurrentSpell.IntelligenceModificator));
         }
     }
 }

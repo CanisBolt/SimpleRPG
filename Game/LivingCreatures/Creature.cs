@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game.SpecialAttack;
 
 namespace Game.LivingCreatures
 {
@@ -22,6 +23,7 @@ namespace Game.LivingCreatures
         private int mind;
         private int luck;
         private Magic currentMagic;
+        private WeaponSkills currentSkill;
         public string Name 
         {
             get
@@ -184,7 +186,21 @@ namespace Game.LivingCreatures
             }
         }
 
+        public WeaponSkills CurrentSkill
+        {
+            get
+            {
+                return currentSkill;
+            }
+            set
+            {
+                OnPropertyChanged(nameof(currentSkill));
+                currentSkill = value;
+            }
+        }
+
         public ObservableCollection<Magic> SpellBook { get; set; }
+        public ObservableCollection<WeaponSkills> SkillBook { get; set; }
 
         public Creature(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck)
         {
@@ -199,6 +215,7 @@ namespace Game.LivingCreatures
             Luck = luck;
 
             SpellBook = new ObservableCollection<Magic>();
+            SkillBook = new ObservableCollection<WeaponSkills>();
 
             RestoreHPMP();
         }
@@ -211,14 +228,37 @@ namespace Game.LivingCreatures
 
         public virtual float PhysicalDamageCalculation()
         {
-            float randomModificator = Dice.rng.Next(2, 4) * 0.4f; // TODO chance this to RNG Float
-            return randomModificator * Strength;
+            return Dice.GetRandomModificator() * Strength;
         }
 
         public virtual float MagicDamageCalculation()
         {
-            float randomModificator = Dice.rng.Next(2, 4) * 0.4f; // TODO chance this to RNG Float
-            return randomModificator * (CurrentSpell.BasicDamage + (Intelligence * CurrentSpell.IntelligenceModificator));
+            return Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + (Intelligence * CurrentSpell.IntelligenceModificator));
+        }
+
+        public virtual float SkillDamageCalculation()
+        {
+            if(CurrentSkill.NumberOfHits > 1)
+            {
+                float damage = 0;
+                int numberOfHits = Dice.rng.Next(CurrentSkill.NumberOfHits) + 1;
+                for(int i = 0; i < numberOfHits; i++)
+                {
+                    damage += (CurrentSkill.BaseDamage + (Strength * CurrentSkill.StrengthModificator));
+                }
+                return Dice.GetRandomModificator() * damage;
+            }
+            return Dice.GetRandomModificator() * (CurrentSkill.BaseDamage + (Strength * CurrentSkill.StrengthModificator));
+        }
+
+        public bool IsCriticalHit()
+        {
+            if(Dice.rng.Next(100) + 1 <= Dice.rng.Next(Luck))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void RestoreHPMP()

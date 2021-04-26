@@ -52,7 +52,10 @@ namespace Game
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodSword));
 
             Hero.SpellBook.Add(World.SpellByID(World.MagicIDFireball));
-            Hero.SpellBook.Add(World.SpellByID(World.MagicIDIceArrow));
+            Hero.SpellBook.Add(World.SpellByID(World.MagicIDSmallHeal));
+
+            Hero.SkillBook.Add(World.SkillByID(World.SwordSKillIDFastStrike));
+            Hero.SkillBook.Add(World.SkillByID(World.SwordSKillIDMultiHit));
 
             Hero.CurrentWeapon = Hero.Inventory[0];
 

@@ -56,6 +56,7 @@ namespace SimpleRPG
             // For now, enemy using same logic as Hero (without weapon).
             // TODO Add choice between normal, skill and magic attack later
             gameSession.CurrentEnemy.Damage = gameSession.CurrentEnemy.PhysicalDamageCalculation();
+            if (gameSession.CurrentEnemy.IsCriticalHit()) gameSession.CurrentEnemy.Damage *= 2;
             gameSession.Hero.CurrentHP -= (int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence);
             tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine;
             turn++;
@@ -79,17 +80,13 @@ namespace SimpleRPG
         private void BasicAttack(object sender, MouseButtonEventArgs e)
         {
             gameSession.Hero.Damage = gameSession.Hero.PhysicalDamageCalculation();
+            if (gameSession.Hero.IsCriticalHit()) gameSession.Hero.Damage *= 2;
             gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
             tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine; 
             EnemyAttack();
         }
 
         private void SpecialAttack(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void MagicAttack(object sender, MouseButtonEventArgs e)
         {
             SpellBookWindow spellbook = new SpellBookWindow(gameSession);
             spellbook.ShowDialog();
@@ -98,8 +95,30 @@ namespace SimpleRPG
             {
                 gameSession.Hero.CurrentMP -= gameSession.Hero.CurrentSpell.ManaCost;
                 gameSession.Hero.Damage = gameSession.Hero.MagicDamageCalculation();
+                if (gameSession.Hero.IsCriticalHit()) gameSession.Hero.Damage *= 2;
+
+                if (gameSession.Hero.CurrentSpell.AffectedTarger.Equals(Game.SpecialAttack.SkillsAndMagic.Target.Self))
+                {
+                    gameSession.Hero.CurrentHP += (int)gameSession.Hero.Damage;
+                    if (gameSession.Hero.CurrentHP > gameSession.Hero.MaxHP) gameSession.Hero.CurrentHP = gameSession.Hero.MaxHP;
+                    tbBattleLog.Text += $"{gameSession.Hero.Name} casting {gameSession.Hero.CurrentSpell.Name} and heal for {(int)gameSession.Hero.Damage} HP." + Environment.NewLine;
+                }
+                else
+                {
+                    gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
+                    tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSpell.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
+                }
+                EnemyAttack();
+            }
+
+
+            else if (spellbook.IsSkillUsed)
+            {
+                gameSession.Hero.CurrentMP -= gameSession.Hero.CurrentSkill.ManaCost;
+                gameSession.Hero.Damage = gameSession.Hero.SkillDamageCalculation();
+                if (gameSession.Hero.IsCriticalHit()) gameSession.Hero.Damage *= 2;
                 gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
-                tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSpell.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
+                tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSkill.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
                 EnemyAttack();
             }
         }

@@ -36,6 +36,35 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
+            
+            <TabItem Header="Skills">
+                <DataGrid x:Name="dgSkillBook" ItemsSource="{Binding Hero.SkillBook}"
+                              AutoGenerateColumns="False"
+                              HeadersVisibility="Column" Margin="0,0,0,-2" ToolTip="Select a spell with Left Mouse Button Double Click" IsReadOnly="True">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <EventSetter Event="MouseDoubleClick" Handler="SkillCast"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name"
+                                                Binding="{Binding Name}"
+                                                Width="100"/>
+                        <DataGridTextColumn Header="Description"
+                                                Binding="{Binding Description}"
+                                                Width="*"/>
+                        <DataGridTextColumn Header="Basic Damage"
+                                                Binding="{Binding BasicDamage}"
+                                                Width="Auto"/>
+                        <DataGridTextColumn Header="Intelligence Modificator"
+                                                Binding="{Binding StrengthModificator}"
+                                                Width="Auto"/>
+                        <DataGridTextColumn Header="Mana Cost"
+                                                Binding="{Binding ManaCost}"
+                                                Width="70"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
