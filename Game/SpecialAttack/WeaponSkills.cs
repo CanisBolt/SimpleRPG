@@ -10,7 +10,7 @@ namespace Game.SpecialAttack
     {
         public float StrengthModificator { get; set; }
         public int NumberOfHits { get; set; }
-        // TODO add skills to specific weapon type
+        public Enum RequiredWeapon { get; set; }
         // TODO add weapon damage to skill damage
         // TODO add damage based on different modificators (like agility)
     }

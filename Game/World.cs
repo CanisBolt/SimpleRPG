@@ -95,7 +95,7 @@ namespace Game
             allMagicSpells.Add(magic);
         }
 
-        internal void AddSkill(string name, int id, string description, float spellDamage, int manaCost, float strengthModificator, int numberOfHits, Enum target)
+        internal void AddSkill(string name, int id, string description, float spellDamage, int manaCost, float strengthModificator, int numberOfHits, Enum target, Enum requiredWeapon)
         {
             WeaponSkills skill = new WeaponSkills
             {
@@ -106,7 +106,8 @@ namespace Game
                 ManaCost = manaCost,
                 StrengthModificator = strengthModificator,
                 NumberOfHits = numberOfHits,
-                AffectedTarger = target
+                AffectedTarger = target,
+                RequiredWeapon = requiredWeapon
             };
 
             allSkills.Add(skill);

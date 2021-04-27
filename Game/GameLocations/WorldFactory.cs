@@ -34,9 +34,9 @@ namespace Game.GameLocations
             newWorld.AddMagic("Small Heal", World.MagicIDSmallHeal, "Cure yourself with magic. Base healing: 5 + 1.5 for Intelligence point. Mana cost: 10", 5, 10, 1.5f, SkillsAndMagic.Target.Self);
 
 
-            newWorld.AddSkill("Sword: Fast Strike", World.SwordSKillIDFastStrike, "Deal fast strike with sword. Base Damage: 3 + 0.8 for each Strength point. Mana Cost: 5", 3, 5, 0.8f, 1, SkillsAndMagic.Target.Enemy);
-            newWorld.AddSkill("Sword: Heavy Strike", World.SwordSKillIDHeavyStrike, "Deal heavy strike with sword. Base Damage: 5 + 1.5 for each Strength point. Mana Cost 15", 5, 15, 1.5f, 1, SkillsAndMagic.Target.Enemy);
-            newWorld.AddSkill("Sword: MultiHit", World.SwordSKillIDMultiHit, "Deals multiple hits (from 2 to 5). Base Damage from 1 hit: 2 + 0.5 for each Strength point. Mana Cost 10", 2, 10, 0.5f, 5, SkillsAndMagic.Target.Enemy);
+            newWorld.AddSkill("Sword: Fast Strike", World.SwordSKillIDFastStrike, "Deal fast strike with sword. Base Damage: 3 + 0.8 for each Strength point. Mana Cost: 5", 3, 5, 0.8f, 1, SkillsAndMagic.Target.Enemy, Items.GameItems.WeaponType.Sword);
+            newWorld.AddSkill("Sword: Heavy Strike", World.SwordSKillIDHeavyStrike, "Deal heavy strike with sword. Base Damage: 5 + 1.5 for each Strength point. Mana Cost 15", 5, 15, 1.5f, 1, SkillsAndMagic.Target.Enemy, Items.GameItems.WeaponType.Sword);
+            newWorld.AddSkill("Sword: MultiHit", World.SwordSKillIDMultiHit, "Deals multiple hits (from 2 to 5). Base Damage from 1 hit: 2 + 0.5 for each Strength point. Mana Cost 10", 2, 10, 0.5f, 5, SkillsAndMagic.Target.Enemy, Items.GameItems.WeaponType.Sword);
 
             newWorld.AddLocation(0, 0, "Home",
                 "Home sweet home", newWorld.RegionByID(World.RegionIDVillage));
