@@ -23,8 +23,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(currentEXP));
                 currentEXP = value;
+                OnPropertyChanged(nameof(currentEXP));
             }
         }
         public int EXPToLevel
@@ -35,8 +35,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(expToLevel));
                 expToLevel = value;
+                OnPropertyChanged(nameof(expToLevel));
             }
         }
         public int Money
@@ -47,8 +47,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(money));
                 money = value;
+                OnPropertyChanged(nameof(money));
             }
         }
         public int SkillPoints
@@ -59,8 +59,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(skillPoints));
                 skillPoints = value;
+                OnPropertyChanged(nameof(skillPoints));
             }
         }
         public Gender HeroGender { get; set; }
@@ -74,8 +74,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(currentWeapon));
                 currentWeapon = value;
+                OnPropertyChanged(nameof(currentWeapon));
             }
         }
         public ObservableCollection<GameItems> Inventory { get; set; }
@@ -103,9 +103,12 @@ namespace Game.LivingCreatures
 
         public override float MagicDamageCalculation()
         {
-            // For now, Hero using same magic damage logic as enemy.
-            // In future, apply damage buff if Hero is using a Staff
-            return Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + (Intelligence * CurrentSpell.IntelligenceModificator));
+            float damage = Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + (Intelligence * CurrentSpell.IntelligenceModificator));
+            if(CurrentWeapon.TypeOfWeapon.Equals(GameItems.WeaponType.Staff))
+            {
+                damage *= 1.2f; // Increase magic damage by 20% if Hero is using a Staff Weapon
+            }
+            return damage;
         }
     }
 }

@@ -32,8 +32,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(name));
                 name = value;
+                OnPropertyChanged(nameof(name));
             }
         }
         public int Level 
@@ -42,10 +42,10 @@ namespace Game.LivingCreatures
             {
                 return level;
             } 
-            set 
+            set
             {
+                level = value;
                 OnPropertyChanged(nameof(level));
-                level = value; 
             }
         }
         public int CurrentHP
@@ -56,8 +56,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(currentHP));
                 currentHP = value;
+                OnPropertyChanged(nameof(currentHP));
             }
         }
         public int MaxHP
@@ -68,8 +68,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(maxHP));
                 maxHP = value;
+                OnPropertyChanged(nameof(maxHP));
             }
         }
         public int CurrentMP
@@ -80,8 +80,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(currentMP));
                 currentMP = value;
+                OnPropertyChanged(nameof(currentMP));
             }
         }
         public int MaxMP
@@ -92,8 +92,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(maxMP));
                 maxMP = value;
+                OnPropertyChanged(nameof(maxMP));
             }
         }
         public int Strength
@@ -104,8 +104,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(strength));
                 strength = value;
+                OnPropertyChanged(nameof(strength));
             }
         } // Increase phys. damage
         public int Agility
@@ -116,8 +116,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(agility));
                 agility = value;
+                OnPropertyChanged(nameof(agility));
             }
         } // Increase evasion
         public int Vitality
@@ -128,8 +128,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(vitality));
                 vitality = value;
+                OnPropertyChanged(nameof(vitality));
             }
         } // Increase MaxHP
         public int Intelligence
@@ -140,8 +140,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(intelligence));
                 intelligence = value;
+                OnPropertyChanged(nameof(intelligence));
             }
         } // Increase magic damage
         public int Mind
@@ -152,8 +152,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(mind));
                 mind = value;
+                OnPropertyChanged(nameof(mind));
             }
         } // Increase MaxMP
         public int Luck
@@ -164,14 +164,15 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(luck));
                 luck = value;
+                OnPropertyChanged(nameof(luck));
             }
         } // Increase crit chance
 
         public float Damage { get; set; }
         public float Defence { get; set; }
         public float Evasion { get; set; }
+        public bool IsCriticalHit { get; set; }
 
         public Magic CurrentSpell
         {
@@ -181,8 +182,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(currentMagic));
                 currentMagic = value;
+                OnPropertyChanged(nameof(currentMagic));
             }
         }
 
@@ -194,8 +195,8 @@ namespace Game.LivingCreatures
             }
             set
             {
-                OnPropertyChanged(nameof(currentSkill));
                 currentSkill = value;
+                OnPropertyChanged(nameof(currentSkill));
             }
         }
 
@@ -251,14 +252,14 @@ namespace Game.LivingCreatures
             return Dice.GetRandomModificator() * (CurrentSkill.BaseDamage + (Strength * CurrentSkill.StrengthModificator));
         }
 
-        public bool IsCriticalHit()
+        public bool CalculateCriticalHitChance()
         {
             if(Dice.rng.Next(100) + 1 <= Dice.rng.Next(Luck))
             {
-                return true;
+                return IsCriticalHit = true;
             }
 
-            return false;
+            return IsCriticalHit = false;
         }
 
         public void RestoreHPMP()

@@ -25,6 +25,14 @@ namespace Game
                     Enemy goblin = 
                         new Enemy("Goblin", 2, 5, 4, 4, 1, 1, 3, 10, 10, 45, World.EnemyIDGoblin, true);
                     return goblin;
+                case 3:
+                    Enemy wolf =
+                        new Enemy("Wolf", 2, 5, 4, 4, 1, 1, 3, 10, 10, 45, World.EnemyIDWolf, true);
+                    return wolf;
+                case 4:
+                    Enemy rogue =
+                        new Enemy("Rogue", 2, 5, 4, 4, 1, 1, 3, 10, 10, 45, World.EnemyIDRogue, true);
+                    return rogue;
                 default:
                     throw new ArgumentException(string.Format("MonsterType '{0}' does not exist", enemyID));
             }

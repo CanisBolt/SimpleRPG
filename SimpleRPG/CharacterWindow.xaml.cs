@@ -28,7 +28,6 @@ namespace SimpleRPG
             gameSession = _gameSession;
             DataContext = gameSession;
 
-            // BUG when press on + sign for first time, no window update
             UpdateInfo();
         }
         private void UpdateInfo()

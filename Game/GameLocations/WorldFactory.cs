@@ -14,9 +14,13 @@ namespace Game.GameLocations
             World newWorld = new World();
 
             newWorld.AddRegion("Village", World.RegionIDVillage);
-            newWorld.RegionByID(World.RegionIDVillage).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDSnake));
             newWorld.RegionByID(World.RegionIDVillage).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDRat));
-            newWorld.RegionByID(World.RegionIDVillage).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDGoblin));
+
+            newWorld.AddRegion("Forest", World.RegionIDForest);
+            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDSnake));
+            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDGoblin));
+            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDWolf));
+            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDRogue));
 
             newWorld.AddRace("Human", 0, 0, 0, 0, 0, 0, World.RaceIDHuman);
             newWorld.AddRace("Elf", -2, 2, -2, 1, 0, 1, World.RaceIDElf);
@@ -39,6 +43,21 @@ namespace Game.GameLocations
 
             newWorld.AddLocation(0, 1, "House garden",
                 "This is your garden", newWorld.RegionByID(World.RegionIDVillage));
+
+            newWorld.AddLocation(0, 2, "Road to the House",
+                "Road to your house", newWorld.RegionByID(World.RegionIDVillage));
+
+            newWorld.AddLocation(0, 3, "North Street",
+                "North Street. Most popular street in village. Here you can buy items.", newWorld.RegionByID(World.RegionIDVillage));
+
+            newWorld.AddLocation(0, 4, "North Road to the Forest",
+                "Road to the forest", newWorld.RegionByID(World.RegionIDVillage));
+
+            newWorld.AddLocation(0, 5, "Forest South Entrance",
+                "South forest entrance", newWorld.RegionByID(World.RegionIDForest));
+
+            newWorld.AddLocation(0, 6, "Forest Crossroad",
+                "South forest crossroad", newWorld.RegionByID(World.RegionIDForest));
 
             return newWorld;
         }

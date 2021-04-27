@@ -15,6 +15,7 @@ namespace Game.Items
 
         public int MinimumDamage { get; set; }
         public int MaximumDamage { get; set; }
+        public Enum TypeOfWeapon { get; set; }
         public GameItems(string name, int id, int price, Enum type)
         {
             Name = name;
@@ -24,18 +25,21 @@ namespace Game.Items
         }
 
         // Weapon constructor
-        public GameItems(string name, int id, int price, Enum type, int minDamage, int maxDamage)
+        public GameItems(string name, int id, int price, Enum type, int minDamage, int maxDamage, Enum typeOfWeapon)
         {
             Name = name;
             ID = id;
             Price = price;
+            Type = type;
             MinimumDamage = minDamage;
             MaximumDamage = maxDamage;
-            Type = type;
+            TypeOfWeapon = typeOfWeapon;
         }
 
         public GameItems Clone()
         {
+            if (TypeOfWeapon != null) return new GameItems(Name, ID, Price, Type, MinimumDamage, MaximumDamage, TypeOfWeapon); // Cloning weapon
+
             return new GameItems(Name, ID, Price, Type);
         }
 
@@ -45,6 +49,15 @@ namespace Game.Items
             Armor,
             Consumable,
             Junk
+        }
+
+        public enum WeaponType
+        {
+            Sword,
+            Axe,
+            Spear,
+            Dagger,
+            Staff
         }
     }
 }

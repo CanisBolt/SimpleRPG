@@ -28,11 +28,14 @@ namespace Game
 
         // Regions
         public static int RegionIDVillage = 0;
+        public static int RegionIDForest = 1;
 
         // Enemies
         public static int EnemyIDSnake = 0;
         public static int EnemyIDRat = 1;
         public static int EnemyIDGoblin = 2;
+        public static int EnemyIDWolf = 3;
+        public static int EnemyIDRogue = 4;
 
         // Magic
         public static int MagicIDFireball = 0;

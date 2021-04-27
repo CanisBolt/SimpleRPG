@@ -56,9 +56,16 @@ namespace SimpleRPG
             // For now, enemy using same logic as Hero (without weapon).
             // TODO Add choice between normal, skill and magic attack later
             gameSession.CurrentEnemy.Damage = gameSession.CurrentEnemy.PhysicalDamageCalculation();
-            if (gameSession.CurrentEnemy.IsCriticalHit()) gameSession.CurrentEnemy.Damage *= 2;
+            if (gameSession.CurrentEnemy.CalculateCriticalHitChance())
+            {
+                gameSession.CurrentEnemy.Damage *= 2;
+            }
             gameSession.Hero.CurrentHP -= (int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence);
-            tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine;
+            if(gameSession.CurrentEnemy.IsCriticalHit)
+            {
+                tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage. CRITICAL HIT!" + Environment.NewLine;
+            }
+            else tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine;
             turn++;
             CheckHPStatus();
         }
@@ -80,9 +87,14 @@ namespace SimpleRPG
         private void BasicAttack(object sender, MouseButtonEventArgs e)
         {
             gameSession.Hero.Damage = gameSession.Hero.PhysicalDamageCalculation();
-            if (gameSession.Hero.IsCriticalHit()) gameSession.Hero.Damage *= 2;
+            if (gameSession.Hero.CalculateCriticalHitChance()) gameSession.Hero.Damage *= 2;
             gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
-            tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine; 
+            if(gameSession.Hero.IsCriticalHit)
+            {
+                tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage. CRITICAL HIT!" + Environment.NewLine;
+
+            }
+            else tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine; 
             EnemyAttack();
         }
 
@@ -95,7 +107,7 @@ namespace SimpleRPG
             {
                 gameSession.Hero.CurrentMP -= gameSession.Hero.CurrentSpell.ManaCost;
                 gameSession.Hero.Damage = gameSession.Hero.MagicDamageCalculation();
-                if (gameSession.Hero.IsCriticalHit()) gameSession.Hero.Damage *= 2;
+                if (gameSession.Hero.CalculateCriticalHitChance()) gameSession.Hero.Damage *= 2;
 
                 if (gameSession.Hero.CurrentSpell.AffectedTarger.Equals(Game.SpecialAttack.SkillsAndMagic.Target.Self))
                 {
@@ -105,8 +117,12 @@ namespace SimpleRPG
                 }
                 else
                 {
-                    gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
-                    tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSpell.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
+                    gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence); if (gameSession.Hero.IsCriticalHit)
+                    {
+                        tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSpell.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage. CRITICAL HIT!" + Environment.NewLine;
+
+                    }
+                    else tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSpell.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
                 }
                 EnemyAttack();
             }
@@ -116,9 +132,14 @@ namespace SimpleRPG
             {
                 gameSession.Hero.CurrentMP -= gameSession.Hero.CurrentSkill.ManaCost;
                 gameSession.Hero.Damage = gameSession.Hero.SkillDamageCalculation();
-                if (gameSession.Hero.IsCriticalHit()) gameSession.Hero.Damage *= 2;
+                if (gameSession.Hero.CalculateCriticalHitChance()) gameSession.Hero.Damage *= 2;
                 gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
-                tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSkill.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
+                if (gameSession.Hero.IsCriticalHit)
+                {
+                    tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSkill.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage. CRITICAL HIT!" + Environment.NewLine;
+
+                }
+                else tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSkill.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
                 EnemyAttack();
             }
         }

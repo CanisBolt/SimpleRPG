@@ -14,11 +14,12 @@ namespace Game.Items
         {
             standardGameItems = new List<GameItems>();
 
-            CreateWeapon("Wood Staff", World.WeaponIDWoodStaff, 1, 1, 2);
-            CreateWeapon("Wood Sword", World.WeaponIDWoodSword, 1, 2, 2);
+            CreateWeapon("Wood Staff", World.WeaponIDWoodStaff, 1, 1, 2, GameItems.WeaponType.Staff);
+            CreateWeapon("Wood Sword", World.WeaponIDWoodSword, 1, 2, 2, GameItems.WeaponType.Sword);
         }
 
         public static GameItems CreateGameItem(int itemID)
+
         {
             GameItems standardItem = standardGameItems.FirstOrDefault(item => item.ID == itemID);
 
@@ -30,9 +31,9 @@ namespace Game.Items
             return null;
         }
 
-        private static void CreateWeapon(string name, int id, int price, int minDamage, int maxDamage)
+        private static void CreateWeapon(string name, int id, int price, int minDamage, int maxDamage, Enum weaponType)
         {
-            standardGameItems.Add(new GameItems(name, id, price, GameItems.ItemType.Weapon, minDamage, maxDamage));
+            standardGameItems.Add(new GameItems(name, id, price, GameItems.ItemType.Weapon, minDamage, maxDamage, weaponType));
         }
     }
 }
