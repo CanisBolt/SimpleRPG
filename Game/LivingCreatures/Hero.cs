@@ -89,6 +89,19 @@ namespace Game.LivingCreatures
             Inventory = new ObservableCollection<GameItems>();
         }
 
+        public void LevelUP()
+        {
+            if(CurrentEXP >= EXPToLevel)
+            {
+                CurrentEXP -= EXPToLevel;
+
+                Level++;
+                SkillPoints += 5;
+
+                EXPToLevel = Level * (100 * (Level * 2));
+            }
+        }
+
         public enum Gender
         {
             Male,

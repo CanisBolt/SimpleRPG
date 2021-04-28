@@ -24,6 +24,7 @@ namespace Game.LivingCreatures
         private int luck;
         private Magic currentMagic;
         private WeaponSkills currentSkill;
+
         public string Name 
         {
             get
@@ -57,6 +58,10 @@ namespace Game.LivingCreatures
             set
             {
                 currentHP = value;
+                if (currentHP > maxHP)
+                {
+                    currentHP = maxHP;
+                }
                 OnPropertyChanged(nameof(currentHP));
             }
         }
@@ -66,11 +71,7 @@ namespace Game.LivingCreatures
             {
                 return maxHP;
             }
-            set
-            {
-                maxHP = value;
-                OnPropertyChanged(nameof(maxHP));
-            }
+            set { }
         }
         public int CurrentMP
         {
@@ -81,6 +82,10 @@ namespace Game.LivingCreatures
             set
             {
                 currentMP = value;
+                if (currentMP > maxMP)
+                {
+                    currentMP = maxMP;
+                }
                 OnPropertyChanged(nameof(currentMP));
             }
         }
@@ -90,11 +95,7 @@ namespace Game.LivingCreatures
             {
                 return maxMP;
             }
-            set
-            {
-                maxMP = value;
-                OnPropertyChanged(nameof(maxMP));
-            }
+            set { }
         }
         public int Strength
         {
@@ -130,6 +131,9 @@ namespace Game.LivingCreatures
             {
                 vitality = value;
                 OnPropertyChanged(nameof(vitality));
+
+                maxHP = vitality * 10;
+                OnPropertyChanged(nameof(maxHP));
             }
         } // Increase MaxHP
         public int Intelligence
@@ -154,6 +158,9 @@ namespace Game.LivingCreatures
             {
                 mind = value;
                 OnPropertyChanged(nameof(mind));
+
+                maxMP = mind * 10;
+                OnPropertyChanged(nameof(maxMP));
             }
         } // Increase MaxMP
         public int Luck
@@ -304,10 +311,7 @@ namespace Game.LivingCreatures
 
         public void RestoreHPMP()
         {
-            MaxHP = Vitality * 10;
             CurrentHP = MaxHP;
-
-            MaxMP = Mind * 10;
             CurrentMP = MaxMP;
         }
     }

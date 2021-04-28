@@ -32,9 +32,6 @@ namespace SimpleRPG
         }
         private void UpdateInfo()
         {
-            gameSession.Hero.MaxHP = gameSession.Hero.Vitality * 10;
-            gameSession.Hero.MaxMP = gameSession.Hero.Mind * 10;
-
             if (gameSession.Hero.SkillPoints > 0)
             {
                 btnStrengthUP.Visibility = Visibility.Visible;
@@ -47,7 +44,6 @@ namespace SimpleRPG
             }
             else
             {
-
                 btnStrengthUP.Visibility = Visibility.Hidden;
                 btnAgilityUP.Visibility = Visibility.Hidden;
                 btnVitalityUP.Visibility = Visibility.Hidden;
