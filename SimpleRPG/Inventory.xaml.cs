@@ -21,11 +21,63 @@ namespace SimpleRPG
     public partial class Inventory : Window
     {
         GameSession gameSession;
-        public Inventory(GameSession _gameSession)
+        bool IsInBattle; // Special variable that check if window was opened in Battle
+        public bool IsItemUsed { get; set; } // For battle. Enemy turn after closing inventory
+        public Inventory(GameSession _gameSession, bool isInBattle)
         {
             InitializeComponent();
             gameSession = _gameSession;
             DataContext = gameSession;
+            IsInBattle = isInBattle;
+
+            IsItemUsed = false;
         }
+
+        private void UseItem(object sender, MouseButtonEventArgs e)
+        {
+            Game.Items.GameItems selectedInventoryItem = (Game.Items.GameItems)dbInventory.SelectedItem;
+            if (selectedInventoryItem.Type.Equals(Game.Items.GameItems.ItemType.Consumable))
+            {
+                if (selectedInventoryItem.Name.Contains("Healing"))
+                {
+                    if (gameSession.Hero.CurrentHP == gameSession.Hero.MaxHP)
+                    {
+                        MessageBox.Show("Your HP is Full");
+                        return;
+                    }
+                    gameSession.Hero.CurrentHP += (int)(gameSession.Hero.MaxHP * selectedInventoryItem.RecoveryAmount);
+                    if (gameSession.Hero.CurrentHP >= gameSession.Hero.MaxHP) gameSession.Hero.CurrentHP = gameSession.Hero.MaxHP;
+                }
+                else if (selectedInventoryItem.Name.Contains("Mana"))
+                {
+                    if (gameSession.Hero.CurrentMP == gameSession.Hero.MaxMP)
+                    {
+                        MessageBox.Show("Your MP is Full");
+                        return;
+                    }
+                    gameSession.Hero.CurrentMP += (int)(gameSession.Hero.MaxMP * selectedInventoryItem.RecoveryAmount);
+                    if (gameSession.Hero.CurrentMP >= gameSession.Hero.MaxMP) gameSession.Hero.CurrentMP = gameSession.Hero.MaxMP;
+                }
+                gameSession.Hero.Inventory.Remove(selectedInventoryItem);
+
+                IsItemUsed = true;
+            }
+
+            else if(selectedInventoryItem.Type.Equals(Game.Items.GameItems.ItemType.Weapon))
+            {
+                if(gameSession.Hero.CurrentWeapon != (Game.Items.GameItems)dbInventory.SelectedItem)
+                {
+                    gameSession.Hero.CurrentWeapon = (Game.Items.GameItems)dbInventory.SelectedItem;
+                }
+
+                IsItemUsed = true;
+            }
+
+            if(IsItemUsed && IsInBattle)
+            {
+                Close();
+            }
+        }
+
     }
 }

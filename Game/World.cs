@@ -50,9 +50,18 @@ namespace Game
         public static int SwordSKillIDMultiHit = 2;
 
         // Items
+        // Healing/MP recovery Items
+        public static int ItemIDSmallHealingPotion = 0;
+        public static int ItemIDMediumHealingPotion = 1;
+        public static int ItemIDBigHealingPotion = 2;
+        public static int ItemIDMaxHealingPotion = 3;
+        public static int ItemIDSmallManaPotion = 4;
+        public static int ItemIDMediumManaPotion = 5;
+        public static int ItemIDBigManaPotion = 6;
+        public static int ItemIDMaxManaPotion = 7;
         // Weapons
-        public static int WeaponIDWoodStaff = 0;
-        public static int WeaponIDWoodSword = 1;
+        public static int WeaponIDWoodStaff = 100;
+        public static int WeaponIDWoodSword = 101;
 
 
         internal void AddRegion(string name, int id)

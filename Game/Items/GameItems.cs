@@ -13,9 +13,13 @@ namespace Game.Items
         public int Price { get; set; }
         public Enum Type { get; set; }
 
+        // Weapon
         public int MinimumDamage { get; set; }
         public int MaximumDamage { get; set; }
         public Enum TypeOfWeapon { get; set; }
+
+        // Healing items
+        public float RecoveryAmount { get; set; } // % from Hero MaxHP or MP
         public GameItems(string name, int id, int price, Enum type)
         {
             Name = name;
@@ -36,10 +40,19 @@ namespace Game.Items
             TypeOfWeapon = typeOfWeapon;
         }
 
+        public GameItems(string name, int id, int price, Enum type, float recoveryAmount)
+        {
+            Name = name;
+            ID = id;
+            Price = price;
+            Type = type;
+            RecoveryAmount = recoveryAmount;
+        }
+
         public GameItems Clone()
         {
-            if (TypeOfWeapon != null) return new GameItems(Name, ID, Price, Type, MinimumDamage, MaximumDamage, TypeOfWeapon); // Cloning weapon
-
+            if (Type.Equals(ItemType.Weapon)) return new GameItems(Name, ID, Price, Type, MinimumDamage, MaximumDamage, TypeOfWeapon); // Cloning weapon
+            if (Type.Equals(ItemType.Consumable)) return new GameItems(Name, ID, Price, Type, RecoveryAmount);
             return new GameItems(Name, ID, Price, Type);
         }
 

@@ -197,5 +197,16 @@ namespace SimpleRPG
                 EnemyAttack();
             }
         }
+
+        private void OpenInventory(object sender, MouseButtonEventArgs e)
+        {
+            Inventory inventory = new Inventory(gameSession, true);
+            inventory.ShowDialog();
+
+            if(inventory.IsItemUsed)
+            {
+                EnemyAttack();
+            }
+        }
     }
 }

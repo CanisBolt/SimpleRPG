@@ -76,7 +76,7 @@ namespace SimpleRPG
 
         private void OpenInventory(object sender, MouseButtonEventArgs e)
         {
-            Inventory inventory = new Inventory(gameSession);
+            Inventory inventory = new Inventory(gameSession, false);
             inventory.Show();
         }
 
