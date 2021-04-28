@@ -103,7 +103,7 @@ namespace Game.LivingCreatures
 
         public override float MagicDamageCalculation()
         {
-            float damage = Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + (Intelligence * CurrentSpell.IntelligenceModificator));
+            float damage = Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + AddDamageModificator());
             if(CurrentWeapon.TypeOfWeapon.Equals(GameItems.WeaponType.Staff))
             {
                 damage *= 1.2f; // Increase magic damage by 20% if Hero is using a Staff Weapon

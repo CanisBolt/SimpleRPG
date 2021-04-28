@@ -8,7 +8,6 @@ namespace Game.SpecialAttack
 {
     public class Magic : SkillsAndMagic
     {
-        public float IntelligenceModificator { get; set; }
         // Make damage addition for staff user
     }
 }

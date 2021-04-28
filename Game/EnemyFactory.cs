@@ -16,7 +16,7 @@ namespace Game
             {
                 case 0:
                     Enemy snake =
-                        new Enemy("Snake", 1, 3, 3, 3, 1, 1, 3, 10, 0, 65, World.EnemyIDSnake, true);
+                        new Enemy("Snake", 1, 3, 3, 3, 1, 1, 3, 10, 0, 65, World.EnemyIDSnake, false);
                     return snake;
                 case 1:
                     Enemy rat =
@@ -32,8 +32,14 @@ namespace Game
                     return wolf;
                 case 4:
                     Enemy rogue =
-                        new Enemy("Rogue", 3, 6, 5, 6, 1, 1, 5, 30, 20, 35, World.EnemyIDRogue, true);
+                        new Enemy("Rogue", 3, 6, 5, 6, 1, 2, 5, 30, 20, 35, World.EnemyIDRogue, true);
+                    rogue.SkillBook.Add(World.SkillByID(World.SwordSKillIDHeavyStrike));
                     return rogue;
+                case 5:
+                    Enemy forestWisp =
+                        new Enemy("Forest Wisp", 3, 3, 3, 3, 10, 7, 5, 30, 0, 25, 5, false);
+                    forestWisp.SpellBook.Add(World.SpellByID(World.MagicIDFireball));
+                    return forestWisp;
                 default:
                     throw new ArgumentException(string.Format("MonsterType '{0}' does not exist", enemyID));
             }

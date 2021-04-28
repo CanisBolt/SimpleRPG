@@ -25,10 +25,10 @@
                                                 Binding="{Binding Description}"
                                                 Width="*"/>
                         <DataGridTextColumn Header="Basic Damage"
-                                                Binding="{Binding BasicDamage}"
+                                                Binding="{Binding BaseDamage}"
                                                 Width="Auto"/>
-                        <DataGridTextColumn Header="Intelligence Modificator"
-                                                Binding="{Binding IntelligenceModificator}"
+                        <DataGridTextColumn Header="Attribute Modificator"
+                                                Binding="{Binding AttributeModificator}"
                                                 Width="Auto"/>
                         <DataGridTextColumn Header="Mana Cost"
                                                 Binding="{Binding ManaCost}"
@@ -56,8 +56,8 @@
                         <DataGridTextColumn Header="Basic Damage"
                                                 Binding="{Binding BasicDamage}"
                                                 Width="Auto"/>
-                        <DataGridTextColumn Header="Intelligence Modificator"
-                                                Binding="{Binding StrengthModificator}"
+                        <DataGridTextColumn Header="Attribute Modificator"
+                                                Binding="{Binding AttributeModificator}"
                                                 Width="Auto"/>
                         <DataGridTextColumn Header="Mana Cost"
                                                 Binding="{Binding ManaCost}"

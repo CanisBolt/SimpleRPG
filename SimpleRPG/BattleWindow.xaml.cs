@@ -21,7 +21,6 @@ namespace SimpleRPG
     public partial class BattleWindow : Window
     {
         GameSession gameSession;
-        int turn = 1;
         private bool isBattleWon;
         public bool IsBattleWon
         {
@@ -54,20 +53,68 @@ namespace SimpleRPG
         private void EnemyAttack()
         {
             // For now, enemy using same logic as Hero (without weapon).
-            // TODO Add choice between normal, skill and magic attack later
+            // TODO looks not so good. Change it later
+            gameSession.CurrentEnemy.CalculateCriticalHitChance();
+            switch (Dice.rng.Next(3))
+            {
+                case 0:
+                    EnemyBasicAttack(); // Basic Attack
+                    break;
+                case 1:
+                    if(gameSession.CurrentEnemy.SpellBook.Count != 0 && gameSession.CurrentEnemy.CheckMPForSpells())
+                    {
+                        gameSession.CurrentEnemy.ChooseRandomSpell();
+                        gameSession.CurrentEnemy.Damage = gameSession.CurrentEnemy.MagicDamageCalculation(); // Magic Attack
+                        gameSession.CurrentEnemy.CurrentMP -= gameSession.CurrentEnemy.CurrentSpell.ManaCost;
+                        if (gameSession.CurrentEnemy.IsCriticalHit)
+                        {
+                            gameSession.CurrentEnemy.Damage *= 2;
+                            tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} with {gameSession.CurrentEnemy.CurrentSpell.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage. CRITICAL HIT!" + Environment.NewLine;
+                        }
+                        else tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} with {gameSession.CurrentEnemy.CurrentSpell.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine;
+                        break;
+                    }
+                    else
+                    {
+                        EnemyBasicAttack();
+                    }
+                    break;
+                case 2:
+                    if(gameSession.CurrentEnemy.SkillBook.Count != 0 && gameSession.CurrentEnemy.CheckMPForSkill())
+                    {
+                        gameSession.CurrentEnemy.ChooseRandomSkill();
+                        gameSession.CurrentEnemy.Damage = gameSession.CurrentEnemy.SkillDamageCalculation(); // Skill Attack
+                        gameSession.CurrentEnemy.CurrentMP -= gameSession.CurrentEnemy.CurrentSkill.ManaCost;
+                        if (gameSession.CurrentEnemy.IsCriticalHit)
+                        {
+                            gameSession.CurrentEnemy.Damage *= 2;
+                            tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} with {gameSession.CurrentEnemy.CurrentSkill.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage. CRITICAL HIT!" + Environment.NewLine;
+                        }
+                        else tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} with {gameSession.CurrentEnemy.CurrentSkill.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine;
+                        break;
+                    }
+                    else
+                    {
+                        EnemyBasicAttack();
+                    }
+                    break;
+            }
+
+            gameSession.Hero.CurrentHP -= (int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence);
+
+            CheckHPStatus();
+        }
+
+        private void EnemyBasicAttack()
+        {
             gameSession.CurrentEnemy.Damage = gameSession.CurrentEnemy.PhysicalDamageCalculation();
-            if (gameSession.CurrentEnemy.CalculateCriticalHitChance())
+
+            if (gameSession.CurrentEnemy.IsCriticalHit)
             {
                 gameSession.CurrentEnemy.Damage *= 2;
-            }
-            gameSession.Hero.CurrentHP -= (int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence);
-            if(gameSession.CurrentEnemy.IsCriticalHit)
-            {
                 tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage. CRITICAL HIT!" + Environment.NewLine;
             }
             else tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine;
-            turn++;
-            CheckHPStatus();
         }
 
         private void CheckHPStatus()
@@ -82,6 +129,13 @@ namespace SimpleRPG
                 isBattleWon = true;
                 Close();
             }
+
+            // Null current skill and magic to avoid miscalculating modificator
+            gameSession.Hero.CurrentSkill = null;
+            gameSession.Hero.CurrentSpell = null;
+            gameSession.CurrentEnemy.CurrentSkill = null;
+            gameSession.CurrentEnemy.CurrentSpell = null;
+
         }
 
         private void BasicAttack(object sender, MouseButtonEventArgs e)

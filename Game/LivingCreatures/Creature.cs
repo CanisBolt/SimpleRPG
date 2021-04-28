@@ -226,6 +226,46 @@ namespace Game.LivingCreatures
         {
         }
 
+        public float AddDamageModificator()
+        {
+            if(CurrentSkill != null)
+            {
+                switch (CurrentSkill.Modificator)
+                {
+                    case SkillsAndMagic.Attribute.Strength:
+                        return Strength * CurrentSkill.AttributeModificator;
+                    case SkillsAndMagic.Attribute.Agility:
+                        return Agility * CurrentSkill.AttributeModificator;
+                    case SkillsAndMagic.Attribute.Vitality:
+                        return Vitality * CurrentSkill.AttributeModificator;
+                    case SkillsAndMagic.Attribute.Intelligence:
+                        return Intelligence * CurrentSkill.AttributeModificator;
+                    case SkillsAndMagic.Attribute.Mind:
+                        return Mind * CurrentSkill.AttributeModificator;
+                    case SkillsAndMagic.Attribute.Luck:
+                        return Luck * CurrentSkill.AttributeModificator;
+                }
+            }
+            else
+            {
+                switch (CurrentSpell.Modificator)
+                {
+                    case SkillsAndMagic.Attribute.Strength:
+                        return Strength * CurrentSpell.AttributeModificator;
+                    case SkillsAndMagic.Attribute.Agility:
+                        return Agility * CurrentSpell.AttributeModificator;
+                    case SkillsAndMagic.Attribute.Vitality:
+                        return Vitality * CurrentSpell.AttributeModificator;
+                    case SkillsAndMagic.Attribute.Intelligence:
+                        return Intelligence * CurrentSpell.AttributeModificator;
+                    case SkillsAndMagic.Attribute.Mind:
+                        return Mind * CurrentSpell.AttributeModificator;
+                    case SkillsAndMagic.Attribute.Luck:
+                        return Luck * CurrentSpell.AttributeModificator;
+                }
+            }  
+            return 1;
+        }
 
         public virtual float PhysicalDamageCalculation()
         {
@@ -234,7 +274,7 @@ namespace Game.LivingCreatures
 
         public virtual float MagicDamageCalculation()
         {
-            return Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + (Intelligence * CurrentSpell.IntelligenceModificator));
+            return Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + AddDamageModificator());
         }
 
         public virtual float SkillDamageCalculation()
@@ -245,11 +285,11 @@ namespace Game.LivingCreatures
                 int numberOfHits = Dice.rng.Next(CurrentSkill.NumberOfHits) + 1;
                 for(int i = 0; i < numberOfHits; i++)
                 {
-                    damage += (CurrentSkill.BaseDamage + (Strength * CurrentSkill.StrengthModificator));
+                    damage += (CurrentSkill.BaseDamage + AddDamageModificator());
                 }
                 return Dice.GetRandomModificator() * damage;
             }
-            return Dice.GetRandomModificator() * (CurrentSkill.BaseDamage + (Strength * CurrentSkill.StrengthModificator));
+            return Dice.GetRandomModificator() * (CurrentSkill.BaseDamage + AddDamageModificator());
         }
 
         public bool CalculateCriticalHitChance()

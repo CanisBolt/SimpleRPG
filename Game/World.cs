@@ -36,6 +36,7 @@ namespace Game
         public static int EnemyIDGoblin = 2;
         public static int EnemyIDWolf = 3;
         public static int EnemyIDRogue = 4;
+        public static int EnemyIDForestWisp = 5;
 
         // Magic
         public static int MagicIDFireball = 0;
@@ -79,7 +80,7 @@ namespace Game
             allLocations.Add(loc);
         }
 
-        internal void AddMagic(string name, int id, string description, float spellDamage, int manaCost, float intelligenceModificator, Enum target)
+        internal void AddMagic(string name, int id, string description, float spellDamage, int manaCost, float attributeModificator, Enum target, Enum modificator)
         {
             Magic magic = new Magic
             {
@@ -88,14 +89,15 @@ namespace Game
                 Description = description,
                 BaseDamage = spellDamage,
                 ManaCost = manaCost,
-                IntelligenceModificator = intelligenceModificator,
-                AffectedTarger = target
+                AttributeModificator = attributeModificator,
+                AffectedTarger = target,
+                Modificator = modificator
             };
 
             allMagicSpells.Add(magic);
         }
 
-        internal void AddSkill(string name, int id, string description, float spellDamage, int manaCost, float strengthModificator, int numberOfHits, Enum target, Enum requiredWeapon)
+        internal void AddSkill(string name, int id, string description, float spellDamage, int manaCost, float attributeModificator, int numberOfHits, Enum target, Enum requiredWeapon, Enum modificator)
         {
             WeaponSkills skill = new WeaponSkills
             {
@@ -104,10 +106,11 @@ namespace Game
                 Description = description,
                 BaseDamage = spellDamage,
                 ManaCost = manaCost,
-                StrengthModificator = strengthModificator,
+                AttributeModificator = attributeModificator,
                 NumberOfHits = numberOfHits,
                 AffectedTarger = target,
-                RequiredWeapon = requiredWeapon
+                RequiredWeapon = requiredWeapon,
+                Modificator = modificator
             };
 
             allSkills.Add(skill);
