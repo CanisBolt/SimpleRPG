@@ -55,6 +55,10 @@ namespace SimpleRPG
                 isSpellCasted = true;
                 Close();
             }
+            else
+            {
+                MessageBox.Show($"Not enough mana points for {selectedSpell.Name}");
+            }
         }
 
         private void SkillCast(object sender, MouseButtonEventArgs e)
@@ -62,11 +66,22 @@ namespace SimpleRPG
             if (dgSkillBook.SelectedItem == null) return;
 
             WeaponSkills selectedSkill = (WeaponSkills)dgSkillBook.SelectedItem;
-            if (gameSession.Hero.CurrentMP >= selectedSkill.ManaCost)
+            if(selectedSkill.RequiredWeapon.Equals(gameSession.Hero.CurrentWeapon.TypeOfWeapon))
             {
-                gameSession.Hero.CurrentSkill = selectedSkill;
-                isSkillUsed = true;
-                Close();
+                if (gameSession.Hero.CurrentMP >= selectedSkill.ManaCost)
+                {
+                    gameSession.Hero.CurrentSkill = selectedSkill;
+                    isSkillUsed = true;
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show($"Not enough mana points for {selectedSkill.Name}");
+                }
+            }
+            else
+            {
+                MessageBox.Show($"This skill cannot be used with current weapon. Required weapon type: {selectedSkill.RequiredWeapon}");
             }
         }
     }

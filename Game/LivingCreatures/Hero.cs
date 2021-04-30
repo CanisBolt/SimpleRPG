@@ -89,6 +89,19 @@ namespace Game.LivingCreatures
             Inventory = new ObservableCollection<GameItems>();
         }
 
+        public void LevelUP()
+        {
+            if(CurrentEXP >= EXPToLevel)
+            {
+                CurrentEXP -= EXPToLevel;
+
+                Level++;
+                SkillPoints += 5;
+
+                EXPToLevel = Level * (100 * (Level * 2));
+            }
+        }
+
         public enum Gender
         {
             Male,
@@ -103,7 +116,7 @@ namespace Game.LivingCreatures
 
         public override float MagicDamageCalculation()
         {
-            float damage = Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + (Intelligence * CurrentSpell.IntelligenceModificator));
+            float damage = Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + AddDamageModificator());
             if(CurrentWeapon.TypeOfWeapon.Equals(GameItems.WeaponType.Staff))
             {
                 damage *= 1.2f; // Increase magic damage by 20% if Hero is using a Staff Weapon

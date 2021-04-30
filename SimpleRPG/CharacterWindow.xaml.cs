@@ -32,9 +32,6 @@ namespace SimpleRPG
         }
         private void UpdateInfo()
         {
-            gameSession.Hero.MaxHP = gameSession.Hero.Vitality * 10;
-            gameSession.Hero.MaxMP = gameSession.Hero.Mind * 10;
-
             if (gameSession.Hero.SkillPoints > 0)
             {
                 btnStrengthUP.Visibility = Visibility.Visible;
@@ -47,7 +44,6 @@ namespace SimpleRPG
             }
             else
             {
-
                 btnStrengthUP.Visibility = Visibility.Hidden;
                 btnAgilityUP.Visibility = Visibility.Hidden;
                 btnVitalityUP.Visibility = Visibility.Hidden;
@@ -55,14 +51,6 @@ namespace SimpleRPG
                 btnMindUP.Visibility = Visibility.Hidden;
                 btnLuckUP.Visibility = Visibility.Hidden;
                 tbSkillPoints.Visibility = Visibility.Hidden;
-            }
-
-            foreach(var item in gameSession.Hero.Inventory)
-            {
-                if(item.Type.Equals(GameItems.ItemType.Weapon))
-                {
-                    cbWeapons.Items.Add(item);
-                }
             }
         }
 
@@ -106,12 +94,6 @@ namespace SimpleRPG
             gameSession.Hero.Luck++;
             gameSession.Hero.SkillPoints--;
             UpdateInfo();
-        }
-
-        private void cbWeapons_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            gameSession.Hero.CurrentWeapon = (GameItems)cbWeapons.SelectedItem;
-            tbWeapon.Text = gameSession.Hero.CurrentWeapon.Name;
         }
     }
 }
