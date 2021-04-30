@@ -48,7 +48,7 @@
                 <Image x:Name="imgUseItem" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="44" Source="Images/Icons/Battle/useItemIcon.png"/>
                 <Label Content="Items" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="44"/>
             </StackPanel>
-            <StackPanel Margin="110,72,39,10" Orientation="Vertical" MouseLeftButtonDown="TryToEscape">
+            <StackPanel Margin="110,72,39,10" Orientation="Vertical">
                 <Image x:Name="imgEscape" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="45" Source="Images/Icons/Battle/escapeIcon.png"/>
                 <Label Content="Escape" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="47"/>
             </StackPanel>

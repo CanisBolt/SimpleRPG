@@ -86,20 +86,16 @@ namespace SimpleRPG
             BattleWindow battle = new BattleWindow(gameSession);
             battle.ShowDialog();
 
-            if (battle.Status.Equals(BattleWindow.BattleStatus.Victory))
+            if (battle.IsBattleWon)
             {
                 tbLog.Text += $"{gameSession.Hero.Name} kill {gameSession.CurrentEnemy.Name}." + Environment.NewLine;
                 tbLog.Text += $"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardMoney} money." + Environment.NewLine;
                 gameSession.Hero.CurrentEXP += gameSession.CurrentEnemy.RewardEXP;
                 gameSession.Hero.Money += gameSession.CurrentEnemy.RewardMoney;
             }
-            else if(battle.Status.Equals(BattleWindow.BattleStatus.Defeat))
-            {
-                tbLog.Text += $"{gameSession.CurrentEnemy.Name} kill {gameSession.Hero.Name}." + Environment.NewLine;
-            }
             else
             {
-                tbLog.Text += "You have successfully fled from battle." + Environment.NewLine;
+                tbLog.Text += $"{gameSession.CurrentEnemy.Name} kill {gameSession.Hero.Name}." + Environment.NewLine;
             }
 
             gameSession.CurrentEnemy = null;
