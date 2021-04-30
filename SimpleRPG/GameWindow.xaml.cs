@@ -29,16 +29,7 @@ namespace SimpleRPG
             gameSession.Hero.SkillPoints = 5;
             DataContext = gameSession;
 
-
-            UpdateInfo();
-        }
-
-        private void UpdateInfo()
-        {
             ChangeImages();
-
-            gameSession.Hero.MaxHP = gameSession.Hero.Vitality * 10;
-            gameSession.Hero.MaxMP = gameSession.Hero.Mind * 10;
         }
 
         private void ChangeImages()
@@ -51,7 +42,7 @@ namespace SimpleRPG
         {
             CharacterWindow characterWindow = new CharacterWindow(gameSession);
             characterWindow.ShowDialog();
-            UpdateInfo();
+            ChangeImages();
         }
 
         private void btnNorth_Click(object sender, RoutedEventArgs e)
@@ -76,7 +67,7 @@ namespace SimpleRPG
 
         private void OpenInventory(object sender, MouseButtonEventArgs e)
         {
-            Inventory inventory = new Inventory(gameSession);
+            Inventory inventory = new Inventory(gameSession, false);
             inventory.Show();
         }
 
@@ -92,6 +83,9 @@ namespace SimpleRPG
                 tbLog.Text += $"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardMoney} money." + Environment.NewLine;
                 gameSession.Hero.CurrentEXP += gameSession.CurrentEnemy.RewardEXP;
                 gameSession.Hero.Money += gameSession.CurrentEnemy.RewardMoney;
+
+                gameSession.Hero.LevelUP(); // Check for LevelUP
+                ChangeImages();
             }
             else
             {

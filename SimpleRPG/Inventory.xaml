@@ -9,15 +9,20 @@
     <Grid>
         <TabControl Margin="0,0,0,34">
             <TabItem Header="Inventory">
-                <DataGrid ItemsSource="{Binding Hero.Inventory}"
+                <DataGrid x:Name="dbInventory" ItemsSource="{Binding Hero.Inventory}"
                               AutoGenerateColumns="False"
-                              HeadersVisibility="Column" Margin="0,0,0,-2">
+                              HeadersVisibility="Column" Margin="0,0,0,-2" IsReadOnly="True">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <EventSetter Event="MouseDoubleClick" Handler="UseItem"/>
+                        </Style>
+                    </DataGrid.Resources>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name"
                                                 Binding="{Binding Name}"
                                                 Width="*"/>
-                        <DataGridTextColumn Header="Price"
-                                                Binding="{Binding Price}"
+                        <DataGridTextColumn Header="Recovery Amount (%)"
+                                                Binding="{Binding RecoveryAmount}"
                                                 Width="Auto"/>
                     </DataGrid.Columns>
                 </DataGrid>

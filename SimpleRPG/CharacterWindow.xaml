@@ -62,8 +62,5 @@
         <TextBlock x:Name="tbWeapon" Text="{Binding Hero.CurrentWeapon.Name}" HorizontalAlignment="Left" Margin="65,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
 
         <!-- Change Equipment -->
-        <TextBlock HorizontalAlignment="Left" Margin="230,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Weapon:" Height="22"/>
-        <ComboBox x:Name="cbWeapons" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="285,218,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbWeapons_SelectionChanged"/>
-        <TextBlock HorizontalAlignment="Left" Margin="230,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Text="Change Equipment:" Height="16"/>
     </Grid>
 </Window>
