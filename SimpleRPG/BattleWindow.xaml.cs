@@ -21,12 +21,7 @@ namespace SimpleRPG
     public partial class BattleWindow : Window
     {
         GameSession gameSession;
-        int turn = 1;
-        private bool isBattleWon;
-        public bool IsBattleWon
-        {
-            get { return isBattleWon; }
-        }
+        public Enum Status { get; set; }
 
         public BattleWindow(GameSession _gameSession)
         {
@@ -66,7 +61,6 @@ namespace SimpleRPG
                 tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage. CRITICAL HIT!" + Environment.NewLine;
             }
             else tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine;
-            turn++;
             CheckHPStatus();
         }
 
@@ -74,12 +68,12 @@ namespace SimpleRPG
         {
             if (gameSession.Hero.CurrentHP <= 0)
             {
-                isBattleWon = false;
+                Status = BattleStatus.Defeat;
                 Close();
             }
             else if(gameSession.CurrentEnemy.CurrentHP <= 0)
             {
-                isBattleWon = true;
+                Status = BattleStatus.Victory;
                 Close();
             }
         }
@@ -142,6 +136,41 @@ namespace SimpleRPG
                 else tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSkill.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
                 EnemyAttack();
             }
+        }
+
+        private void OpenInventory(object sender, MouseButtonEventArgs e)
+        {
+            Inventory inventory = new Inventory(gameSession, true);
+            inventory.ShowDialog();
+
+            if(inventory.IsItemUsed)
+            {
+                EnemyAttack();
+            }
+        }
+
+        private void TryToEscape(object sender, MouseButtonEventArgs e)
+        {
+            int heroRoll = Dice.rng.Next(1, 21) + gameSession.Hero.Agility;
+            int enemyRoll = Dice.rng.Next(1, 21) + gameSession.CurrentEnemy.Agility;
+
+            if (heroRoll < enemyRoll)
+            {
+                EnemyAttack();
+                tbBattleLog.Text += "You trying to flee. Escape Failed." + Environment.NewLine;
+            }
+            else
+            {
+                Status = BattleStatus.Escape; 
+                Close();
+            }
+        }
+
+        public enum BattleStatus
+        {
+            Victory,
+            Defeat,
+            Escape
         }
     }
 }
