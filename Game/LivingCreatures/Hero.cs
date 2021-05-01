@@ -123,5 +123,11 @@ namespace Game.LivingCreatures
             }
             return damage;
         }
+
+        public void HealingAfterDeath()
+        {
+            CurrentHP = MaxHP / 2;
+            CurrentMP = MaxMP / 2;
+        }
     }
 }

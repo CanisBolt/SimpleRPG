@@ -21,11 +21,7 @@ namespace SimpleRPG
     public partial class BattleWindow : Window
     {
         GameSession gameSession;
-        private bool isBattleWon;
-        public bool IsBattleWon
-        {
-            get { return isBattleWon; }
-        }
+        public Enum BattleStatus { get; set; }
 
         public BattleWindow(GameSession _gameSession)
         {
@@ -117,16 +113,21 @@ namespace SimpleRPG
             else tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine;
         }
 
+        
+
         private void CheckHPStatus()
         {
+            gameSession.Hero.StatusEffectsDamageCalculation();
+            gameSession.CurrentEnemy.StatusEffectsDamageCalculation();
+
             if (gameSession.Hero.CurrentHP <= 0)
             {
-                isBattleWon = false;
+                BattleStatus = Status.Defeat;
                 Close();
             }
             else if(gameSession.CurrentEnemy.CurrentHP <= 0)
             {
-                isBattleWon = true;
+                BattleStatus = Status.Victory;
                 Close();
             }
 
@@ -163,6 +164,8 @@ namespace SimpleRPG
                 gameSession.Hero.Damage = gameSession.Hero.MagicDamageCalculation();
                 if (gameSession.Hero.CalculateCriticalHitChance()) gameSession.Hero.Damage *= 2;
 
+               
+
                 if (gameSession.Hero.CurrentSpell.AffectedTarger.Equals(Game.SpecialAttack.SkillsAndMagic.Target.Self))
                 {
                     gameSession.Hero.CurrentHP += (int)gameSession.Hero.Damage;
@@ -177,6 +180,13 @@ namespace SimpleRPG
 
                     }
                     else tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSpell.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
+                }
+
+                // Apply Status Effect
+                if (gameSession.Hero.CurrentSpell.Effect != null)
+                {
+                    gameSession.CurrentEnemy.ApplyStatusEffect(gameSession.Hero.CurrentSpell.Effect.Name, gameSession.Hero.CurrentSpell.Effect.ID, gameSession.Hero.CurrentSpell.Effect.Description, gameSession.Hero.CurrentSpell.Effect.AffectHP, gameSession.Hero.CurrentSpell.Effect.AffectMP, gameSession.Hero.CurrentSpell.Effect.Duration, gameSession.Hero.CurrentSpell.Effect.Type);
+                    tbBattleLog.Text += $"{gameSession.Hero.Name} applied {gameSession.Hero.CurrentSpell.Effect.Name} on {gameSession.CurrentEnemy.Name}" + Environment.NewLine;
                 }
                 EnemyAttack();
             }
@@ -207,6 +217,24 @@ namespace SimpleRPG
             {
                 EnemyAttack();
             }
+        }
+
+        private void Escape(object sender, MouseButtonEventArgs e)
+        {
+            if(Dice.rng.Next(21) > 10)
+            {
+                BattleStatus = Status.Escape;
+                Close();
+            }
+            tbBattleLog.Text += "You tried to escape from battle and failed." + Environment.NewLine;
+            EnemyAttack();
+        }
+
+        public enum Status
+        {
+            Victory,
+            Defeat,
+            Escape
         }
     }
 }

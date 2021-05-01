@@ -16,6 +16,7 @@ namespace Game
         private List<Region> allRegions = new List<Region>();
         private static List<Magic> allMagicSpells = new List<Magic>();
         private static List<WeaponSkills> allSkills = new List<WeaponSkills>();
+        private static List<StatusEffect> allStatusEffects = new List<StatusEffect>();
 
         // ID's
 
@@ -49,6 +50,11 @@ namespace Game
         public static int SwordSKillIDHeavyStrike = 1;
         public static int SwordSKillIDMultiHit = 2;
 
+        // Status Effects
+        public static int StatusEffectIDBurn = 0;
+        public static int StatusEffectIDBleed = 1;
+        public static int StatusEffectIDRegeneration = 2;
+
         // Items
         // Healing/MP recovery Items
         public static int ItemIDSmallHealingPotion = 0;
@@ -75,7 +81,7 @@ namespace Game
             allRegions.Add(region);
         }
 
-        internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description, Region region)
+        internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description, Region region, bool isCheckpoint)
         {
             Location loc = new Location
             {
@@ -83,13 +89,14 @@ namespace Game
                 YCoordinate = yCoordinate,
                 Name = name,
                 Description = description,
-                Region = region
+                Region = region,
+                IsCheckpoint = isCheckpoint
             };
 
             allLocations.Add(loc);
         }
 
-        internal void AddMagic(string name, int id, string description, float spellDamage, int manaCost, float attributeModificator, Enum target, Enum modificator)
+        internal void AddMagic(string name, int id, string description, float spellDamage, int manaCost, float attributeModificator, Enum target, Enum modificator, StatusEffect effect)
         {
             Magic magic = new Magic
             {
@@ -100,13 +107,14 @@ namespace Game
                 ManaCost = manaCost,
                 AttributeModificator = attributeModificator,
                 AffectedTarger = target,
-                Modificator = modificator
+                Modificator = modificator,
+                Effect = effect
             };
 
             allMagicSpells.Add(magic);
         }
 
-        internal void AddSkill(string name, int id, string description, float spellDamage, int manaCost, float attributeModificator, int numberOfHits, Enum target, Enum requiredWeapon, Enum modificator)
+        internal void AddSkill(string name, int id, string description, float spellDamage, int manaCost, float attributeModificator, int numberOfHits, Enum target, Enum requiredWeapon, Enum modificator, StatusEffect effect)
         {
             WeaponSkills skill = new WeaponSkills
             {
@@ -124,7 +132,21 @@ namespace Game
 
             allSkills.Add(skill);
         }
+        internal void AddStatusEffect(string name, int id, string description, float affectHP, float affectMP, int duration, Enum type)
+        {
+            StatusEffect status = new StatusEffect
+            {
+                Name = name,
+                ID = id,
+                Description = description,
+                AffectHP = affectHP,
+                AffectMP = affectMP,
+                Duration = duration,
+                Type = type
+            };
 
+            allStatusEffects.Add(status);
+        }
         internal void AddRace(string name, int strength, int agility, int vitality, int intelligence, int mind, int luck, int id)
         {
             Race race = new Race
@@ -142,7 +164,7 @@ namespace Game
 
             allRaces.Add(race);
         }
-
+        
         public Region RegionByID(int id)
         {
             foreach (var region in allRegions)
@@ -155,7 +177,17 @@ namespace Game
             return null;
         }
 
-
+        public static StatusEffect StatusEffectByID(int id)
+        {
+            foreach (var status in allStatusEffects)
+            {
+                if (status.ID == id)
+                {
+                    return status;
+                }
+            }
+            return null;
+        }
         public static Race RaceByID(int id)
         {
             foreach (var race in allRaces)

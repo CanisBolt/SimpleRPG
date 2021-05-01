@@ -209,6 +209,7 @@ namespace Game.LivingCreatures
 
         public ObservableCollection<Magic> SpellBook { get; set; }
         public ObservableCollection<WeaponSkills> SkillBook { get; set; }
+        public ObservableCollection<StatusEffect> Effects { get; set; }
 
         public Creature(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck)
         {
@@ -224,6 +225,7 @@ namespace Game.LivingCreatures
 
             SpellBook = new ObservableCollection<Magic>();
             SkillBook = new ObservableCollection<WeaponSkills>();
+            Effects = new ObservableCollection<StatusEffect>();
 
             RestoreHPMP();
         }
@@ -307,6 +309,34 @@ namespace Game.LivingCreatures
             }
 
             return IsCriticalHit = false;
+        }
+
+        public void ApplyStatusEffect(string name, int id, string description, float affectHP, float affectMP, int duration, Enum type)
+        {
+            foreach(var effect in Effects)
+            {
+                if(effect.ID.Equals(id))
+                {
+                    effect.Duration = duration; // Update time of debuff
+                    return;
+                }
+            }
+            Effects.Add(new StatusEffect(name, id, description, affectHP, affectMP, duration, type));
+        }
+        public void StatusEffectsDamageCalculation()
+        {
+            if (Effects.Count == 0) return;
+            foreach (var effect in Effects)
+            {
+                if (effect.Type.Equals(StatusEffect.StatusType.HealOverTime))
+                {
+                    CurrentHP += (int)((MaxHP * effect.AffectHP) / 100);
+                }
+                if (effect.Type.Equals(StatusEffect.StatusType.DamageOverTime))
+                {
+                    CurrentHP -= (int)((MaxHP * effect.AffectHP) / 100);
+                }
+            }
         }
 
         public void RestoreHPMP()

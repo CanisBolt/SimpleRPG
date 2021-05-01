@@ -16,7 +16,7 @@ namespace Game.SpecialAttack
         public float AttributeModificator { get; set; }
         public Enum AffectedTarger { get; set; }
         public Enum Modificator { get; set; }
-
+        public StatusEffect Effect { get; set; }
         
 
         public enum Target

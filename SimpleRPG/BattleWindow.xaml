@@ -48,14 +48,40 @@
                 <Image x:Name="imgUseItem" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="44" Source="Images/Icons/Battle/useItemIcon.png"/>
                 <Label Content="Items" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="44"/>
             </StackPanel>
-            <StackPanel Margin="110,72,39,10" Orientation="Vertical">
+            <StackPanel Margin="110,72,39,10" Orientation="Vertical" MouseLeftButtonDown="Escape">
                 <Image x:Name="imgEscape" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="45" Source="Images/Icons/Battle/escapeIcon.png"/>
                 <Label Content="Escape" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="47"/>
             </StackPanel>
         </Grid>
 
-        <Grid HorizontalAlignment="Left" Height="139" Margin="0,150,0,0" VerticalAlignment="Top" Width="492" Grid.ColumnSpan="3">
-            <TextBox x:Name="tbBattleLog" HorizontalAlignment="Left" Height="139" TextWrapping="Wrap" VerticalAlignment="Top" Width="492"/>
+        <Grid HorizontalAlignment="Left" Height="139" Margin="0,150,0,0" VerticalAlignment="Top" Width="196" Grid.Column="1">
+            <TextBox x:Name="tbBattleLog" HorizontalAlignment="Left" Height="139" TextWrapping="Wrap" VerticalAlignment="Top" Width="196"/>
         </Grid>
+
+        <DataGrid x:Name="dgHeroStatusEffects" ItemsSource="{Binding Hero.Effects}"
+                              AutoGenerateColumns="False"
+                              HeadersVisibility="Column" Margin="0,150,0,-2" ToolTip="All Status Effects on Hero" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name"
+                                                Binding="{Binding Name}"
+                                                Width="60"/>
+                <DataGridTextColumn Header="Duration"
+                                                Binding="{Binding Description}"
+                                                Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <DataGrid x:Name="dgEnemyStatusEffects" ItemsSource="{Binding CurrentEnemy.Effects}"
+                              AutoGenerateColumns="False"
+                              HeadersVisibility="Column" Margin="0,150,0,-2" ToolTip="All Status Effects on Enemy" IsReadOnly="True" Grid.Column="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name"
+                                                Binding="{Binding Name}"
+                                                Width="60"/>
+                <DataGridTextColumn Header="Duration"
+                                                Binding="{Binding Description}"
+                                                Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

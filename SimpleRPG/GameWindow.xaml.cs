@@ -77,7 +77,7 @@ namespace SimpleRPG
             BattleWindow battle = new BattleWindow(gameSession);
             battle.ShowDialog();
 
-            if (battle.IsBattleWon)
+            if (battle.BattleStatus.Equals(BattleWindow.Status.Victory))
             {
                 tbLog.Text += $"{gameSession.Hero.Name} kill {gameSession.CurrentEnemy.Name}." + Environment.NewLine;
                 tbLog.Text += $"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardMoney} money." + Environment.NewLine;
@@ -87,9 +87,15 @@ namespace SimpleRPG
                 gameSession.Hero.LevelUP(); // Check for LevelUP
                 ChangeImages();
             }
-            else
+            else if(battle.BattleStatus.Equals(BattleWindow.Status.Defeat))
             {
                 tbLog.Text += $"{gameSession.CurrentEnemy.Name} kill {gameSession.Hero.Name}." + Environment.NewLine;
+                gameSession.CurrentLocation = gameSession.Checkpoint;
+                gameSession.Hero.HealingAfterDeath();
+            }
+            else
+            {
+                tbLog.Text += $"You successfully escaped from battle." + Environment.NewLine;
             }
 
             gameSession.CurrentEnemy = null;

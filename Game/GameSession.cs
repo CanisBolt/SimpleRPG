@@ -28,6 +28,7 @@ namespace Game
                 GetEnemyAtRegion();
             }
         }
+        public Location Checkpoint { get; set; }
 
         public Enemy CurrentEnemy
         {
@@ -35,8 +36,8 @@ namespace Game
             set
             {
                 currentEnemy = value;
-                OnPropertyChanged(nameof(currentEnemy));
                 OnPropertyChanged(nameof(HasEnemy));
+                OnPropertyChanged(nameof(currentEnemy));
             }
         }
 
@@ -47,6 +48,7 @@ namespace Game
             WorldFactory factory = new WorldFactory();
             CurrentWorld = factory.CreateWorld();
             CurrentLocation = CurrentWorld.LocationAt(0, 0); // Starting position (home)
+            Checkpoint = CurrentWorld.LocationAt(0, 0); // Starting checkpoint
 
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodStaff));
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodSword));
@@ -72,26 +74,50 @@ namespace Game
 
         public void MoveNorth()
         {
-            if(CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null) 
+            if(CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null)
+            {
                 CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1);
+                if (CurrentLocation.IsCheckpoint)
+                {
+                    Checkpoint = CurrentLocation;
+                }
+            }
         }
 
         public void MoveEast()
         {
             if (CurrentWorld.LocationAt(CurrentLocation.XCoordinate + 1, CurrentLocation.YCoordinate) != null)
+            {
                 CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate + 1, CurrentLocation.YCoordinate);
+                if (CurrentLocation.IsCheckpoint)
+                {
+                    Checkpoint = CurrentLocation;
+                }
+            } 
         }
 
         public void MoveSouth()
         {
             if (CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate - 1) != null)
+            {
                 CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate - 1);
+                if (CurrentLocation.IsCheckpoint)
+                {
+                    Checkpoint = CurrentLocation;
+                }
+            }
         }
 
         public void MoveWest()
         {
             if (CurrentWorld.LocationAt(CurrentLocation.XCoordinate - 1, CurrentLocation.YCoordinate) != null)
+            {
                 CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate - 1, CurrentLocation.YCoordinate);
+                if (CurrentLocation.IsCheckpoint)
+                {
+                    Checkpoint = CurrentLocation;
+                }
+            }
         }
 
         public bool HasEnemy => CurrentEnemy != null;
