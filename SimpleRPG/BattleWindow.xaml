@@ -66,7 +66,7 @@
                                                 Binding="{Binding Name}"
                                                 Width="60"/>
                 <DataGridTextColumn Header="Duration"
-                                                Binding="{Binding Description}"
+                                                Binding="{Binding Duration}"
                                                 Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
@@ -79,7 +79,7 @@
                                                 Binding="{Binding Name}"
                                                 Width="60"/>
                 <DataGridTextColumn Header="Duration"
-                                                Binding="{Binding Description}"
+                                                Binding="{Binding Duration}"
                                                 Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

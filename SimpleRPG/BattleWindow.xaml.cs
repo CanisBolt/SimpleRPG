@@ -204,6 +204,13 @@ namespace SimpleRPG
 
                 }
                 else tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSkill.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
+
+                // Apply Status Effect
+                if (gameSession.Hero.CurrentSkill.Effect != null)
+                {
+                    gameSession.CurrentEnemy.ApplyStatusEffect(gameSession.Hero.CurrentSkill.Effect.Name, gameSession.Hero.CurrentSkill.Effect.ID, gameSession.Hero.CurrentSkill.Effect.Description, gameSession.Hero.CurrentSkill.Effect.AffectHP, gameSession.Hero.CurrentSkill.Effect.AffectMP, gameSession.Hero.CurrentSkill.Effect.Duration, gameSession.Hero.CurrentSkill.Effect.Type);
+                    tbBattleLog.Text += $"{gameSession.Hero.Name} applied {gameSession.Hero.CurrentSkill.Effect.Name} on {gameSession.CurrentEnemy.Name}" + Environment.NewLine;
+                }
                 EnemyAttack();
             }
         }

@@ -127,7 +127,8 @@ namespace Game
                 NumberOfHits = numberOfHits,
                 AffectedTarger = target,
                 RequiredWeapon = requiredWeapon,
-                Modificator = modificator
+                Modificator = modificator,
+                Effect = effect
             };
 
             allSkills.Add(skill);

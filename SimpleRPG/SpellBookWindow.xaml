@@ -54,7 +54,7 @@
                                                 Binding="{Binding Description}"
                                                 Width="*"/>
                         <DataGridTextColumn Header="Basic Damage"
-                                                Binding="{Binding BasicDamage}"
+                                                Binding="{Binding BaseDamage}"
                                                 Width="Auto"/>
                         <DataGridTextColumn Header="Attribute Modificator"
                                                 Binding="{Binding AttributeModificator}"

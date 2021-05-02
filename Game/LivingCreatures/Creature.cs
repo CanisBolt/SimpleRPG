@@ -336,6 +336,21 @@ namespace Game.LivingCreatures
                 {
                     CurrentHP -= (int)((MaxHP * effect.AffectHP) / 100);
                 }
+                effect.Duration--;
+            }
+            RemoveEffects();
+        }
+
+        // For now, using this to remove expired status effects one by one
+        private void RemoveEffects()
+        {
+            for(int i = 0; i < Effects.Count; i++)
+            {
+                if (Effects[i].Duration == 0)
+                {
+                    Effects.Remove(Effects[i]);
+                    i = 0;
+                }
             }
         }
 

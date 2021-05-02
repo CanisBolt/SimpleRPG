@@ -65,6 +65,7 @@ namespace Game
             Hero.SpellBook.Add(World.SpellByID(World.MagicIDSmallHeal));
 
             Hero.SkillBook.Add(World.SkillByID(World.SwordSKillIDFastStrike));
+            Hero.SkillBook.Add(World.SkillByID(World.SwordSKillIDHeavyStrike));
             Hero.SkillBook.Add(World.SkillByID(World.SwordSKillIDMultiHit));
 
             Hero.CurrentWeapon = Hero.Inventory[0];
