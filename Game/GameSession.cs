@@ -57,16 +57,11 @@ namespace Game
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDMediumHealingPotion));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDMediumHealingPotion));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDMediumManaPotion));
 
             Hero.SpellBook.Add(World.SpellByID(World.MagicIDFireball));
             Hero.SpellBook.Add(World.SpellByID(World.MagicIDSmallHeal));
 
             Hero.SkillBook.Add(World.SkillByID(World.SwordSKillIDFastStrike));
-            Hero.SkillBook.Add(World.SkillByID(World.SwordSKillIDHeavyStrike));
-            Hero.SkillBook.Add(World.SkillByID(World.SwordSKillIDMultiHit));
 
             Hero.CurrentWeapon = Hero.Inventory[0];
 

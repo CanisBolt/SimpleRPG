@@ -1,5 +1,4 @@
-﻿using Game.Items;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,7 +13,7 @@ namespace Game.LivingCreatures
         private int expToLevel;
         private int money;
         private int skillPoints;
-        private GameItems currentWeapon;
+        private Items.GameItems currentWeapon;
         public int CurrentEXP
         {
             get
@@ -66,7 +65,7 @@ namespace Game.LivingCreatures
         public Gender HeroGender { get; set; }
         public Race HeroRace { get; set; }
 
-        public GameItems CurrentWeapon
+        public Items.GameItems CurrentWeapon
         {
             get
             {
@@ -78,7 +77,6 @@ namespace Game.LivingCreatures
                 OnPropertyChanged(nameof(currentWeapon));
             }
         }
-        public ObservableCollection<GameItems> Inventory { get; set; }
 
 
         public Hero(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck) : base(name, level, strength, agility, vitality, intelligence, mind, luck)
@@ -86,7 +84,6 @@ namespace Game.LivingCreatures
             CurrentEXP = 0;
             EXPToLevel = Level * (100 * (Level * 2));
             Money = 0;
-            Inventory = new ObservableCollection<GameItems>();
         }
 
         public void LevelUP()
@@ -117,7 +114,7 @@ namespace Game.LivingCreatures
         public override float MagicDamageCalculation()
         {
             float damage = Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + AddDamageModificator());
-            if(CurrentWeapon.TypeOfWeapon.Equals(GameItems.WeaponType.Staff))
+            if(CurrentWeapon.TypeOfWeapon.Equals(Items.GameItems.WeaponType.Staff))
             {
                 damage *= 1.2f; // Increase magic damage by 20% if Hero is using a Staff Weapon
             }
