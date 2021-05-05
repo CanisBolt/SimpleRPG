@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Game.Items;
 using Game.SpecialAttack;
 
 namespace Game.LivingCreatures
@@ -208,7 +207,6 @@ namespace Game.LivingCreatures
             }
         }
 
-        public ObservableCollection<GameItems> Inventory { get; set; }
         public ObservableCollection<Magic> SpellBook { get; set; }
         public ObservableCollection<WeaponSkills> SkillBook { get; set; }
         public ObservableCollection<StatusEffect> Effects { get; set; }
@@ -225,7 +223,6 @@ namespace Game.LivingCreatures
             Mind = mind;
             Luck = luck;
 
-            Inventory = new ObservableCollection<GameItems>();
             SpellBook = new ObservableCollection<Magic>();
             SkillBook = new ObservableCollection<WeaponSkills>();
             Effects = new ObservableCollection<StatusEffect>();
@@ -328,7 +325,6 @@ namespace Game.LivingCreatures
         }
         public void StatusEffectsDamageCalculation()
         {
-            // TODO add text message for status effect
             if (Effects.Count == 0) return;
             foreach (var effect in Effects)
             {

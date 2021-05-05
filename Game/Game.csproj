@@ -44,7 +44,6 @@
     <Compile Include="BaseNotificationClass.cs" />
     <Compile Include="EnemyFactory.cs" />
     <Compile Include="GameLocations\Region.cs" />
-    <Compile Include="GameLocations\Shop.cs" />
     <Compile Include="Items\ItemsFactory.cs" />
     <Compile Include="LivingCreatures\Creature.cs" />
     <Compile Include="Dice.cs" />

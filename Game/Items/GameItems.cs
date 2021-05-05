@@ -12,7 +12,6 @@ namespace Game.Items
         public int ID { get; set; }
         public int Price { get; set; }
         public Enum Type { get; set; }
-        public int Amount { get; set; } // TODO add stack items
 
         // Weapon
         public int MinimumDamage { get; set; }
@@ -21,11 +20,6 @@ namespace Game.Items
 
         // Healing items
         public float RecoveryAmount { get; set; } // % from Hero MaxHP or MP
-
-        // Enemy Loot
-        public int DropChance { get; set; }
-
-        // Basic Constructor
         public GameItems(string name, int id, int price, Enum type)
         {
             Name = name;
@@ -46,7 +40,6 @@ namespace Game.Items
             TypeOfWeapon = typeOfWeapon;
         }
 
-        // Consumable Constructor
         public GameItems(string name, int id, int price, Enum type, float recoveryAmount)
         {
             Name = name;
@@ -56,21 +49,10 @@ namespace Game.Items
             RecoveryAmount = recoveryAmount;
         }
 
-        // EnemyLoot Constructor
-        public GameItems(string name, int id, int price, Enum type, int dropChance)
-        {
-            Name = name;
-            ID = id;
-            Price = price;
-            Type = type;
-            DropChance = dropChance;
-        }
-
         public GameItems Clone()
         {
             if (Type.Equals(ItemType.Weapon)) return new GameItems(Name, ID, Price, Type, MinimumDamage, MaximumDamage, TypeOfWeapon); // Cloning weapon
             if (Type.Equals(ItemType.Consumable)) return new GameItems(Name, ID, Price, Type, RecoveryAmount);
-            if (Type.Equals(ItemType.Junk)) return new GameItems(Name, ID, Price, Type, DropChance);
             return new GameItems(Name, ID, Price, Type);
         }
 
