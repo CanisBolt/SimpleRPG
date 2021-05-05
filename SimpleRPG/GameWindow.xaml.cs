@@ -83,6 +83,7 @@ namespace SimpleRPG
                 tbLog.Text += $"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardMoney} money." + Environment.NewLine;
                 gameSession.Hero.CurrentEXP += gameSession.CurrentEnemy.RewardEXP;
                 gameSession.Hero.Money += gameSession.CurrentEnemy.RewardMoney;
+                LootEnemy();
 
                 gameSession.Hero.LevelUP(); // Check for LevelUP
                 ChangeImages();
@@ -99,6 +100,20 @@ namespace SimpleRPG
             }
 
             gameSession.CurrentEnemy = null;
+        }
+
+        private void LootEnemy()
+        {
+            int roll;
+            foreach(var item in gameSession.CurrentEnemy.Inventory)
+            {
+                roll = Dice.rng.Next(0, 101);
+                if (roll <= item.DropChance)
+                {
+                    tbLog.Text += $"{gameSession.Hero.Name} searched the enemie's body and found {item.Name}!" + Environment.NewLine;
+                    gameSession.Hero.Inventory.Add(item);
+                }
+            }
         }
     }
 }

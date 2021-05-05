@@ -24,6 +24,9 @@
                         <DataGridTextColumn Header="Recovery Amount (%)"
                                                 Binding="{Binding RecoveryAmount}"
                                                 Width="Auto"/>
+                        <DataGridTextColumn Header="Price"
+                                                Binding="{Binding Price}"
+                                                Width="Auto"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

@@ -65,9 +65,24 @@ namespace Game
         public static int ItemIDMediumManaPotion = 5;
         public static int ItemIDBigManaPotion = 6;
         public static int ItemIDMaxManaPotion = 7;
+
         // Weapons
         public static int WeaponIDWoodStaff = 100;
         public static int WeaponIDWoodSword = 101;
+
+
+
+        // Enemy Loot
+        public static int EnemyLootIDSnakeSkin = 1000;
+        public static int EnemyLootIDSnakeFang = 1001;
+        public static int EnemyLootIDSnakeEye = 1002;
+        public static int EnemyLootIDRatSkin = 1003;
+        public static int EnemyLootIDRatTail = 1004;
+        public static int EnemyLootIDGoblinSkin = 1005;
+        public static int EnemyLootIDGoblinFang = 1006;
+        public static int EnemyLootIDWolfSkin = 1007;
+        public static int EnemyLootIDWolfFang = 1008;
+        public static int EnemyLootIDWispDust = 1009;
 
 
         internal void AddRegion(string name, int id)

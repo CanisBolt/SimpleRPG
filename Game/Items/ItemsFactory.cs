@@ -26,6 +26,17 @@ namespace Game.Items
             CreateConsumable("Medium Mana Potion", World.ItemIDMediumManaPotion, 30, 0.5f);
             CreateConsumable("Big Mana Potion", World.ItemIDBigManaPotion, 50, 0.75f);
             CreateConsumable("Max Mana Potion", World.ItemIDMaxManaPotion, 100, 1f);
+
+            CreateJunkItem("Snake Skin", World.EnemyLootIDSnakeSkin, 2, 50);
+            CreateJunkItem("Snake Fang", World.EnemyLootIDSnakeFang, 5, 25);
+            CreateJunkItem("Snake Eye", World.EnemyLootIDSnakeEye, 10, 10);
+            CreateJunkItem("Rat Skin", World.EnemyLootIDRatSkin, 1, 80);
+            CreateJunkItem("Rat Tail", World.EnemyLootIDRatTail, 2, 70);
+            CreateJunkItem("Goblin Skin", World.EnemyLootIDGoblinSkin, 12, 30);
+            CreateJunkItem("Goblin Fang", World.EnemyLootIDGoblinFang, 15, 25);
+            CreateJunkItem("Wolf Skin", World.EnemyLootIDWolfSkin, 15, 30);
+            CreateJunkItem("Wolf Fanf", World.EnemyLootIDWolfFang, 17, 20);
+            CreateJunkItem("Wisp Dust", World.EnemyLootIDWispDust, 20, 10);
         }
 
         public static GameItems CreateGameItem(int itemID)
@@ -49,6 +60,11 @@ namespace Game.Items
         private static void CreateConsumable(string name, int id, int price, float recoveryAmount)
         {
             standardGameItems.Add(new GameItems(name, id, price, GameItems.ItemType.Consumable, recoveryAmount));
+        }
+
+        private static void CreateJunkItem(string name, int id, int price, int dropChance)
+        {
+            standardGameItems.Add(new GameItems(name, id, price, GameItems.ItemType.Junk, dropChance));
         }
     }
 }
