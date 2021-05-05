@@ -34,6 +34,11 @@ namespace SimpleRPG
 
         private void ChangeImages()
         {
+            if(gameSession.CurrentLocation.ShopOnLocation != null)
+            {
+                btnEnterShop.Visibility = Visibility.Visible;
+            }  
+            else btnEnterShop.Visibility = Visibility.Hidden;
             if (gameSession.Hero.SkillPoints > 0) imgCharacter.Source = new BitmapImage(new Uri(@"/Images/Icons/characterLevelUPIcon.png", UriKind.Relative));
             else imgCharacter.Source = new BitmapImage(new Uri(@"/Images/Icons/characterIcon.png", UriKind.Relative));
         }
@@ -48,21 +53,25 @@ namespace SimpleRPG
         private void btnNorth_Click(object sender, RoutedEventArgs e)
         {
             gameSession.MoveNorth();
+            ChangeImages();
         }
 
         private void btnWest_Click(object sender, RoutedEventArgs e)
         {
             gameSession.MoveWest();
+            ChangeImages();
         }
 
         private void btnSouth_Click(object sender, RoutedEventArgs e)
         {
             gameSession.MoveSouth();
+            ChangeImages();
         }
 
         private void btnEast_Click(object sender, RoutedEventArgs e)
         {
             gameSession.MoveEast();
+            ChangeImages();
         }
 
         private void OpenInventory(object sender, MouseButtonEventArgs e)
@@ -80,9 +89,9 @@ namespace SimpleRPG
             if (battle.BattleStatus.Equals(BattleWindow.Status.Victory))
             {
                 tbLog.Text += $"{gameSession.Hero.Name} kill {gameSession.CurrentEnemy.Name}." + Environment.NewLine;
-                tbLog.Text += $"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardMoney} money." + Environment.NewLine;
+                tbLog.Text += $"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardGold} gold." + Environment.NewLine;
                 gameSession.Hero.CurrentEXP += gameSession.CurrentEnemy.RewardEXP;
-                gameSession.Hero.Money += gameSession.CurrentEnemy.RewardMoney;
+                gameSession.Hero.Gold += gameSession.CurrentEnemy.RewardGold;
                 LootEnemy();
 
                 gameSession.Hero.LevelUP(); // Check for LevelUP
@@ -114,6 +123,12 @@ namespace SimpleRPG
                     gameSession.Hero.Inventory.Add(item);
                 }
             }
+        }
+
+        private void btnEnterShop_Click(object sender, RoutedEventArgs e)
+        {
+            ShopWindow window = new ShopWindow(gameSession);
+            window.ShowDialog();
         }
     }
 }

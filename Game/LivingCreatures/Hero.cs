@@ -11,7 +11,7 @@ namespace Game.LivingCreatures
     {
         private int currentEXP;
         private int expToLevel;
-        private int money;
+        private int gold;
         private int skillPoints;
         private Items.GameItems currentWeapon;
         public int CurrentEXP
@@ -38,16 +38,16 @@ namespace Game.LivingCreatures
                 OnPropertyChanged(nameof(expToLevel));
             }
         }
-        public int Money
+        public int Gold
         {
             get
             {
-                return money;
+                return gold;
             }
             set
             {
-                money = value;
-                OnPropertyChanged(nameof(money));
+                gold = value;
+                OnPropertyChanged(nameof(gold));
             }
         }
         public int SkillPoints
@@ -83,7 +83,7 @@ namespace Game.LivingCreatures
         {
             CurrentEXP = 0;
             EXPToLevel = Level * (100 * (Level * 2));
-            Money = 0;
+            Gold = 0;
         }
 
         public void LevelUP()

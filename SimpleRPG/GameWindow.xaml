@@ -51,13 +51,14 @@
             <TextBlock Margin="3,34,175,84" Text="Region:"/>
             <TextBlock x:Name="tbRegion" Text="{Binding CurrentLocation.Region.Name}" Margin="61,4,10,114" Width="160"/>
             <TextBlock x:Name="tbLocation" Text="{Binding CurrentLocation.Name}" Margin="61,34,10,84" Width="160"/>
-            <TextBlock Text="{Binding CurrentLocation.Description}" TextWrapping="Wrap" Margin="3,64,17,10"/>
+            <TextBlock Text="{Binding CurrentLocation.Description}" TextWrapping="Wrap" Margin="3,64,17,29"/>
+            <Button x:Name="btnEnterShop" Content="EnterTheShop" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="87" Click="btnEnterShop_Click"/>
         </Grid>
 
         <TextBox x:Name="tbLog" HorizontalAlignment="Left" Height="160" Margin="0,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="347" Grid.Column="1" Grid.Row="1" IsReadOnly="True"/>
 
         <TextBlock x:Name="tbMonsterName" Text="{Binding CurrentEnemy.Name}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="121" Height="25" MouseLeftButtonDown="AttackEnemy"/>
-        
+
 
 
 

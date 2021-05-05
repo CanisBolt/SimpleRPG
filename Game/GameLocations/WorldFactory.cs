@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game.Items;
 using Game.SpecialAttack;
 
 namespace Game.GameLocations
@@ -12,6 +13,10 @@ namespace Game.GameLocations
         internal World CreateWorld()
         {
             World newWorld = new World();
+
+            Shop villageShop = new Shop(World.ShopIDVillageShop);
+            villageShop.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
+            villageShop.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
 
             newWorld.AddRegion("Village", World.RegionIDVillage);
             newWorld.RegionByID(World.RegionIDVillage).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDRat));
@@ -55,6 +60,9 @@ namespace Game.GameLocations
 
             newWorld.AddLocation(0, 3, "North Street",
                 "North Street. Most popular street in village. Here you can buy items.", newWorld.RegionByID(World.RegionIDVillage), false);
+
+            newWorld.AddLocation(-1, 3, "Village Shop",
+                "Local shop", newWorld.RegionByID(World.RegionIDVillage), false, villageShop);
 
             newWorld.AddLocation(0, 4, "North Road to the Forest",
                 "Road to the forest", newWorld.RegionByID(World.RegionIDVillage), false);

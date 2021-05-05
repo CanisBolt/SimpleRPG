@@ -40,7 +40,6 @@ namespace Game.Items
         }
 
         public static GameItems CreateGameItem(int itemID)
-
         {
             GameItems standardItem = standardGameItems.FirstOrDefault(item => item.ID == itemID);
 

@@ -31,7 +31,7 @@
                 </DataGrid>
             </TabItem>
         </TabControl>
-        <TextBlock HorizontalAlignment="Left" Margin="10,340,0,0" TextWrapping="Wrap" Text="Money:" VerticalAlignment="Top" Height="22"/>
-        <TextBlock x:Name="tbMoney" Text="{Binding Hero.Money}" HorizontalAlignment="Left" Margin="54,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="114"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,340,0,0" TextWrapping="Wrap" Text="Gold:" VerticalAlignment="Top" Height="22"/>
+        <TextBlock x:Name="tbGold" Text="{Binding Hero.Gold}" HorizontalAlignment="Left" Margin="54,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="114"/>
     </Grid>
 </Window>

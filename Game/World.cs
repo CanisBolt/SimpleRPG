@@ -55,6 +55,9 @@ namespace Game
         public static int StatusEffectIDBleed = 1;
         public static int StatusEffectIDRegeneration = 2;
 
+        // Shop
+        public static int ShopIDVillageShop = 0;
+
         // Items
         // Healing/MP recovery Items
         public static int ItemIDSmallHealingPotion = 0;
@@ -84,7 +87,6 @@ namespace Game
         public static int EnemyLootIDWolfFang = 1008;
         public static int EnemyLootIDWispDust = 1009;
 
-
         internal void AddRegion(string name, int id)
         {
             Region region = new Region
@@ -96,7 +98,7 @@ namespace Game
             allRegions.Add(region);
         }
 
-        internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description, Region region, bool isCheckpoint)
+        internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description, Region region, bool isCheckpoint, Shop shopOnLocation = null)
         {
             Location loc = new Location
             {
@@ -105,7 +107,8 @@ namespace Game
                 Name = name,
                 Description = description,
                 Region = region,
-                IsCheckpoint = isCheckpoint
+                IsCheckpoint = isCheckpoint,
+                ShopOnLocation = shopOnLocation
             };
 
             allLocations.Add(loc);

@@ -11,14 +11,14 @@ namespace Game.LivingCreatures
     {
         public int ID { get; set; }
         public int RewardEXP { get; set; }
-        public int RewardMoney { get; set; }
+        public int RewardGold { get; set; }
         public int EncounterChance { get; set; }
         public bool IsAgressive { get; set; }
-        public Enemy(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck, int rewardEXP, int rewardMoney, int encounterChance, int id, bool isAgressive) : base(name, level, strength, agility, vitality, intelligence, mind, luck)
+        public Enemy(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck, int rewardEXP, int rewardGold, int encounterChance, int id, bool isAgressive) : base(name, level, strength, agility, vitality, intelligence, mind, luck)
         {
             ID = id;
             RewardEXP = rewardEXP;
-            RewardMoney = rewardMoney;
+            RewardGold = rewardGold;
             EncounterChance = encounterChance;
             IsAgressive = isAgressive;
         }

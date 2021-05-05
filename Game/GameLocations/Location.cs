@@ -14,6 +14,7 @@ namespace Game.GameLocations
         public int YCoordinate { get; set; }
         public Region Region { get; set; }
         public bool IsCheckpoint { get; set; }
+        public Shop ShopOnLocation { get; set; }
 
         // TODO add shops
     }
