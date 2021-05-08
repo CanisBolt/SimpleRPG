@@ -53,9 +53,9 @@
                             <DataGridTextColumn Header="Recovery Amount (%)"
                                                 Binding="{Binding RecoveryAmount}"
                                                 Width="60"/>
-                            <DataGridTextColumn Header="Price (Double value)"
-                                Binding="{Binding Price}"
-                                Width="Auto"/>
+                            <DataGridTextColumn Header="Price (Price * 2)"
+                                                Binding="{Binding Price}"
+                                                Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>

@@ -46,10 +46,48 @@ namespace SimpleRPG
         private void SellItem(object sender, MouseButtonEventArgs e)
         {
             Game.Items.GameItems selectedInventoryItem = (Game.Items.GameItems)dbInventory.SelectedItem;
+            if(selectedInventoryItem.Price == 0)
+            {
+                MessageBox.Show("This item cannot be sold!");
+                return;
+            }
+
             if (selectedInventoryItem.Type.Equals(Game.Items.GameItems.ItemType.Weapon) && gameSession.Hero.CurrentWeapon.Equals(selectedInventoryItem))
             {
                 MessageBox.Show("You cannot sell equiped item!");
             }
+
+            else if(selectedInventoryItem.Type.Equals(Game.Items.GameItems.ItemType.Armor))
+            {
+                switch (selectedInventoryItem.ArmorSlot)
+                {
+                    case Game.Items.GameItems.ArmorType.Head:
+                        if (gameSession.Hero.CurrentHeadArmor.Equals(selectedInventoryItem))
+                        {
+                            MessageBox.Show("You cannot sell equiped item!");
+                        }
+                        break;
+                    case Game.Items.GameItems.ArmorType.Body:
+                        if (gameSession.Hero.CurrentBodyArmor.Equals(selectedInventoryItem))
+                        {
+                            MessageBox.Show("You cannot sell equiped item!");
+                        }
+                        break;
+                    case Game.Items.GameItems.ArmorType.Legs:
+                        if (gameSession.Hero.CurrentLegsArmor.Equals(selectedInventoryItem))
+                        {
+                            MessageBox.Show("You cannot sell equiped item!");
+                        }
+                        break;
+                    case Game.Items.GameItems.ArmorType.Feet:
+                        if (gameSession.Hero.CurrentFeetArmor.Equals(selectedInventoryItem))
+                        {
+                            MessageBox.Show("You cannot sell equiped item!");
+                        }
+                        break;
+                }
+            }
+
             else
             {
                 gameSession.Hero.Gold += selectedInventoryItem.Price;

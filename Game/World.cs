@@ -59,6 +59,22 @@ namespace Game
         public static int ShopIDVillageShop = 0;
 
         // Items
+
+        // Weapons
+        public static int WeaponIDWoodStaff = 100;
+        public static int WeaponIDWoodSword = 101;
+
+
+        // Armors
+        public static int WeaponIDNoHeadArmor = 200;
+        public static int WeaponIDNoBodyArmor = 201;
+        public static int WeaponIDNoLegsArmor = 202;
+        public static int WeaponIDNoFeetArmor = 203;
+        public static int WeaponIDSilkHat = 204;
+        public static int WeaponIDSilkRobe = 205;
+        public static int WeaponIDSilkPants = 206;
+        public static int WeaponIDSilkSandals = 207;
+
         // Healing/MP recovery Items
         public static int ItemIDSmallHealingPotion = 0;
         public static int ItemIDMediumHealingPotion = 1;
@@ -68,11 +84,6 @@ namespace Game
         public static int ItemIDMediumManaPotion = 5;
         public static int ItemIDBigManaPotion = 6;
         public static int ItemIDMaxManaPotion = 7;
-
-        // Weapons
-        public static int WeaponIDWoodStaff = 100;
-        public static int WeaponIDWoodSword = 101;
-
 
 
         // Enemy Loot

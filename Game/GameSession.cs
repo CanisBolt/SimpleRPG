@@ -53,6 +53,15 @@ namespace Game
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodStaff));
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodSword));
 
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDNoHeadArmor));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDNoBodyArmor));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDNoLegsArmor));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDNoFeetArmor));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDSilkHat));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDSilkRobe));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDSilkPants));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDSilkSandals));
+
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
@@ -63,7 +72,12 @@ namespace Game
 
             Hero.SkillBook.Add(World.SkillByID(World.SwordSKillIDFastStrike));
 
+            // TODO chance it
             Hero.CurrentWeapon = Hero.Inventory[0];
+            Hero.CurrentHeadArmor = Hero.Inventory[2];
+            Hero.CurrentBodyArmor = Hero.Inventory[3];
+            Hero.CurrentLegsArmor = Hero.Inventory[4];
+            Hero.CurrentFeetArmor = Hero.Inventory[5];
 
             GetEnemyAtRegion();
         }

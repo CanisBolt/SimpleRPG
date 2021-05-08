@@ -23,6 +23,7 @@ namespace Game.LivingCreatures
         private int intelligence;
         private int mind;
         private int luck;
+        protected float defence;
         private Magic currentMagic;
         private WeaponSkills currentSkill;
 
@@ -178,7 +179,18 @@ namespace Game.LivingCreatures
         } // Increase crit chance
 
         public float Damage { get; set; }
-        public float Defence { get; set; }
+        public float Defence
+        {
+            get
+            {
+                return defence;
+            }
+            set
+            {
+                defence = value;
+                OnPropertyChanged(nameof(defence));
+            }
+        }
         public float Evasion { get; set; }
         public bool IsCriticalHit { get; set; }
 

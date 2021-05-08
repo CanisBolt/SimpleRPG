@@ -19,6 +19,10 @@ namespace Game.Items
         public int MaximumDamage { get; set; }
         public Enum TypeOfWeapon { get; set; }
 
+        // Armor
+        public int Defence { get; set; }
+        public Enum ArmorSlot { get; set; }
+
         // Healing items
         public float RecoveryAmount { get; set; } // % from Hero MaxHP or MP
 
@@ -46,6 +50,17 @@ namespace Game.Items
             TypeOfWeapon = typeOfWeapon;
         }
 
+        // Armor constructor
+        public GameItems(string name, int id, int price, Enum type, int defence, Enum armorSlot)
+        {
+            Name = name;
+            ID = id;
+            Price = price;
+            Type = type;
+            Defence = defence;
+            ArmorSlot = armorSlot;
+        }
+
         // Consumable Constructor
         public GameItems(string name, int id, int price, Enum type, float recoveryAmount)
         {
@@ -69,6 +84,7 @@ namespace Game.Items
         public GameItems Clone()
         {
             if (Type.Equals(ItemType.Weapon)) return new GameItems(Name, ID, Price, Type, MinimumDamage, MaximumDamage, TypeOfWeapon); // Cloning weapon
+            if (Type.Equals(ItemType.Armor)) return new GameItems(Name, ID, Price, Type, Defence, ArmorSlot); // Cloning armor
             if (Type.Equals(ItemType.Consumable)) return new GameItems(Name, ID, Price, Type, RecoveryAmount);
             if (Type.Equals(ItemType.Junk)) return new GameItems(Name, ID, Price, Type, DropChance);
             return new GameItems(Name, ID, Price, Type);
@@ -89,6 +105,14 @@ namespace Game.Items
             Spear,
             Dagger,
             Staff
+        }
+
+        public enum ArmorType
+        {
+            Head,
+            Body,
+            Legs,
+            Feet
         }
     }
 }

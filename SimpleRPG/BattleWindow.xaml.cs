@@ -117,6 +117,7 @@ namespace SimpleRPG
 
         private void CheckHPStatus()
         {
+            gameSession.Hero.CalculateDefence();
             gameSession.Hero.StatusEffectsDamageCalculation();
             gameSession.CurrentEnemy.StatusEffectsDamageCalculation();
 

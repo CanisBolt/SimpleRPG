@@ -60,7 +60,29 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Text="Current Equipment:" Height="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Weapon:" Height="22"/>
         <TextBlock x:Name="tbWeapon" Text="{Binding Hero.CurrentWeapon.Name}" HorizontalAlignment="Left" Margin="65,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
-
-        <!-- Change Equipment -->
+        <TextBlock HorizontalAlignment="Left" Margin="10,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Head:" Height="22"/>
+        <TextBlock x:Name="tbHead" Text="{Binding Hero.CurrentHeadArmor.Name}" HorizontalAlignment="Left" Margin="65,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Body:" Height="22"/>
+        <TextBlock x:Name="tbBody" Text="{Binding Hero.CurrentBodyArmor.Name}" HorizontalAlignment="Left" Margin="65,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Legs:" Height="22"/>
+        <TextBlock x:Name="tbLegs" Text="{Binding Hero.CurrentLegsArmor.Name}" HorizontalAlignment="Left" Margin="65,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Feet:" Height="22"/>
+        <TextBlock x:Name="tbFeet" Text="{Binding Hero.CurrentFeetArmor.Name}" HorizontalAlignment="Left" Margin="65,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
+        <TextBlock Text="Damage:" HorizontalAlignment="Left" Margin="190,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="245,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22">
+            <Run Text="{Binding Hero.CurrentWeapon.MinimumDamage}"/>
+            <Run Text=" - "/>
+            <Run Text="{Binding Hero.CurrentWeapon.MaximumDamage}"/>
+        </TextBlock>
+        <TextBlock Text="Defence:" HorizontalAlignment="Left" Margin="190,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
+        <TextBlock Text="{Binding Hero.CurrentHeadArmor.Defence}" HorizontalAlignment="Left" Margin="245,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
+        <TextBlock Text="Defence:" HorizontalAlignment="Left" Margin="190,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
+        <TextBlock Text="{Binding Hero.CurrentBodyArmor.Defence}" HorizontalAlignment="Left" Margin="245,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
+        <TextBlock Text="Defence:" HorizontalAlignment="Left" Margin="190,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
+        <TextBlock Text="{Binding Hero.CurrentLegsArmor.Defence}" HorizontalAlignment="Left" Margin="245,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
+        <TextBlock Text="Defence:" HorizontalAlignment="Left" Margin="190,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
+        <TextBlock Text="{Binding Hero.CurrentFeetArmor.Defence}" HorizontalAlignment="Left" Margin="245,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
+        <TextBlock Text="Total Defence:" HorizontalAlignment="Left" Margin="10,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Height="22"/>
+        <TextBlock Text="{Binding Hero.Defence}" HorizontalAlignment="Left" Margin="96,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
     </Grid>
 </Window>

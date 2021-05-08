@@ -17,6 +17,16 @@ namespace Game.Items
             CreateWeapon("Wood Staff", World.WeaponIDWoodStaff, 1, 1, 2, GameItems.WeaponType.Staff);
             CreateWeapon("Wood Sword", World.WeaponIDWoodSword, 1, 2, 2, GameItems.WeaponType.Sword);
 
+            CreateArmor("No Head Armor", World.WeaponIDNoHeadArmor, 0, 0, GameItems.ArmorType.Head);
+            CreateArmor("No Body Armor", World.WeaponIDNoBodyArmor, 0, 0, GameItems.ArmorType.Body);
+            CreateArmor("No Legs Armor", World.WeaponIDNoLegsArmor, 0, 0, GameItems.ArmorType.Legs);
+            CreateArmor("No Feet Armor", World.WeaponIDNoFeetArmor, 0, 0, GameItems.ArmorType.Feet);
+
+            CreateArmor("Silk Hat", World.WeaponIDSilkHat, 1, 1, GameItems.ArmorType.Head);
+            CreateArmor("Silk Robe", World.WeaponIDSilkRobe, 1, 1, GameItems.ArmorType.Body);
+            CreateArmor("Silk Pants", World.WeaponIDSilkPants, 1, 1, GameItems.ArmorType.Legs);
+            CreateArmor("Silk Sandals", World.WeaponIDSilkSandals, 1, 1, GameItems.ArmorType.Feet);
+
             CreateConsumable("Small Healing Potion", World.ItemIDSmallHealingPotion, 10, 0.25f);
             CreateConsumable("Medium Healing Potion", World.ItemIDMediumHealingPotion, 30, 0.5f);
             CreateConsumable("Big Healing Potion", World.ItemIDBigHealingPotion, 50, 0.75f);
@@ -54,6 +64,11 @@ namespace Game.Items
         private static void CreateWeapon(string name, int id, int price, int minDamage, int maxDamage, Enum weaponType)
         {
             standardGameItems.Add(new GameItems(name, id, price, GameItems.ItemType.Weapon, minDamage, maxDamage, weaponType));
+        }
+
+        private static void CreateArmor(string name, int id, int price, int defence, Enum ArmorSlot)
+        {
+            standardGameItems.Add(new GameItems(name, id, price, GameItems.ItemType.Armor, defence, ArmorSlot));
         }
 
         private static void CreateConsumable(string name, int id, int price, float recoveryAmount)

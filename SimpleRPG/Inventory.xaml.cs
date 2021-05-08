@@ -73,6 +73,37 @@ namespace SimpleRPG
                 IsItemUsed = true;
             }
 
+            else if(selectedInventoryItem.Type.Equals(Game.Items.GameItems.ItemType.Armor))
+            {
+                switch(selectedInventoryItem.ArmorSlot)
+                {
+                    case Game.Items.GameItems.ArmorType.Head:
+                        if (gameSession.Hero.CurrentHeadArmor != (Game.Items.GameItems)dbInventory.SelectedItem)
+                        {
+                            gameSession.Hero.CurrentHeadArmor = (Game.Items.GameItems)dbInventory.SelectedItem;
+                        }
+                        break;
+                    case Game.Items.GameItems.ArmorType.Body:
+                        if (gameSession.Hero.CurrentBodyArmor != (Game.Items.GameItems)dbInventory.SelectedItem)
+                        {
+                            gameSession.Hero.CurrentBodyArmor = (Game.Items.GameItems)dbInventory.SelectedItem;
+                        }
+                        break;
+                    case Game.Items.GameItems.ArmorType.Legs:
+                        if (gameSession.Hero.CurrentLegsArmor != (Game.Items.GameItems)dbInventory.SelectedItem)
+                        {
+                            gameSession.Hero.CurrentLegsArmor = (Game.Items.GameItems)dbInventory.SelectedItem;
+                        }
+                        break;
+                    case Game.Items.GameItems.ArmorType.Feet:
+                        if (gameSession.Hero.CurrentFeetArmor != (Game.Items.GameItems)dbInventory.SelectedItem)
+                        {
+                            gameSession.Hero.CurrentFeetArmor = (Game.Items.GameItems)dbInventory.SelectedItem;
+                        }
+                        break;
+                }
+            }
+
             if(IsItemUsed && IsInBattle)
             {
                 Close();

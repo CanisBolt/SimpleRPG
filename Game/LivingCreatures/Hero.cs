@@ -14,6 +14,11 @@ namespace Game.LivingCreatures
         private int gold;
         private int skillPoints;
         private Items.GameItems currentWeapon;
+        private Items.GameItems currentHeadArmor;
+        private Items.GameItems currentBodyArmor;
+        private Items.GameItems currentLegsArmor;
+        private Items.GameItems currentFeetArmor;
+
         public int CurrentEXP
         {
             get
@@ -78,6 +83,57 @@ namespace Game.LivingCreatures
             }
         }
 
+        public Items.GameItems CurrentHeadArmor
+        {
+            get
+            {
+                return currentHeadArmor;
+            }
+            set
+            {
+                currentHeadArmor = value;
+                OnPropertyChanged(nameof(currentHeadArmor));
+            }
+        }
+
+        public Items.GameItems CurrentBodyArmor
+        {
+            get
+            {
+                return currentBodyArmor;
+            }
+            set
+            {
+                currentBodyArmor = value;
+                OnPropertyChanged(nameof(currentBodyArmor));
+            }
+        }
+
+        public Items.GameItems CurrentLegsArmor
+        {
+            get
+            {
+                return currentLegsArmor;
+            }
+            set
+            {
+                currentLegsArmor = value;
+                OnPropertyChanged(nameof(currentLegsArmor));
+            }
+        }
+
+        public Items.GameItems CurrentFeetArmor
+        {
+            get
+            {
+                return currentFeetArmor;
+            }
+            set
+            {
+                currentFeetArmor = value;
+                OnPropertyChanged(nameof(currentFeetArmor));
+            }
+        }
 
         public Hero(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck) : base(name, level, strength, agility, vitality, intelligence, mind, luck)
         {
@@ -119,6 +175,11 @@ namespace Game.LivingCreatures
                 damage *= 1.2f; // Increase magic damage by 20% if Hero is using a Staff Weapon
             }
             return damage;
+        }
+
+        public void CalculateDefence()
+        {
+            Defence = currentHeadArmor.Defence + currentBodyArmor.Defence + currentLegsArmor.Defence + currentFeetArmor.Defence;
         }
 
         public void HealingAfterDeath()
