@@ -167,13 +167,27 @@ namespace Game.LivingCreatures
             return Dice.GetRandomModificator() * (Strength + (Dice.rng.Next(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage) + 1));
         }
 
-        public override float MagicDamageCalculation()
+        public override float SkillDamageCalculation()
         {
-            float damage = Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + AddDamageModificator());
-            if(CurrentWeapon.TypeOfWeapon.Equals(Items.GameItems.WeaponType.Staff))
+            float damage = 0;
+            if (CurrentSkill == null) return 0;
+
+            if (CurrentSkill.NumberOfHits > 1)
+            {
+                int numberOfHits = Dice.rng.Next(CurrentSkill.NumberOfHits) + 1;
+                for (int i = 0; i < numberOfHits; i++)
+                {
+                    damage += (CurrentSkill.BaseDamage + AddDamageModificator());
+                }
+                return Dice.GetRandomModificator() * damage;
+            }
+            else damage = Dice.GetRandomModificator() * (CurrentSkill.BaseDamage + AddDamageModificator());
+
+            if (CurrentWeapon.TypeOfWeapon.Equals(Items.GameItems.WeaponType.Staff) && CurrentSkill.Type.Equals(SpecialAttack.Skills.SpecialAttackType.Magic))
             {
                 damage *= 1.2f; // Increase magic damage by 20% if Hero is using a Staff Weapon
             }
+
             return damage;
         }
 

@@ -14,8 +14,7 @@ namespace Game
         private static List<Race> allRaces = new List<Race>();
         private List<Location> allLocations = new List<Location>();
         private List<Region> allRegions = new List<Region>();
-        private static List<Magic> allMagicSpells = new List<Magic>();
-        private static List<WeaponSkills> allSkills = new List<WeaponSkills>();
+        private static List<SpecialAttack.Skills> allSpecialAttacks = new List<SpecialAttack.Skills>();
         private static List<StatusEffect> allStatusEffects = new List<StatusEffect>();
 
         // ID's
@@ -46,9 +45,9 @@ namespace Game
         public static int MagicIDSmallHeal = 3;
 
         // Skills
-        public static int SwordSKillIDFastStrike = 0;
-        public static int SwordSKillIDHeavyStrike = 1;
-        public static int SwordSKillIDMultiHit = 2;
+        public static int SwordSKillIDFastStrike = 30;
+        public static int SwordSKillIDHeavyStrike = 31;
+        public static int SwordSKillIDMultiHit = 32;
 
         // Status Effects
         public static int StatusEffectIDBurn = 0;
@@ -59,11 +58,9 @@ namespace Game
         public static int ShopIDVillageShop = 0;
 
         // Items
-
         // Weapons
         public static int WeaponIDWoodStaff = 100;
         public static int WeaponIDWoodSword = 101;
-
 
         // Armors
         public static int WeaponIDNoHeadArmor = 200;
@@ -84,7 +81,6 @@ namespace Game
         public static int ItemIDMediumManaPotion = 5;
         public static int ItemIDBigManaPotion = 6;
         public static int ItemIDMaxManaPotion = 7;
-
 
         // Enemy Loot
         public static int EnemyLootIDSnakeSkin = 1000;
@@ -125,43 +121,27 @@ namespace Game
             allLocations.Add(loc);
         }
 
-        internal void AddMagic(string name, int id, string description, float spellDamage, int manaCost, float attributeModificator, Enum target, Enum modificator, StatusEffect effect)
+        internal void AddSpecialAttack(string name, int id, string description, float baseDamage, int manaCost, float attributeModificator, StatusEffect effect, Enum target, Enum modificator, Enum type, Enum requiredWeapon, int numberOfHits = 1)
         {
-            Magic magic = new Magic
+            SpecialAttack.Skills specialAttack = new SpecialAttack.Skills()
             {
                 Name = name,
                 ID = id,
                 Description = description,
-                BaseDamage = spellDamage,
-                ManaCost = manaCost,
-                AttributeModificator = attributeModificator,
-                AffectedTarger = target,
-                Modificator = modificator,
-                Effect = effect
-            };
-
-            allMagicSpells.Add(magic);
-        }
-
-        internal void AddSkill(string name, int id, string description, float spellDamage, int manaCost, float attributeModificator, int numberOfHits, Enum target, Enum requiredWeapon, Enum modificator, StatusEffect effect)
-        {
-            WeaponSkills skill = new WeaponSkills
-            {
-                Name = name,
-                ID = id,
-                Description = description,
-                BaseDamage = spellDamage,
+                BaseDamage = baseDamage,
                 ManaCost = manaCost,
                 AttributeModificator = attributeModificator,
                 NumberOfHits = numberOfHits,
+                Effect = effect,
                 AffectedTarger = target,
-                RequiredWeapon = requiredWeapon,
                 Modificator = modificator,
-                Effect = effect
+                Type = type,
+                RequiredWeapon = requiredWeapon,
             };
 
-            allSkills.Add(skill);
+            allSpecialAttacks.Add(specialAttack);
         }
+
         internal void AddStatusEffect(string name, int id, string description, float affectHP, float affectMP, int duration, Enum type)
         {
             StatusEffect status = new StatusEffect
@@ -230,21 +210,9 @@ namespace Game
             return null;
         }
 
-        public static Magic SpellByID(int id)
+        public static SpecialAttack.Skills SkillByID(int id)
         {
-            foreach (var spell in allMagicSpells)
-            {
-                if (spell.ID == id)
-                {
-                    return spell;
-                }
-            }
-            return null;
-        }
-
-        public static WeaponSkills SkillByID(int id)
-        {
-            foreach (var skill in allSkills)
+            foreach (var skill in allSpecialAttacks)
             {
                 if (skill.ID == id)
                 {

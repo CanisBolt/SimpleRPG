@@ -53,12 +53,10 @@
     <Compile Include="LivingCreatures\Hero.cs" />
     <Compile Include="Items\GameItems.cs" />
     <Compile Include="GameLocations\Location.cs" />
-    <Compile Include="SpecialAttack\Magic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LivingCreatures\Race.cs" />
     <Compile Include="SpecialAttack\StatusEffect.cs" />
-    <Compile Include="SpecialAttack\WeaponSkills.cs" />
-    <Compile Include="SpecialAttack\SkillsAndMagic.cs" />
+    <Compile Include="SpecialAttack\Skills.cs" />
     <Compile Include="World.cs" />
     <Compile Include="GameLocations\WorldFactory.cs" />
   </ItemGroup>

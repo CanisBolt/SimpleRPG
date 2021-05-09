@@ -23,37 +23,8 @@ namespace Game.LivingCreatures
             IsAgressive = isAgressive;
         }
 
-        // At least 1 spell should be able to cast
-        public bool CheckMPForSpells()
-        {
-            foreach(var spell in SpellBook)
-            {
-                if(spell.ManaCost <= CurrentMP)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public void ChooseRandomSpell()
-        {
-            List<SpecialAttack.Magic> possibleSpells = new List<SpecialAttack.Magic>();
-            // Add possible spells for separate list
-            foreach(var spell in SpellBook)
-            {
-                if(spell.ManaCost <= CurrentMP)
-                {
-                    possibleSpells.Add(spell);
-                }
-            }
-
-            // Choose a spell from this list
-            int randomSpell = Dice.rng.Next(possibleSpells.Count);
-            CurrentSpell = possibleSpells[randomSpell];
-        }
-
         // At least 1 skill should be able to cast
+        /*
         public bool CheckMPForSkill()
         {
             foreach (var skill in SkillBook)
@@ -65,10 +36,11 @@ namespace Game.LivingCreatures
             }
             return false;
         }
+        */
 
         public void ChooseRandomSkill()
         {
-            List<SpecialAttack.WeaponSkills> possibleSkill = new List<SpecialAttack.WeaponSkills>();
+            List<SpecialAttack.Skills> possibleSkill = new List<SpecialAttack.Skills>();
             // Add possible skills for separate list
             foreach (var skill in SkillBook)
             {

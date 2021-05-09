@@ -8,35 +8,6 @@
         Title="SpellBookWindow" Height="454.905" Width="800">
     <Grid>
         <TabControl Margin="0,0,0,34">
-            <TabItem Header="Spells">
-                <DataGrid x:Name="dgSpellBook" ItemsSource="{Binding Hero.SpellBook}"
-                              AutoGenerateColumns="False"
-                              HeadersVisibility="Column" Margin="0,0,0,-2" ToolTip="Select a spell with Left Mouse Button Double Click" IsReadOnly="True">
-                    <DataGrid.Resources>
-                        <Style TargetType="{x:Type DataGridCell}">
-                            <EventSetter Event="MouseDoubleClick" Handler="SpellCast"/>
-                        </Style>
-                    </DataGrid.Resources>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name"
-                                                Binding="{Binding Name}"
-                                                Width="100"/>
-                        <DataGridTextColumn Header="Description"
-                                                Binding="{Binding Description}"
-                                                Width="*"/>
-                        <DataGridTextColumn Header="Basic Damage"
-                                                Binding="{Binding BaseDamage}"
-                                                Width="Auto"/>
-                        <DataGridTextColumn Header="Attribute Modificator"
-                                                Binding="{Binding AttributeModificator}"
-                                                Width="Auto"/>
-                        <DataGridTextColumn Header="Mana Cost"
-                                                Binding="{Binding ManaCost}"
-                                                Width="70"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-            
             <TabItem Header="Skills">
                 <DataGrid x:Name="dgSkillBook" ItemsSource="{Binding Hero.SkillBook}"
                               AutoGenerateColumns="False"
@@ -61,6 +32,9 @@
                                                 Width="Auto"/>
                         <DataGridTextColumn Header="Mana Cost"
                                                 Binding="{Binding ManaCost}"
+                                                Width="70"/>
+                        <DataGridTextColumn Header="Type"
+                                                Binding="{Binding Type}"
                                                 Width="70"/>
                     </DataGrid.Columns>
                 </DataGrid>

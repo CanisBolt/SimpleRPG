@@ -48,7 +48,7 @@ namespace Game
                 case 5:
                     Enemy forestWisp =
                         new Enemy("Forest Wisp", 3, 3, 3, 3, 10, 7, 5, 30, 0, 25, 5, false);
-                    forestWisp.SpellBook.Add(World.SpellByID(World.MagicIDFireball));
+                    forestWisp.SkillBook.Add(World.SkillByID(World.MagicIDFireball));
                     forestWisp.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDWispDust));
                     return forestWisp;
                 default:

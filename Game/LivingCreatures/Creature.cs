@@ -24,8 +24,7 @@ namespace Game.LivingCreatures
         private int mind;
         private int luck;
         protected float defence;
-        private Magic currentMagic;
-        private WeaponSkills currentSkill;
+        private SpecialAttack.Skills currentSkill;
 
         public string Name 
         {
@@ -194,20 +193,8 @@ namespace Game.LivingCreatures
         public float Evasion { get; set; }
         public bool IsCriticalHit { get; set; }
 
-        public Magic CurrentSpell
-        {
-            get
-            {
-                return currentMagic;
-            }
-            set
-            {
-                currentMagic = value;
-                OnPropertyChanged(nameof(currentMagic));
-            }
-        }
 
-        public WeaponSkills CurrentSkill
+        public SpecialAttack.Skills CurrentSkill
         {
             get
             {
@@ -221,8 +208,7 @@ namespace Game.LivingCreatures
         }
 
         public ObservableCollection<GameItems> Inventory { get; set; }
-        public ObservableCollection<Magic> SpellBook { get; set; }
-        public ObservableCollection<WeaponSkills> SkillBook { get; set; }
+        public ObservableCollection<SpecialAttack.Skills> SkillBook { get; set; }
         public ObservableCollection<StatusEffect> Effects { get; set; }
 
         public Creature(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck)
@@ -238,8 +224,7 @@ namespace Game.LivingCreatures
             Luck = luck;
 
             Inventory = new ObservableCollection<GameItems>();
-            SpellBook = new ObservableCollection<Magic>();
-            SkillBook = new ObservableCollection<WeaponSkills>();
+            SkillBook = new ObservableCollection<SpecialAttack.Skills>();
             Effects = new ObservableCollection<StatusEffect>();
 
             RestoreHPMP();
@@ -256,38 +241,20 @@ namespace Game.LivingCreatures
             {
                 switch (CurrentSkill.Modificator)
                 {
-                    case SkillsAndMagic.Attribute.Strength:
+                    case SpecialAttack.Skills.Attribute.Strength:
                         return Strength * CurrentSkill.AttributeModificator;
-                    case SkillsAndMagic.Attribute.Agility:
+                    case SpecialAttack.Skills.Attribute.Agility:
                         return Agility * CurrentSkill.AttributeModificator;
-                    case SkillsAndMagic.Attribute.Vitality:
+                    case SpecialAttack.Skills.Attribute.Vitality:
                         return Vitality * CurrentSkill.AttributeModificator;
-                    case SkillsAndMagic.Attribute.Intelligence:
+                    case SpecialAttack.Skills.Attribute.Intelligence:
                         return Intelligence * CurrentSkill.AttributeModificator;
-                    case SkillsAndMagic.Attribute.Mind:
+                    case SpecialAttack.Skills.Attribute.Mind:
                         return Mind * CurrentSkill.AttributeModificator;
-                    case SkillsAndMagic.Attribute.Luck:
+                    case SpecialAttack.Skills.Attribute.Luck:
                         return Luck * CurrentSkill.AttributeModificator;
                 }
             }
-            else
-            {
-                switch (CurrentSpell.Modificator)
-                {
-                    case SkillsAndMagic.Attribute.Strength:
-                        return Strength * CurrentSpell.AttributeModificator;
-                    case SkillsAndMagic.Attribute.Agility:
-                        return Agility * CurrentSpell.AttributeModificator;
-                    case SkillsAndMagic.Attribute.Vitality:
-                        return Vitality * CurrentSpell.AttributeModificator;
-                    case SkillsAndMagic.Attribute.Intelligence:
-                        return Intelligence * CurrentSpell.AttributeModificator;
-                    case SkillsAndMagic.Attribute.Mind:
-                        return Mind * CurrentSpell.AttributeModificator;
-                    case SkillsAndMagic.Attribute.Luck:
-                        return Luck * CurrentSpell.AttributeModificator;
-                }
-            }  
             return 1;
         }
 
@@ -296,18 +263,15 @@ namespace Game.LivingCreatures
             return Dice.GetRandomModificator() * Strength;
         }
 
-        public virtual float MagicDamageCalculation()
-        {
-            return Dice.GetRandomModificator() * (CurrentSpell.BaseDamage + AddDamageModificator());
-        }
-
         public virtual float SkillDamageCalculation()
         {
-            if(CurrentSkill.NumberOfHits > 1)
+            if(CurrentSkill == null) return 0;
+
+            if (CurrentSkill.NumberOfHits > 1)
             {
                 float damage = 0;
                 int numberOfHits = Dice.rng.Next(CurrentSkill.NumberOfHits) + 1;
-                for(int i = 0; i < numberOfHits; i++)
+                for (int i = 0; i < numberOfHits; i++)
                 {
                     damage += (CurrentSkill.BaseDamage + AddDamageModificator());
                 }

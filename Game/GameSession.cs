@@ -67,8 +67,8 @@ namespace Game
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
 
-            Hero.SpellBook.Add(World.SpellByID(World.MagicIDFireball));
-            Hero.SpellBook.Add(World.SpellByID(World.MagicIDSmallHeal));
+            Hero.SkillBook.Add(World.SkillByID(World.MagicIDFireball));
+            Hero.SkillBook.Add(World.SkillByID(World.MagicIDSmallHeal));
 
             Hero.SkillBook.Add(World.SkillByID(World.SwordSKillIDFastStrike));
 

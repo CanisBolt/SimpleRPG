@@ -22,56 +22,27 @@ namespace SimpleRPG
     public partial class SpellBookWindow : Window
     {
         GameSession gameSession; 
-        private bool isSpellCasted;
-        private bool isSkillUsed;
-        public bool IsSpellCasted
-        {
-            get { return isSpellCasted; }
-        }
-
-        public bool IsSkillUsed
-        {
-            get { return isSkillUsed; }
-        }
+        public bool IsSkillUsed { get; set; }
         public SpellBookWindow(GameSession _gameSession)
         {
             InitializeComponent();
 
             gameSession = _gameSession;
             DataContext = gameSession;
-
-            isSpellCasted = false;
-            isSkillUsed = false;
-        }
-
-        private void SpellCast(object sender, MouseButtonEventArgs e)
-        {
-            if (dgSpellBook.SelectedItem == null) return;
-
-            Magic selectedSpell = (Magic)dgSpellBook.SelectedItem;
-            if (gameSession.Hero.CurrentMP >= selectedSpell.ManaCost)
-            {
-                gameSession.Hero.CurrentSpell = selectedSpell;
-                isSpellCasted = true;
-                Close();
-            }
-            else
-            {
-                MessageBox.Show($"Not enough mana points for {selectedSpell.Name}");
-            }
+            IsSkillUsed = false;
         }
 
         private void SkillCast(object sender, MouseButtonEventArgs e)
         {
             if (dgSkillBook.SelectedItem == null) return;
 
-            WeaponSkills selectedSkill = (WeaponSkills)dgSkillBook.SelectedItem;
-            if(selectedSkill.RequiredWeapon.Equals(gameSession.Hero.CurrentWeapon.TypeOfWeapon))
+            Skills selectedSkill = (Skills)dgSkillBook.SelectedItem;
+            if(selectedSkill.RequiredWeapon.Equals(gameSession.Hero.CurrentWeapon.TypeOfWeapon) || selectedSkill.RequiredWeapon.Equals(Game.Items.GameItems.WeaponType.None))
             {
                 if (gameSession.Hero.CurrentMP >= selectedSkill.ManaCost)
                 {
-                    gameSession.Hero.CurrentSkill = selectedSkill;
-                    isSkillUsed = true;
+                    gameSession.Hero.CurrentSkill = selectedSkill; 
+                    IsSkillUsed = true;
                     Close();
                 }
                 else
