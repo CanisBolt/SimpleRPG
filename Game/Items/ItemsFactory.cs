@@ -17,15 +17,15 @@ namespace Game.Items
             CreateWeapon("Wood Staff", World.WeaponIDWoodStaff, 1, 1, 2, GameItems.WeaponType.Staff);
             CreateWeapon("Wood Sword", World.WeaponIDWoodSword, 1, 2, 2, GameItems.WeaponType.Sword);
 
-            CreateArmor("No Head Armor", World.WeaponIDNoHeadArmor, 0, 0, GameItems.ArmorType.Head);
-            CreateArmor("No Body Armor", World.WeaponIDNoBodyArmor, 0, 0, GameItems.ArmorType.Body);
-            CreateArmor("No Legs Armor", World.WeaponIDNoLegsArmor, 0, 0, GameItems.ArmorType.Legs);
-            CreateArmor("No Feet Armor", World.WeaponIDNoFeetArmor, 0, 0, GameItems.ArmorType.Feet);
+            CreateArmor("No Head Armor", World.ArmorIDNoHeadArmor, 0, 0, GameItems.ArmorType.Head);
+            CreateArmor("No Body Armor", World.ArmorIDNoBodyArmor, 0, 0, GameItems.ArmorType.Body);
+            CreateArmor("No Legs Armor", World.ArmorIDNoLegsArmor, 0, 0, GameItems.ArmorType.Legs);
+            CreateArmor("No Feet Armor", World.ArmorIDNoFeetArmor, 0, 0, GameItems.ArmorType.Feet);
 
-            CreateArmor("Silk Hat", World.WeaponIDSilkHat, 1, 1, GameItems.ArmorType.Head);
-            CreateArmor("Silk Robe", World.WeaponIDSilkRobe, 1, 1, GameItems.ArmorType.Body);
-            CreateArmor("Silk Pants", World.WeaponIDSilkPants, 1, 1, GameItems.ArmorType.Legs);
-            CreateArmor("Silk Sandals", World.WeaponIDSilkSandals, 1, 1, GameItems.ArmorType.Feet);
+            CreateArmor("Silk Hat", World.ArmorIDSilkHat, 1, 1, GameItems.ArmorType.Head);
+            CreateArmor("Silk Robe", World.ArmorIDSilkRobe, 1, 1, GameItems.ArmorType.Body);
+            CreateArmor("Silk Pants", World.ArmorIDSilkPants, 1, 1, GameItems.ArmorType.Legs);
+            CreateArmor("Silk Sandals", World.ArmorIDSilkSandals, 1, 1, GameItems.ArmorType.Feet);
 
             CreateConsumable("Small Healing Potion", World.ItemIDSmallHealingPotion, 10, 0.25f);
             CreateConsumable("Medium Healing Potion", World.ItemIDMediumHealingPotion, 30, 0.5f);

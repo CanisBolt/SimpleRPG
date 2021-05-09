@@ -49,17 +49,15 @@ namespace SimpleRPG
         private void EnemyAttack()
         {
             // For now, enemy using same logic as Hero (without weapon).
-            // TODO looks not so good. Change it later 
+            // TODO change enemy stats to avoid low damage
             if (gameSession.CurrentEnemy.SkillBook.Count != 0)  gameSession.CurrentEnemy.ChooseRandomSkill();
             
             gameSession.CurrentEnemy.CalculateCriticalHitChance();
-            gameSession.CurrentEnemy.Damage = gameSession.CurrentEnemy.SkillDamageCalculation(); // if damageCalculation return 0, then use basic attack
 
-            if(gameSession.CurrentEnemy.Damage == 0)
+            if(gameSession.CurrentEnemy.CurrentSkill == null)
             {
                 EnemyBasicAttack(); // Basic Attack
             }
-
             else
             {
                 switch (Dice.rng.Next(2))
@@ -68,6 +66,7 @@ namespace SimpleRPG
                         EnemyBasicAttack();
                         break;
                     case 1:
+                        gameSession.CurrentEnemy.Damage = gameSession.CurrentEnemy.SkillDamageCalculation();
                         gameSession.CurrentEnemy.CurrentMP -= gameSession.CurrentEnemy.CurrentSkill.ManaCost;
                         if (gameSession.CurrentEnemy.IsCriticalHit)
                         {
@@ -136,7 +135,7 @@ namespace SimpleRPG
 
         private void SpecialAttack(object sender, MouseButtonEventArgs e)
         {
-            SpellBookWindow spellbook = new SpellBookWindow(gameSession);
+            SpellBookWindow spellbook = new SpellBookWindow(gameSession, true);
             spellbook.ShowDialog();
             if(spellbook.IsSkillUsed)
             {

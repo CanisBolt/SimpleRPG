@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Game;
+using Game.SpecialAttack;
 
 namespace SimpleRPG
 {
@@ -122,6 +123,19 @@ namespace SimpleRPG
                     tbLog.Text += $"{gameSession.Hero.Name} searched the enemie's body and found {item.Name}!" + Environment.NewLine;
                     gameSession.Hero.Inventory.Add(item);
                 }
+            }
+        }
+        private void SpecialAttack(object sender, MouseButtonEventArgs e)
+        {
+            SpellBookWindow spellbook = new SpellBookWindow(gameSession, false);
+            spellbook.ShowDialog();
+            if (spellbook.IsSkillUsed && gameSession.Hero.CurrentHP != gameSession.Hero.MaxHP)
+            {
+                gameSession.Hero.CurrentMP -= gameSession.Hero.CurrentSkill.ManaCost;
+                gameSession.Hero.Damage = gameSession.Hero.SkillDamageCalculation();
+                gameSession.Hero.CurrentHP += (int)gameSession.Hero.Damage;
+                if (gameSession.Hero.CurrentHP > gameSession.Hero.MaxHP) gameSession.Hero.CurrentHP = gameSession.Hero.MaxHP;
+                tbLog.Text += $"{gameSession.Hero.Name} casting {gameSession.Hero.CurrentSkill.Name} and heal for {(int)gameSession.Hero.Damage} HP." + Environment.NewLine;
             }
         }
 

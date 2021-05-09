@@ -21,7 +21,7 @@ namespace Game.GameLocations
             if (!EnemiesHere.Exists(e => e.ID == enemy.ID))
             {
                 // if enemy is not in the list, add it to the list
-                EnemiesHere.Add(new Enemy(enemy.Name, enemy.Level, enemy.Strength, enemy.Agility, enemy.Vitality, enemy.Intelligence, enemy.Mind, enemy.Luck, enemy.RewardEXP, enemy.RewardGold, enemy.EncounterChance, enemy.ID, enemy.IsAgressive));
+                EnemiesHere.Add(new Enemy(enemy.Name, enemy.Level, enemy.Strength, enemy.Agility, enemy.Vitality, enemy.Intelligence, enemy.Mind, enemy.Luck, enemy.RewardEXP, enemy.RewardGold, enemy.EncounterChance, enemy.ID, enemy.IsAgressive, enemy.Defence));
             }
         }
 
@@ -31,6 +31,9 @@ namespace Game.GameLocations
             {
                 return null;
             }
+
+            // add chance to not encounter the enemy
+            if (Dice.rng.Next(20) < 5) return null;
 
             // Total encounter chance of all enemies at this region.
             int totalChanceToAppear = EnemiesHere.Sum(e => e.EncounterChance);

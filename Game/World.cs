@@ -14,7 +14,7 @@ namespace Game
         private static List<Race> allRaces = new List<Race>();
         private List<Location> allLocations = new List<Location>();
         private List<Region> allRegions = new List<Region>();
-        private static List<SpecialAttack.Skills> allSpecialAttacks = new List<SpecialAttack.Skills>();
+        private static List<Skills> allSpecialAttacks = new List<Skills>();
         private static List<StatusEffect> allStatusEffects = new List<StatusEffect>();
 
         // ID's
@@ -58,31 +58,33 @@ namespace Game
         public static int ShopIDVillageShop = 0;
 
         // Items
-        // Weapons
-        public static int WeaponIDWoodStaff = 100;
-        public static int WeaponIDWoodSword = 101;
+        // Starting Items
+        public static int WeaponIDWoodStaff = 0;
+        public static int WeaponIDWoodSword = 1;
+        public static int ArmorIDNoHeadArmor = 2;
+        public static int ArmorIDNoBodyArmor = 3;
+        public static int ArmorIDNoLegsArmor = 4;
+        public static int ArmorIDNoFeetArmor = 5;
+        public static int ArmorIDSilkHat = 6;
+        public static int ArmorIDSilkRobe = 7;
+        public static int ArmorIDSilkPants = 8;
+        public static int ArmorIDSilkSandals = 9;
 
-        // Armors
-        public static int WeaponIDNoHeadArmor = 200;
-        public static int WeaponIDNoBodyArmor = 201;
-        public static int WeaponIDNoLegsArmor = 202;
-        public static int WeaponIDNoFeetArmor = 203;
-        public static int WeaponIDSilkHat = 204;
-        public static int WeaponIDSilkRobe = 205;
-        public static int WeaponIDSilkPants = 206;
-        public static int WeaponIDSilkSandals = 207;
+        // Weapons (start from 100)
 
-        // Healing/MP recovery Items
-        public static int ItemIDSmallHealingPotion = 0;
-        public static int ItemIDMediumHealingPotion = 1;
-        public static int ItemIDBigHealingPotion = 2;
-        public static int ItemIDMaxHealingPotion = 3;
-        public static int ItemIDSmallManaPotion = 4;
-        public static int ItemIDMediumManaPotion = 5;
-        public static int ItemIDBigManaPotion = 6;
-        public static int ItemIDMaxManaPotion = 7;
+        // Armors (start from 200)
 
-        // Enemy Loot
+        // Healing/MP recovery Items (start from 10)
+        public static int ItemIDSmallHealingPotion = 10;
+        public static int ItemIDMediumHealingPotion = 11;
+        public static int ItemIDBigHealingPotion = 12;
+        public static int ItemIDMaxHealingPotion = 13;
+        public static int ItemIDSmallManaPotion = 14;
+        public static int ItemIDMediumManaPotion = 15;
+        public static int ItemIDBigManaPotion = 16;
+        public static int ItemIDMaxManaPotion = 17;
+
+        // Enemy Loot (start from 1000)
         public static int EnemyLootIDSnakeSkin = 1000;
         public static int EnemyLootIDSnakeFang = 1001;
         public static int EnemyLootIDSnakeEye = 1002;
@@ -123,7 +125,7 @@ namespace Game
 
         internal void AddSpecialAttack(string name, int id, string description, float baseDamage, int manaCost, float attributeModificator, StatusEffect effect, Enum target, Enum modificator, Enum type, Enum requiredWeapon, int numberOfHits = 1)
         {
-            SpecialAttack.Skills specialAttack = new SpecialAttack.Skills()
+            Skills specialAttack = new Skills()
             {
                 Name = name,
                 ID = id,
@@ -210,7 +212,7 @@ namespace Game
             return null;
         }
 
-        public static SpecialAttack.Skills SkillByID(int id)
+        public static Skills SkillByID(int id)
         {
             foreach (var skill in allSpecialAttacks)
             {

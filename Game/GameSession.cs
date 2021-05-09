@@ -53,14 +53,14 @@ namespace Game
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodStaff));
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodSword));
 
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDNoHeadArmor));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDNoBodyArmor));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDNoLegsArmor));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDNoFeetArmor));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDSilkHat));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDSilkRobe));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDSilkPants));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDSilkSandals));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDNoHeadArmor));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDNoBodyArmor));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDNoLegsArmor));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDNoFeetArmor));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDSilkHat));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDSilkRobe));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDSilkPants));
+            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDSilkSandals));
 
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
             Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
@@ -72,12 +72,12 @@ namespace Game
 
             Hero.SkillBook.Add(World.SkillByID(World.SwordSKillIDFastStrike));
 
-            // TODO chance it
-            Hero.CurrentWeapon = Hero.Inventory[0];
-            Hero.CurrentHeadArmor = Hero.Inventory[2];
-            Hero.CurrentBodyArmor = Hero.Inventory[3];
-            Hero.CurrentLegsArmor = Hero.Inventory[4];
-            Hero.CurrentFeetArmor = Hero.Inventory[5];
+            // Equip starting gear
+            Hero.CurrentWeapon = Hero.Inventory[World.WeaponIDWoodStaff];
+            Hero.CurrentHeadArmor = Hero.Inventory[World.ArmorIDNoHeadArmor];
+            Hero.CurrentBodyArmor = Hero.Inventory[World.ArmorIDNoBodyArmor];
+            Hero.CurrentLegsArmor = Hero.Inventory[World.ArmorIDNoLegsArmor];
+            Hero.CurrentFeetArmor = Hero.Inventory[World.ArmorIDNoFeetArmor];
 
             GetEnemyAtRegion();
         }
