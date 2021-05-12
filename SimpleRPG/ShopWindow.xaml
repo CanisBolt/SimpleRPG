@@ -26,7 +26,7 @@
                                                 Binding="{Binding RecoveryAmount}"
                                                 Width="60"/>
                             <DataGridTextColumn Header="Price"
-                                                Binding="{Binding Price}"
+                                                Binding="{Binding SellPrice}"
                                                 Width="60"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -53,8 +53,8 @@
                             <DataGridTextColumn Header="Recovery Amount (%)"
                                                 Binding="{Binding RecoveryAmount}"
                                                 Width="60"/>
-                            <DataGridTextColumn Header="Price (Price * 2)"
-                                                Binding="{Binding Price}"
+                            <DataGridTextColumn Header="Price"
+                                                Binding="{Binding BuyPrice}"
                                                 Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>

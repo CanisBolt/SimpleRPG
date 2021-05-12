@@ -67,7 +67,9 @@ namespace SimpleRPG
             {
                 if(gameSession.Hero.CurrentWeapon != (Game.Items.GameItems)dbInventory.SelectedItem)
                 {
+                    gameSession.Hero.Inventory.Add(gameSession.Hero.CurrentWeapon);
                     gameSession.Hero.CurrentWeapon = (Game.Items.GameItems)dbInventory.SelectedItem;
+                    gameSession.Hero.Inventory.Remove(gameSession.Hero.CurrentWeapon);
                 }
 
                 IsItemUsed = true;
@@ -80,25 +82,33 @@ namespace SimpleRPG
                     case Game.Items.GameItems.ArmorType.Head:
                         if (gameSession.Hero.CurrentHeadArmor != (Game.Items.GameItems)dbInventory.SelectedItem)
                         {
+                            gameSession.Hero.Inventory.Add(gameSession.Hero.CurrentHeadArmor);
                             gameSession.Hero.CurrentHeadArmor = (Game.Items.GameItems)dbInventory.SelectedItem;
+                            gameSession.Hero.Inventory.Remove(gameSession.Hero.CurrentHeadArmor);
                         }
                         break;
                     case Game.Items.GameItems.ArmorType.Body:
                         if (gameSession.Hero.CurrentBodyArmor != (Game.Items.GameItems)dbInventory.SelectedItem)
                         {
+                            gameSession.Hero.Inventory.Add(gameSession.Hero.CurrentBodyArmor);
                             gameSession.Hero.CurrentBodyArmor = (Game.Items.GameItems)dbInventory.SelectedItem;
+                            gameSession.Hero.Inventory.Remove(gameSession.Hero.CurrentBodyArmor);
                         }
                         break;
                     case Game.Items.GameItems.ArmorType.Legs:
                         if (gameSession.Hero.CurrentLegsArmor != (Game.Items.GameItems)dbInventory.SelectedItem)
                         {
+                            gameSession.Hero.Inventory.Add(gameSession.Hero.CurrentLegsArmor);
                             gameSession.Hero.CurrentLegsArmor = (Game.Items.GameItems)dbInventory.SelectedItem;
+                            gameSession.Hero.Inventory.Remove(gameSession.Hero.CurrentLegsArmor);
                         }
                         break;
                     case Game.Items.GameItems.ArmorType.Feet:
                         if (gameSession.Hero.CurrentFeetArmor != (Game.Items.GameItems)dbInventory.SelectedItem)
                         {
+                            gameSession.Hero.Inventory.Add(gameSession.Hero.CurrentFeetArmor);
                             gameSession.Hero.CurrentFeetArmor = (Game.Items.GameItems)dbInventory.SelectedItem;
+                            gameSession.Hero.Inventory.Remove(gameSession.Hero.CurrentFeetArmor);
                         }
                         break;
                 }

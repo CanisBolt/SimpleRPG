@@ -31,11 +31,11 @@ namespace SimpleRPG
         private void BuyItem(object sender, MouseButtonEventArgs e)
         {
             Game.Items.GameItems selectedInventoryItem = (Game.Items.GameItems)dbShopInventory.SelectedItem;
-            if (gameSession.Hero.Gold >= selectedInventoryItem.Price * 2)
+            if (gameSession.Hero.Gold >= selectedInventoryItem.BuyPrice)
             {
-                gameSession.Hero.Gold -= selectedInventoryItem.Price * 2;
+                gameSession.Hero.Gold -= selectedInventoryItem.BuyPrice;
                 gameSession.Hero.Inventory.Add(selectedInventoryItem);
-                tbLog.Text = $"You bought {selectedInventoryItem.Name} for {selectedInventoryItem.Price * 2} gold!"; // TODO add price * 2 to data grid
+                tbLog.Text = $"You bought {selectedInventoryItem.Name} for {selectedInventoryItem.BuyPrice} gold!"; // TODO add price * 2 to data grid
             }
             else
             {
@@ -46,7 +46,7 @@ namespace SimpleRPG
         private void SellItem(object sender, MouseButtonEventArgs e)
         {
             Game.Items.GameItems selectedInventoryItem = (Game.Items.GameItems)dbInventory.SelectedItem;
-            if(selectedInventoryItem.Price == 0)
+            if(selectedInventoryItem.SellPrice == 0)
             {
                 MessageBox.Show("This item cannot be sold!");
                 return;
@@ -90,9 +90,9 @@ namespace SimpleRPG
 
             else
             {
-                gameSession.Hero.Gold += selectedInventoryItem.Price;
+                gameSession.Hero.Gold += selectedInventoryItem.SellPrice;
                 gameSession.Hero.Inventory.Remove(selectedInventoryItem);
-                tbLog.Text = $"You sold {selectedInventoryItem.Name} and got {selectedInventoryItem.Price} gold!";
+                tbLog.Text = $"You sold {selectedInventoryItem.Name} and got {selectedInventoryItem.SellPrice} gold!";
             }
         }
     }

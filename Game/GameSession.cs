@@ -79,6 +79,13 @@ namespace Game
             Hero.CurrentLegsArmor = Hero.Inventory[World.ArmorIDNoLegsArmor];
             Hero.CurrentFeetArmor = Hero.Inventory[World.ArmorIDNoFeetArmor];
 
+            // Bad way to remove equiped items from inventory, but works for now...
+            Hero.Inventory.Remove(Hero.CurrentWeapon);
+            Hero.Inventory.Remove(Hero.CurrentHeadArmor);
+            Hero.Inventory.Remove(Hero.CurrentBodyArmor);
+            Hero.Inventory.Remove(Hero.CurrentLegsArmor);
+            Hero.Inventory.Remove(Hero.CurrentFeetArmor);
+
             GetEnemyAtRegion();
         }
 
