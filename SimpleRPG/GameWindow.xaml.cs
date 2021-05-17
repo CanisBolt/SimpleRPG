@@ -154,7 +154,6 @@ namespace SimpleRPG
 
         private void TalkToNPC(object sender, MouseButtonEventArgs e)
         {
-            // TODO rewrite quest NPC
             if (gameSession.CurrentLocation.NPCOnLocation != null)
             {
                 for (int i = 0; i < gameSession.Hero.QuestJournal.Count; i++)
@@ -166,6 +165,12 @@ namespace SimpleRPG
                             if(CheckQuestForCompletition())
                             {
                                 tbLog.Text += gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.CompleteMessage + Environment.NewLine;
+                                tbLog.Text += $"Quest: {gameSession.Hero.QuestJournal[i].Name} Complete! Reward: {gameSession.Hero.QuestJournal[i].RewardEXP} EXP and {gameSession.Hero.QuestJournal[i].RewardGold} gold!" + Environment.NewLine;
+
+                                gameSession.Hero.CurrentEXP += gameSession.Hero.QuestJournal[i].RewardEXP;
+                                gameSession.Hero.Gold += gameSession.Hero.QuestJournal[i].RewardGold;
+                                gameSession.Hero.LevelUP();
+
                                 gameSession.Hero.QuestJournal.Remove(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest);
                                 gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.QuestStatus = Game.GameLocations.Quest.Status.Completed;
                             }
@@ -203,7 +208,7 @@ namespace SimpleRPG
         {
             for(int i = 0; i < gameSession.Hero.Inventory.Count; i++)
             {
-                if (gameSession.Hero.Inventory[i].ID.Equals(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.RequiredItems))
+                if (gameSession.Hero.Inventory[i].ID.Equals(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.RequiredItems.ID))
                 {
                     if(gameSession.Hero.Inventory[i].Quantity >= gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.RequiredCount)
                     {

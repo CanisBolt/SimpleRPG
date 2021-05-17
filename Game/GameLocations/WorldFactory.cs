@@ -14,7 +14,7 @@ namespace Game.GameLocations
         {
             World newWorld = new World();
 
-            newWorld.AddQuest("Welcome to the Village", World.QuestIDWelcomeToVillage, "Elder wants me to kill rat and bring 10 rat tails", "Bring me 10 rat tails", "I'm still waiting for 10 rat tails", "Finally, now rats will stop bothering this village, for now.", ItemsFactory.ItemByID(World.EnemyLootIDRatTail), 10);
+            newWorld.AddQuest("Welcome to the Village", World.QuestIDWelcomeToVillage, "Elder wants me to kill rat and bring 5 rat skins", "Bring me 5 rat skins", "I'm still waiting for 5 rat skins", "Finally, now rats will stop bothering this village, for now.", ItemsFactory.ItemByID(World.EnemyLootIDRatSkin), 5, 100, 50);
 
             NPC villageElder = new NPC("Village Elder", World.NPCIDVillageElder, "Welcome to our humble village, traveller.", World.QuestByID(World.QuestIDWelcomeToVillage));
 

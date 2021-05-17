@@ -16,6 +16,8 @@ namespace Game.GameLocations
         public string CompleteMessage { get; set; }
         public Items.GameItems RequiredItems { get; set; }
         public int RequiredCount { get; set; }
+        public int RewardEXP { get; set; }
+        public int RewardGold { get; set; }
         public Enum QuestStatus { get; set; }
 
 

@@ -131,7 +131,7 @@ namespace Game
             allLocations.Add(loc);
         }
 
-        internal void AddQuest(string name, int id, string description, string startMessage, string inProgressMessage, string completeMessage, Items.GameItems requiredItems, int requiredCount)
+        internal void AddQuest(string name, int id, string description, string startMessage, string inProgressMessage, string completeMessage, Items.GameItems requiredItems, int requiredCount, int rewardEXP, int rewardGold)
         {
             Quest quest = new Quest
             {
@@ -143,6 +143,8 @@ namespace Game
                 CompleteMessage = completeMessage,
                 RequiredItems = requiredItems,
                 RequiredCount = requiredCount,
+                RewardEXP = rewardEXP,
+                RewardGold = rewardGold,
                 QuestStatus = Quest.Status.Available,
             };
 
