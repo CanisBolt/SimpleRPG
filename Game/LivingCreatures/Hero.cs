@@ -135,11 +135,46 @@ namespace Game.LivingCreatures
             }
         }
 
+        public ObservableCollection<GameLocations.Quest> QuestJournal { get; set; }
+
+        public void AddItemToInventory(Items.GameItems item)
+        {
+            for(int i = 0; i < Inventory.Count; i++)
+            {
+                if(Inventory[i].ID.Equals(item.ID))
+                {
+                    Inventory[i].Quantity++;
+                    return;
+                }
+            }
+            Inventory.Add(item);
+        }
+
+        public void RemoveItemToInventory(Items.GameItems item, int quantity = 1)
+        {
+            for (int i = 0; i < Inventory.Count; i++)
+            {
+                if (Inventory[i].ID.Equals(item.ID))
+                {
+                    if(Inventory[i].Quantity > 1)
+                    {
+                        Inventory[i].Quantity -= quantity;
+                    }
+                    else
+                    {
+                        Inventory.Remove(item);
+                    }
+                    return;
+                }
+            }
+        }
+
         public Hero(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck) : base(name, level, strength, agility, vitality, intelligence, mind, luck)
         {
             CurrentEXP = 0;
             EXPToLevel = Level * (100 * (Level * 2));
             Gold = 0;
+            QuestJournal = new ObservableCollection<GameLocations.Quest>();
         }
 
         public void LevelUP()

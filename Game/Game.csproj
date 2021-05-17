@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="BaseNotificationClass.cs" />
     <Compile Include="EnemyFactory.cs" />
+    <Compile Include="GameLocations\NPC.cs" />
+    <Compile Include="GameLocations\Quest.cs" />
     <Compile Include="GameLocations\Region.cs" />
     <Compile Include="GameLocations\Shop.cs" />
     <Compile Include="Items\ItemsFactory.cs" />

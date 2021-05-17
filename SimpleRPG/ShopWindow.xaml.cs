@@ -34,7 +34,7 @@ namespace SimpleRPG
             if (gameSession.Hero.Gold >= selectedInventoryItem.BuyPrice)
             {
                 gameSession.Hero.Gold -= selectedInventoryItem.BuyPrice;
-                gameSession.Hero.Inventory.Add(selectedInventoryItem);
+                gameSession.Hero.AddItemToInventory(selectedInventoryItem);
                 tbLog.Text = $"You bought {selectedInventoryItem.Name} for {selectedInventoryItem.BuyPrice} gold!"; // TODO add price * 2 to data grid
             }
             else
@@ -51,47 +51,10 @@ namespace SimpleRPG
                 MessageBox.Show("This item cannot be sold!");
                 return;
             }
-
-            if (selectedInventoryItem.Type.Equals(Game.Items.GameItems.ItemType.Weapon) && gameSession.Hero.CurrentWeapon.Equals(selectedInventoryItem))
-            {
-                MessageBox.Show("You cannot sell equiped item!");
-            }
-
-            else if(selectedInventoryItem.Type.Equals(Game.Items.GameItems.ItemType.Armor))
-            {
-                switch (selectedInventoryItem.ArmorSlot)
-                {
-                    case Game.Items.GameItems.ArmorType.Head:
-                        if (gameSession.Hero.CurrentHeadArmor.Equals(selectedInventoryItem))
-                        {
-                            MessageBox.Show("You cannot sell equiped item!");
-                        }
-                        break;
-                    case Game.Items.GameItems.ArmorType.Body:
-                        if (gameSession.Hero.CurrentBodyArmor.Equals(selectedInventoryItem))
-                        {
-                            MessageBox.Show("You cannot sell equiped item!");
-                        }
-                        break;
-                    case Game.Items.GameItems.ArmorType.Legs:
-                        if (gameSession.Hero.CurrentLegsArmor.Equals(selectedInventoryItem))
-                        {
-                            MessageBox.Show("You cannot sell equiped item!");
-                        }
-                        break;
-                    case Game.Items.GameItems.ArmorType.Feet:
-                        if (gameSession.Hero.CurrentFeetArmor.Equals(selectedInventoryItem))
-                        {
-                            MessageBox.Show("You cannot sell equiped item!");
-                        }
-                        break;
-                }
-            }
-
             else
             {
                 gameSession.Hero.Gold += selectedInventoryItem.SellPrice;
-                gameSession.Hero.Inventory.Remove(selectedInventoryItem);
+                gameSession.Hero.RemoveItemToInventory(selectedInventoryItem);
                 tbLog.Text = $"You sold {selectedInventoryItem.Name} and got {selectedInventoryItem.SellPrice} gold!";
             }
         }

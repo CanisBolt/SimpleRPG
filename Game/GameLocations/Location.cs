@@ -15,7 +15,6 @@ namespace Game.GameLocations
         public Region Region { get; set; }
         public bool IsCheckpoint { get; set; }
         public Shop ShopOnLocation { get; set; }
-
-        // TODO add shops
+        public NPC NPCOnLocation { get; set; }
     }
 }

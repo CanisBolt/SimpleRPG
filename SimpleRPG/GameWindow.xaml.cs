@@ -40,6 +40,13 @@ namespace SimpleRPG
                 btnEnterShop.Visibility = Visibility.Visible;
             }  
             else btnEnterShop.Visibility = Visibility.Hidden;
+
+            if (gameSession.CurrentLocation.NPCOnLocation != null)
+            {
+                tbNPC.Text = gameSession.CurrentLocation.NPCOnLocation.Name;
+            }
+            else tbNPC.Text = null;
+
             if (gameSession.Hero.SkillPoints > 0) imgCharacter.Source = new BitmapImage(new Uri(@"/Images/Icons/characterLevelUPIcon.png", UriKind.Relative));
             else imgCharacter.Source = new BitmapImage(new Uri(@"/Images/Icons/characterIcon.png", UriKind.Relative));
         }
@@ -121,7 +128,7 @@ namespace SimpleRPG
                 if (roll <= item.DropChance)
                 {
                     tbLog.Text += $"{gameSession.Hero.Name} searched the enemie's body and found {item.Name}!" + Environment.NewLine;
-                    gameSession.Hero.Inventory.Add(item);
+                    gameSession.Hero.AddItemToInventory(item);
                 }
             }
         }
@@ -143,6 +150,73 @@ namespace SimpleRPG
         {
             ShopWindow window = new ShopWindow(gameSession);
             window.ShowDialog();
+        }
+
+        private void TalkToNPC(object sender, MouseButtonEventArgs e)
+        {
+            // TODO rewrite quest NPC
+            if (gameSession.CurrentLocation.NPCOnLocation != null)
+            {
+                for (int i = 0; i < gameSession.Hero.QuestJournal.Count; i++)
+                {
+                    if (gameSession.Hero.QuestJournal[i].ID.Equals(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.ID))
+                    {
+                        if(gameSession.Hero.QuestJournal[i].QuestStatus.Equals(Game.GameLocations.Quest.Status.InProgress))
+                        {
+                            if(CheckQuestForCompletition())
+                            {
+                                tbLog.Text += gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.CompleteMessage + Environment.NewLine;
+                                gameSession.Hero.QuestJournal.Remove(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest);
+                                gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.QuestStatus = Game.GameLocations.Quest.Status.Completed;
+                            }
+                            else
+                            {
+                                tbLog.Text += gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.InProgressMessage + Environment.NewLine;
+                            }
+                        }
+                        else
+                        {
+                            tbLog.Text += gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.StartMessage + Environment.NewLine;
+                            gameSession.Hero.QuestJournal.Add(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest);
+                            gameSession.Hero.QuestJournal[++i].QuestStatus = Game.GameLocations.Quest.Status.InProgress;
+                        }
+                    }
+                }
+
+                if (gameSession.Hero.QuestJournal.Count == 0)
+                {
+                    if(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.QuestStatus.Equals(Game.GameLocations.Quest.Status.Completed))
+                    {
+                        tbLog.Text += gameSession.CurrentLocation.NPCOnLocation.HelloMessage + Environment.NewLine;
+                    }
+                    else
+                    {
+                        tbLog.Text += gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.StartMessage + Environment.NewLine;
+                        gameSession.Hero.QuestJournal.Add(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest);
+                        gameSession.Hero.QuestJournal[0].QuestStatus = Game.GameLocations.Quest.Status.InProgress;
+                    }
+                }
+            }
+        }
+
+        private bool CheckQuestForCompletition()
+        {
+            for(int i = 0; i < gameSession.Hero.Inventory.Count; i++)
+            {
+                if (gameSession.Hero.Inventory[i].ID.Equals(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.RequiredItems))
+                {
+                    if(gameSession.Hero.Inventory[i].Quantity >= gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.RequiredCount)
+                    {
+                        gameSession.Hero.RemoveItemToInventory(gameSession.Hero.Inventory[i], gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.RequiredCount);
+                        return true;
+                    }
+                    else
+                    {
+                        tbLog.Text += gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.InProgressMessage;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
