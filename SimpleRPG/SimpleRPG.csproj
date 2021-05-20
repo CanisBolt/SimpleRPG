@@ -158,5 +158,9 @@
     <Resource Include="Images\Icons\Battle\spellBookIcon.png" />
     <Resource Include="Images\Icons\Battle\useItemIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\Creatures\Enemies\" />
+    <Folder Include="Images\Creatures\Heroes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

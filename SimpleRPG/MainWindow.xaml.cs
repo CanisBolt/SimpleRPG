@@ -29,22 +29,22 @@ namespace SimpleRPG
             gameSession = new GameSession();
             DataContext = gameSession;
 
-            rbHuman.IsChecked = true;
+            rbHuman.IsChecked = true; // Default Race
 
             UpdateInfo();
         }
 
         private void UpdateInfo()
         {
-            tBoxStats.Clear();
-            tBoxStats.Text += $"HP: {gameSession.Hero.CurrentHP}/{gameSession.Hero.MaxHP}{Environment.NewLine}";
-            tBoxStats.Text += $"MP: {gameSession.Hero.CurrentMP}/{gameSession.Hero.MaxMP}{Environment.NewLine}";
-            tBoxStats.Text += $"Strength: {gameSession.Hero.Strength + gameSession.Hero.HeroRace.Strength}{Environment.NewLine}";
-            tBoxStats.Text += $"Agility: {gameSession.Hero.Agility + gameSession.Hero.HeroRace.Agility}{Environment.NewLine}";
-            tBoxStats.Text += $"Vitality: {gameSession.Hero.Vitality + gameSession.Hero.HeroRace.Vitality}{Environment.NewLine}";
-            tBoxStats.Text += $"Intelligence: {gameSession.Hero.Intelligence + gameSession.Hero.HeroRace.Intelligence}{Environment.NewLine}";
-            tBoxStats.Text += $"Mind: {gameSession.Hero.Mind + gameSession.Hero.HeroRace.Mind}{Environment.NewLine}";
-            tBoxStats.Text += $"Luck: {gameSession.Hero.Luck + gameSession.Hero.HeroRace.Luck}{Environment.NewLine}";
+            tbStrength.Text = $"{gameSession.Hero.Strength + gameSession.Hero.HeroRace.Strength}";
+            tbAgility.Text = $"{gameSession.Hero.Agility + gameSession.Hero.HeroRace.Agility}";
+            tbVitality.Text = $"{gameSession.Hero.Vitality + gameSession.Hero.HeroRace.Vitality}";
+            tbIntelligence.Text = $"{gameSession.Hero.Intelligence + gameSession.Hero.HeroRace.Intelligence}";
+            tbMind.Text = $"{gameSession.Hero.Mind + gameSession.Hero.HeroRace.Mind}";
+            tbLuck.Text = $"{gameSession.Hero.Luck + gameSession.Hero.HeroRace.Luck}";
+
+            tbHP.Text = $"{(gameSession.Hero.Vitality + gameSession.Hero.HeroRace.Vitality) * 10}";
+            tbMP.Text = $"{(gameSession.Hero.Mind + gameSession.Hero.HeroRace.Mind) * 10}";
         }
 
 
@@ -99,6 +99,13 @@ namespace SimpleRPG
         {
             gameSession.Hero.HeroRace = World.RaceByID(4);
             UpdateInfo();
+        }
+
+        private void tbName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbName_GotFocus;
         }
     }
 }

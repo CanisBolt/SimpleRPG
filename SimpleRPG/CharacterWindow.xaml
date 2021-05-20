@@ -31,12 +31,12 @@
             <Run Text="{Binding Hero.EXPToLevel}"/>
         </TextBlock>
 
-        <TextBlock HorizontalAlignment="Left" Margin="190,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Strength:" Height="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="190,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Agility:" Height="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="190,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Vitality:" Height="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="190,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" Text="Intelligence:" Height="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="190,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Mind:" Height="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="190,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Luck:" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Strength:" Height="16" ToolTip="Increase Physical Damage"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Agility:" Height="16" ToolTip="Increase Evasion and Chance to get First Strike"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Vitality:" Height="16" ToolTip="Increase Max HP (10 HP per point)"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" Text="Intelligence:" Height="16" ToolTip="Increase Magical Damage"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Mind:" Height="16" ToolTip="Increase Max MP (10 MP per point)"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Luck:" Height="16" ToolTip="Increase Chance to Deal Critical Hit"/>
 
         <TextBlock x:Name="tbStrength" Text="{Binding Hero.Strength}" HorizontalAlignment="Left" Margin="261,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16"/>
         <TextBlock x:Name="tbAgility" Text="{Binding Hero.Agility}" HorizontalAlignment="Left" Margin="261,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16"/>
