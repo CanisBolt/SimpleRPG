@@ -193,8 +193,8 @@ namespace Game.LivingCreatures
         public float Evasion { get; set; }
         public bool IsCriticalHit { get; set; }
 
-
-        public SpecialAttack.Skills CurrentSkill
+        public string Avatar { get; set; }
+        public Skills CurrentSkill
         {
             get
             {
@@ -208,7 +208,7 @@ namespace Game.LivingCreatures
         }
 
         public ObservableCollection<GameItems> Inventory { get; set; }
-        public ObservableCollection<SpecialAttack.Skills> SkillBook { get; set; }
+        public ObservableCollection<Skills> SkillBook { get; set; }
         public ObservableCollection<StatusEffect> Effects { get; set; }
 
         public Creature(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck)
@@ -224,7 +224,7 @@ namespace Game.LivingCreatures
             Luck = luck;
 
             Inventory = new ObservableCollection<GameItems>();
-            SkillBook = new ObservableCollection<SpecialAttack.Skills>();
+            SkillBook = new ObservableCollection<Skills>();
             Effects = new ObservableCollection<StatusEffect>();
 
             RestoreHPMP();

@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleRPG"
         mc:Ignorable="d"
-        Title="Character Creation" Height="400" Width="400">
+        Title="Character Creation" Height="400" Width="545">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="83*"/>
-            <ColumnDefinition Width="113*"/>
+            <ColumnDefinition Width="168*"/>
+            <ColumnDefinition Width="182*"/>
+            <ColumnDefinition Width="187*"/>
         </Grid.ColumnDefinitions>
         <RadioButton x:Name="rbHuman" Content="Human" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" GroupName="Race" Height="15" Width="58" Checked="rbHuman_Checked"/>
         <RadioButton x:Name="rbElf" Content="Elf" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" GroupName="Race" Height="15" Width="32" Checked="rbElf_Checked"/>
@@ -20,29 +21,30 @@
         <Label Content="Choose the Race:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
         <RadioButton x:Name="rbMale" Content="Male" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" GroupName="Gender" Height="15" Width="58" IsChecked="True"/>
         <RadioButton x:Name="rbGender" Content="Female" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" GroupName="Gender" Height="15" Width="63"/>
-        <RadioButton x:Name="rbOther" Content="Other" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" GroupName="Gender" Height="15" Width="50"/>
         <Label Content="Gender:" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
-        <TextBox x:Name="tBoxDescription" Grid.Column="1" HorizontalAlignment="Left" Height="131" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" IsEnabled="False"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="11,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="Max HP:" Height="16" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="11,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="Max MP:" Height="16" Grid.Column="1"/>
-        <TextBlock x:Name="tbHP" HorizontalAlignment="Left" Margin="78,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Height="16" Grid.Column="1"/>
-        <TextBlock x:Name="tbMP" HorizontalAlignment="Left" Margin="78,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Height="16" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="4,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="Max HP:" Height="16" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="4,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Text="Max MP:" Height="16" Grid.Column="1"/>
+        <TextBlock x:Name="tbHP" HorizontalAlignment="Left" Margin="71,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Height="16" Grid.Column="1"/>
+        <TextBlock x:Name="tbMP" HorizontalAlignment="Left" Margin="71,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Height="16" Grid.Column="1"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="11,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Strength:" Height="16" ToolTip="Increase Physical Damage" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="11,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Agility:" Height="16" ToolTip="Increase Evasion and Chance to get First Strike" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="11,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Vitality:" Height="16" ToolTip="Increase Max HP (10 HP per point)" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="11,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" Text="Intelligence:" Height="16" ToolTip="Increase Magical Damage" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="11,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Mind:" Height="16" ToolTip="Increase Max MP (10 MP per point)" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="11,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Luck:" Height="16" ToolTip="Increase Chance to Deal Critical Hit" Grid.Column="1"/>
-        <TextBlock x:Name="tbStrength" HorizontalAlignment="Left" Margin="81,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
-        <TextBlock x:Name="tbAgility" HorizontalAlignment="Left" Margin="81,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
-        <TextBlock x:Name="tbVitality" HorizontalAlignment="Left" Margin="81,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
-        <TextBlock x:Name="tbIntelligence" HorizontalAlignment="Left" Margin="81,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
-        <TextBlock x:Name="tbMind" HorizontalAlignment="Left" Margin="81,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
-        <TextBlock x:Name="tbLuck" HorizontalAlignment="Left" Margin="81,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="4,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Strength:" Height="16" ToolTip="Increase Physical Damage" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="4,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Agility:" Height="16" ToolTip="Increase Evasion and Chance to get First Strike" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="4,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Vitality:" Height="16" ToolTip="Increase Max HP (10 HP per point)" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="4,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" Text="Intelligence:" Height="16" ToolTip="Increase Magical Damage" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="4,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Mind:" Height="16" ToolTip="Increase Max MP (10 MP per point)" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="4,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Luck:" Height="16" ToolTip="Increase Chance to Deal Critical Hit" Grid.Column="1"/>
+        <TextBlock x:Name="tbStrength" HorizontalAlignment="Left" Margin="74,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
+        <TextBlock x:Name="tbAgility" HorizontalAlignment="Left" Margin="74,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
+        <TextBlock x:Name="tbVitality" HorizontalAlignment="Left" Margin="74,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
+        <TextBlock x:Name="tbIntelligence" HorizontalAlignment="Left" Margin="74,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
+        <TextBlock x:Name="tbMind" HorizontalAlignment="Left" Margin="74,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
+        <TextBlock x:Name="tbLuck" HorizontalAlignment="Left" Margin="74,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
 
-        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="36,297,0,0" VerticalAlignment="Top" Width="75" Click="btnCreate_Click" Height="20"/>
+        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="25,286,0,0" VerticalAlignment="Top" Width="75" Click="btnCreate_Click" Height="20" Grid.Column="2"/>
+        <Image x:Name="imgSelectedAvatar" Grid.Column="2" HorizontalAlignment="Left" Height="240" Margin="10,10,0,0" VerticalAlignment="Top" Width="143"/>
+        <Button x:Name="btnPreviousImage" Content="&lt;-" Grid.Column="2" HorizontalAlignment="Left" Margin="10,261,0,0" VerticalAlignment="Top" Width="23" Click="btnPreviousImage_Click" Height="20"/>
+        <Button x:Name="btnNextImage" Content="-&gt;" Grid.Column="2" HorizontalAlignment="Left" Margin="100,261,0,0" VerticalAlignment="Top" Width="23" Click="btnNextImage_Click" Height="20"/>
 
     </Grid>
 </Window>

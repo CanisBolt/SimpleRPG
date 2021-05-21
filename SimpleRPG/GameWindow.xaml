@@ -8,8 +8,8 @@
         Title="GameWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="144*"/>
-            <RowDefinition Height="275*"/>
+            <RowDefinition Height="143*"/>
+            <RowDefinition Height="276*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="23*"/>
@@ -17,22 +17,23 @@
         </Grid.ColumnDefinitions>
 
         <!--Character Status -->
-        <Grid HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="207" Background="LightGreen">
-            <TextBlock HorizontalAlignment="Left" Margin="4,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Name:" Height="16"/>
-            <TextBlock HorizontalAlignment="Left" Margin="4,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Level:" Height="16"/>
-            <TextBlock HorizontalAlignment="Left" Margin="4,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="HP:" Height="16"/>
-            <TextBlock HorizontalAlignment="Left" Margin="4,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="MP:" Height="16"/>
-            <TextBlock HorizontalAlignment="Left" Margin="4,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="EXP:" Height="16"/>
+        <Grid HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="207" Background="LightGreen" Grid.RowSpan="2">
+            <TextBlock HorizontalAlignment="Left" Margin="4,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Name:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="4,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Level:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="4,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="HP:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="4,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="MP:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="4,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="EXP:" Height="16"/>
 
-            <TextBlock x:Name="tbName" Text="{Binding Hero.Name}" HorizontalAlignment="Left" Margin="59,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"/>
-            <TextBlock x:Name="tbLevel" Text="{Binding Hero.Level}" HorizontalAlignment="Left" Margin="59,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"/>
-            <TextBlock x:Name="tbHP" HorizontalAlignment="Left" Margin="59,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentHP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxHP}"/></TextBlock>
-            <TextBlock x:Name="tbMP" HorizontalAlignment="Left" Margin="59,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentMP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxMP}"/></TextBlock>
-            <TextBlock x:Name="tbEXP" HorizontalAlignment="Left" Margin="59,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentEXP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.EXPToLevel}"/></TextBlock>
+            <TextBlock x:Name="tbName" Text="{Binding Hero.Name}" HorizontalAlignment="Left" Margin="59,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"/>
+            <TextBlock x:Name="tbLevel" Text="{Binding Hero.Level}" HorizontalAlignment="Left" Margin="59,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"/>
+            <TextBlock x:Name="tbHP" HorizontalAlignment="Left" Margin="59,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentHP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxHP}"/></TextBlock>
+            <TextBlock x:Name="tbMP" HorizontalAlignment="Left" Margin="59,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentMP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxMP}"/></TextBlock>
+            <TextBlock x:Name="tbEXP" HorizontalAlignment="Left" Margin="59,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentEXP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.EXPToLevel}"/></TextBlock>
+            <Image x:Name="imgSelectedAvatar" HorizontalAlignment="Left" Height="170" Margin="4,0,0,0" VerticalAlignment="Top" Width="193"/>
         </Grid>
 
         <!--Character Buttons -->
-        <Grid HorizontalAlignment="Left" Height="275" Grid.Row="1" VerticalAlignment="Top" Width="207" Background="LightYellow">
+        <Grid HorizontalAlignment="Left" Height="112" Grid.Row="1" VerticalAlignment="Top" Width="207" Background="LightYellow" Margin="0,164,0,0">
             <Image x:Name="imgCharacter" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="images/icons/characterIcon.png" ToolTip="Open Character's Screen" MouseLeftButtonDown="OpenCharacterScreen"/>
             <Image x:Name="imgInventory" HorizontalAlignment="Left" Height="50" Margin="65,10,0,0" VerticalAlignment="Top" Width="50" Source="Images/Icons/bagIcon.png" ToolTip="Open Character's Inventory" MouseLeftButtonDown="OpenInventory"/>
             <Image x:Name="imgMagic" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="43" Source="Images/Icons/Battle/spellBookIcon.png" Margin="120,10,0,0" ToolTip="Open Character's SpellBook" MouseLeftButtonDown="SpecialAttack"/>
@@ -48,7 +49,7 @@
         </Grid>
 
         <!--Locations info -->
-        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="244" Background="LightBlue">
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="244" Background="LightBlue" Grid.RowSpan="2">
             <TextBlock Margin="3,4,175,114" Text="Location:"/>
             <TextBlock Margin="3,34,175,84" Text="Region:"/>
             <TextBlock x:Name="tbRegion" Text="{Binding CurrentLocation.Region.Name}" Margin="61,4,10,114" Width="160"/>

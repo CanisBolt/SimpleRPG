@@ -160,7 +160,22 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Creatures\Enemies\" />
-    <Folder Include="Images\Creatures\Heroes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Creatures\Heroes\Cat1.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Cat2.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Cat3.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Dog1.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Dog2.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Dog3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Creatures\Heroes\Elf1.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Elf2.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Elf3.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Human1.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Human2.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Human3.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
