@@ -1,19 +1,9 @@
-﻿using System;
+﻿using Game;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Game;
-using Game.GameLocations;
 
 namespace SimpleRPG
 {
@@ -86,9 +76,9 @@ namespace SimpleRPG
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            if(tbName.Text == "" || tbName.Text == "Enter Name (Max 20 chars)") { MessageBox.Show("Please enter the name"); return; }
-            if(tbName.Text.Length > 15) { MessageBox.Show("Name is too long (max 15 characters)"); return; }
-            if(tbName.Text.Length < 3) { MessageBox.Show("Name is too short (min 3 character)");  return; }
+            if (tbName.Text == "" || tbName.Text == "Enter Name (Max 20 chars)") { MessageBox.Show("Please enter the name"); return; }
+            if (tbName.Text.Length > 15) { MessageBox.Show("Name is too long (max 15 characters)"); return; }
+            if (tbName.Text.Length < 3) { MessageBox.Show("Name is too short (min 3 character)"); return; }
 
             gameSession.Hero.Name = tbName.Text;
             gameSession.Hero.Strength += gameSession.Hero.HeroRace.Strength;
@@ -107,7 +97,7 @@ namespace SimpleRPG
             gameWindow.ShowDialog();
         }
 
-        
+
 
         private void rbHuman_Checked(object sender, RoutedEventArgs e)
         {
@@ -154,7 +144,7 @@ namespace SimpleRPG
         {
             imageNumber--;
             if (imageNumber < 0) imageNumber = 0;
-            switch(gameSession.Hero.HeroRace.Name)
+            switch (gameSession.Hero.HeroRace.Name)
             {
                 case "Human":
                     imgSelectedAvatar.Source = new BitmapImage(new Uri(HumanImages[imageNumber], UriKind.Relative));

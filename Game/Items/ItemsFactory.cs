@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Game.Items
 {
@@ -83,12 +81,12 @@ namespace Game.Items
 
         public static GameItems ItemByID(int id)
         {
-            foreach(var item in standardGameItems)
+            foreach (var item in standardGameItems)
             {
-                if(item.ID.Equals(id))
+                if (item.ID.Equals(id))
                 {
                     return item;
-                }   
+                }
             }
             return null;
         }

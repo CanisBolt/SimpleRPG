@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Game;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Game;
 
 namespace SimpleRPG
 {
@@ -23,7 +12,7 @@ namespace SimpleRPG
         GameSession gameSession;
         public ShopWindow(GameSession _gameSession)
         {
-            InitializeComponent(); 
+            InitializeComponent();
             gameSession = _gameSession;
             DataContext = gameSession;
         }
@@ -46,7 +35,7 @@ namespace SimpleRPG
         private void SellItem(object sender, MouseButtonEventArgs e)
         {
             Game.Items.GameItems selectedInventoryItem = (Game.Items.GameItems)dbInventory.SelectedItem;
-            if(selectedInventoryItem.SellPrice == 0)
+            if (selectedInventoryItem.SellPrice == 0)
             {
                 MessageBox.Show("This item cannot be sold!");
                 return;

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.Items;
+﻿using Game.Items;
 using Game.LivingCreatures;
+using System;
 
 namespace Game
 {
@@ -31,7 +27,7 @@ namespace Game
                     rat.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDRatTail));
                     return rat;
                 case 2:
-                    Enemy goblin = 
+                    Enemy goblin =
                         new Enemy("Goblin", 2, 7, 4, 4, 1, 1, 3, 10, 10, 45, World.EnemyIDGoblin, true, 3);
                     goblin.Avatar = @"/Images/Creatures/Enemies/Forest/goblin.png";
                     goblin.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDGoblinSkin));

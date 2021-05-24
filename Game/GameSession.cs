@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.LivingCreatures;
+﻿using Game.GameLocations;
 using Game.Items;
-using Game.GameLocations;
+using Game.LivingCreatures;
 
 namespace Game
 {
     public class GameSession : BaseNotificationClass
     {
-        private Location currentLocation; 
+        private Location currentLocation;
         private Enemy currentEnemy;
 
         public World CurrentWorld { get; set; }
@@ -91,7 +85,7 @@ namespace Game
 
         public void MoveNorth()
         {
-            if(CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null)
+            if (CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null)
             {
                 CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1);
                 if (CurrentLocation.IsCheckpoint)
@@ -110,7 +104,7 @@ namespace Game
                 {
                     Checkpoint = CurrentLocation;
                 }
-            } 
+            }
         }
 
         public void MoveSouth()

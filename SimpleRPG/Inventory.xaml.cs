@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Game;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Game;
 
 namespace SimpleRPG
 {
@@ -63,9 +52,9 @@ namespace SimpleRPG
                 IsItemUsed = true;
             }
 
-            else if(selectedInventoryItem.ItemType.Equals(Game.Items.GameItems.TypeOfItem.Weapon))
+            else if (selectedInventoryItem.ItemType.Equals(Game.Items.GameItems.TypeOfItem.Weapon))
             {
-                if(gameSession.Hero.CurrentWeapon != (Game.Items.GameItems)dbInventory.SelectedItem)
+                if (gameSession.Hero.CurrentWeapon != (Game.Items.GameItems)dbInventory.SelectedItem)
                 {
                     gameSession.Hero.AddItemToInventory(gameSession.Hero.CurrentWeapon);
                     gameSession.Hero.CurrentWeapon = (Game.Items.GameItems)dbInventory.SelectedItem;
@@ -75,9 +64,9 @@ namespace SimpleRPG
                 IsItemUsed = true;
             }
 
-            else if(selectedInventoryItem.ItemType.Equals(Game.Items.GameItems.TypeOfItem.Armor))
+            else if (selectedInventoryItem.ItemType.Equals(Game.Items.GameItems.TypeOfItem.Armor))
             {
-                switch(selectedInventoryItem.ArmorSlot)
+                switch (selectedInventoryItem.ArmorSlot)
                 {
                     case Game.Items.GameItems.ArmorType.Head:
                         if (gameSession.Hero.CurrentHeadArmor != (Game.Items.GameItems)dbInventory.SelectedItem)
@@ -114,7 +103,7 @@ namespace SimpleRPG
                 }
             }
 
-            if(IsItemUsed && IsInBattle)
+            if (IsItemUsed && IsInBattle)
             {
                 Close();
             }

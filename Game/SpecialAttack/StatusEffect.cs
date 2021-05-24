@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Game.SpecialAttack
 {
@@ -14,7 +10,7 @@ namespace Game.SpecialAttack
         public string Description { get; set; }
         public float AffectHP { get; set; }
         public float AffectMP { get; set; }
-        public int Duration 
+        public int Duration
         {
             get
             {

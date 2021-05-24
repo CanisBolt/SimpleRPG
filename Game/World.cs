@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.GameLocations;
+﻿using Game.GameLocations;
 using Game.LivingCreatures;
 using Game.SpecialAttack;
+using System;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -204,7 +201,7 @@ namespace Game
 
             allRaces.Add(race);
         }
-        
+
         public Region RegionByID(int id)
         {
             foreach (var region in allRegions)

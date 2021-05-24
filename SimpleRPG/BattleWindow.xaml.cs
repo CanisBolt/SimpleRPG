@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Game;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Game;
 
 namespace SimpleRPG
 {
@@ -52,11 +43,11 @@ namespace SimpleRPG
         {
             // For now, enemy using same logic as Hero (without weapon).
             // TODO change enemy stats to avoid low damage
-            if (gameSession.CurrentEnemy.SkillBook.Count != 0)  gameSession.CurrentEnemy.ChooseRandomSkill();
-            
+            if (gameSession.CurrentEnemy.SkillBook.Count != 0) gameSession.CurrentEnemy.ChooseRandomSkill();
+
             gameSession.CurrentEnemy.CalculateCriticalHitChance();
 
-            if(gameSession.CurrentEnemy.CurrentSkill == null)
+            if (gameSession.CurrentEnemy.CurrentSkill == null)
             {
                 EnemyBasicAttack(); // Basic Attack
             }
@@ -79,7 +70,7 @@ namespace SimpleRPG
                         break;
                 }
             }
-            
+
             gameSession.Hero.CurrentHP -= (int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence);
             CheckHPStatus();
         }
@@ -96,7 +87,7 @@ namespace SimpleRPG
             else tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine;
         }
 
-        
+
 
         private void CheckHPStatus()
         {
@@ -109,7 +100,7 @@ namespace SimpleRPG
                 BattleStatus = Status.Defeat;
                 Close();
             }
-            else if(gameSession.CurrentEnemy.CurrentHP <= 0)
+            else if (gameSession.CurrentEnemy.CurrentHP <= 0)
             {
                 BattleStatus = Status.Victory;
                 Close();
@@ -126,12 +117,12 @@ namespace SimpleRPG
             gameSession.Hero.Damage = gameSession.Hero.PhysicalDamageCalculation();
             if (gameSession.Hero.CalculateCriticalHitChance()) gameSession.Hero.Damage *= 2;
             gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
-            if(gameSession.Hero.IsCriticalHit)
+            if (gameSession.Hero.IsCriticalHit)
             {
                 tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage. CRITICAL HIT!" + Environment.NewLine;
 
             }
-            else tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine; 
+            else tbBattleLog.Text += $"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine;
             EnemyAttack();
         }
 
@@ -139,7 +130,7 @@ namespace SimpleRPG
         {
             SpellBookWindow spellbook = new SpellBookWindow(gameSession, true);
             spellbook.ShowDialog();
-            if(spellbook.IsSkillUsed)
+            if (spellbook.IsSkillUsed)
             {
                 gameSession.Hero.CurrentMP -= gameSession.Hero.CurrentSkill.ManaCost;
                 gameSession.Hero.Damage = gameSession.Hero.SkillDamageCalculation();
@@ -176,7 +167,7 @@ namespace SimpleRPG
             Inventory inventory = new Inventory(gameSession, true);
             inventory.ShowDialog();
 
-            if(inventory.IsItemUsed)
+            if (inventory.IsItemUsed)
             {
                 EnemyAttack();
             }
@@ -184,7 +175,7 @@ namespace SimpleRPG
 
         private void Escape(object sender, MouseButtonEventArgs e)
         {
-            if(Dice.rng.Next(21) > 10)
+            if (Dice.rng.Next(21) > 10)
             {
                 BattleStatus = Status.Escape;
                 Close();

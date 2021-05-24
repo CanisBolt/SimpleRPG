@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Game;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Game;
-using Game.SpecialAttack;
 
 namespace SimpleRPG
 {
@@ -35,10 +25,10 @@ namespace SimpleRPG
 
         private void ChangeImages()
         {
-            if(gameSession.CurrentLocation.ShopOnLocation != null)
+            if (gameSession.CurrentLocation.ShopOnLocation != null)
             {
                 btnEnterShop.Visibility = Visibility.Visible;
-            }  
+            }
             else btnEnterShop.Visibility = Visibility.Hidden;
 
             if (gameSession.CurrentLocation.NPCOnLocation != null)
@@ -105,7 +95,7 @@ namespace SimpleRPG
                 gameSession.Hero.LevelUP(); // Check for LevelUP
                 ChangeImages();
             }
-            else if(battle.BattleStatus.Equals(BattleWindow.Status.Defeat))
+            else if (battle.BattleStatus.Equals(BattleWindow.Status.Defeat))
             {
                 tbLog.Text += $"{gameSession.CurrentEnemy.Name} kill {gameSession.Hero.Name}." + Environment.NewLine;
                 gameSession.CurrentLocation = gameSession.Checkpoint;
@@ -122,7 +112,7 @@ namespace SimpleRPG
         private void LootEnemy()
         {
             int roll;
-            foreach(var item in gameSession.CurrentEnemy.Inventory)
+            foreach (var item in gameSession.CurrentEnemy.Inventory)
             {
                 roll = Dice.rng.Next(0, 101);
                 if (roll <= item.DropChance)
@@ -160,9 +150,9 @@ namespace SimpleRPG
                 {
                     if (gameSession.Hero.QuestJournal[i].ID.Equals(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.ID))
                     {
-                        if(gameSession.Hero.QuestJournal[i].QuestStatus.Equals(Game.GameLocations.Quest.Status.InProgress))
+                        if (gameSession.Hero.QuestJournal[i].QuestStatus.Equals(Game.GameLocations.Quest.Status.InProgress))
                         {
-                            if(CheckQuestForCompletition())
+                            if (CheckQuestForCompletition())
                             {
                                 tbLog.Text += gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.CompleteMessage + Environment.NewLine;
                                 tbLog.Text += $"Quest: {gameSession.Hero.QuestJournal[i].Name} Complete! Reward: {gameSession.Hero.QuestJournal[i].RewardEXP} EXP and {gameSession.Hero.QuestJournal[i].RewardGold} gold!" + Environment.NewLine;
@@ -190,7 +180,7 @@ namespace SimpleRPG
 
                 if (gameSession.Hero.QuestJournal.Count == 0)
                 {
-                    if(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.QuestStatus.Equals(Game.GameLocations.Quest.Status.Completed))
+                    if (gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.QuestStatus.Equals(Game.GameLocations.Quest.Status.Completed))
                     {
                         tbLog.Text += gameSession.CurrentLocation.NPCOnLocation.HelloMessage + Environment.NewLine;
                     }
@@ -206,11 +196,11 @@ namespace SimpleRPG
 
         private bool CheckQuestForCompletition()
         {
-            for(int i = 0; i < gameSession.Hero.Inventory.Count; i++)
+            for (int i = 0; i < gameSession.Hero.Inventory.Count; i++)
             {
                 if (gameSession.Hero.Inventory[i].ID.Equals(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.RequiredItems.ID))
                 {
-                    if(gameSession.Hero.Inventory[i].Quantity >= gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.RequiredCount)
+                    if (gameSession.Hero.Inventory[i].Quantity >= gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.RequiredCount)
                     {
                         gameSession.Hero.RemoveItemToInventory(gameSession.Hero.Inventory[i], gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.RequiredCount);
                         return true;

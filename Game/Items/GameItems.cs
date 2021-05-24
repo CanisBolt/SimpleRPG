@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Game.Items
 {
@@ -14,7 +10,7 @@ namespace Game.Items
         public int SellPrice { get; set; }
         public int BuyPrice { get; set; }
         public Enum ItemType { get; set; }
-        public int Quantity 
+        public int Quantity
         {
             get
             {
@@ -71,7 +67,7 @@ namespace Game.Items
         public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int defence, Enum armorSlot, int quantity = 1)
         {
             Name = name;
-            ID = id; 
+            ID = id;
             BuyPrice = buyPrice;
             SellPrice = sellPrice;
             ItemType = type;
@@ -106,7 +102,7 @@ namespace Game.Items
 
         public GameItems Clone()
         {
-            switch(ItemType)
+            switch (ItemType)
             {
                 case TypeOfItem.Weapon:
                     return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, MinimumDamage, MaximumDamage, TypeOfWeapon);

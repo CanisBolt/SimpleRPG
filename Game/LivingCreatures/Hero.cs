@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace Game.LivingCreatures
 {
@@ -139,9 +134,9 @@ namespace Game.LivingCreatures
 
         public void AddItemToInventory(Items.GameItems item)
         {
-            for(int i = 0; i < Inventory.Count; i++)
+            for (int i = 0; i < Inventory.Count; i++)
             {
-                if(Inventory[i].ID.Equals(item.ID))
+                if (Inventory[i].ID.Equals(item.ID))
                 {
                     Inventory[i].Quantity++;
                     return;
@@ -156,7 +151,7 @@ namespace Game.LivingCreatures
             {
                 if (Inventory[i].ID.Equals(item.ID))
                 {
-                    if(Inventory[i].Quantity > 1)
+                    if (Inventory[i].Quantity > 1)
                     {
                         Inventory[i].Quantity -= quantity;
                     }
@@ -179,7 +174,7 @@ namespace Game.LivingCreatures
 
         public void LevelUP()
         {
-            if(CurrentEXP >= EXPToLevel)
+            if (CurrentEXP >= EXPToLevel)
             {
                 CurrentEXP -= EXPToLevel;
 
