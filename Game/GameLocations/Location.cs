@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Game.GameLocations
+﻿namespace Game.GameLocations
 {
     public class Location
     {
@@ -15,7 +9,6 @@ namespace Game.GameLocations
         public Region Region { get; set; }
         public bool IsCheckpoint { get; set; }
         public Shop ShopOnLocation { get; set; }
-
-        // TODO add shops
+        public NPC NPCOnLocation { get; set; }
     }
 }

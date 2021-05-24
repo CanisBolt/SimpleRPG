@@ -144,19 +144,35 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Icons\bagIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Icons\characterIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Icons\characterLevelUPIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Icons\Battle\basicAttackIcon.png" />
     <Resource Include="Images\Icons\Battle\escapeIcon.png" />
     <Resource Include="Images\Icons\Battle\specialAttackIcon.png" />
     <Resource Include="Images\Icons\Battle\spellBookIcon.png" />
     <Resource Include="Images\Icons\Battle\useItemIcon.png" />
+    <Resource Include="Images\Icons\characterIcon.png" />
+    <Resource Include="Images\Icons\characterLevelUPIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Creatures\Heroes\Cat1.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Cat2.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Cat3.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Dog1.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Dog2.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Dog3.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Elf1.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Elf2.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Elf3.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Human1.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Human2.jpg" />
+    <Resource Include="Images\Creatures\Heroes\Human3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Creatures\Enemies\Forest\forestWisp.png" />
+    <Resource Include="Images\Creatures\Enemies\Forest\goblin.png" />
+    <Resource Include="Images\Creatures\Enemies\Forest\rogue.png" />
+    <Resource Include="Images\Creatures\Enemies\Forest\wolf.png" />
+    <Resource Include="Images\Creatures\Enemies\Village\rat.png" />
+    <Resource Include="Images\Creatures\Enemies\Village\snake.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.LivingCreatures;
+﻿using Game.GameLocations;
 using Game.Items;
-using Game.GameLocations;
+using Game.LivingCreatures;
 
 namespace Game
 {
     public class GameSession : BaseNotificationClass
     {
-        private Location currentLocation; 
+        private Location currentLocation;
         private Enemy currentEnemy;
 
         public World CurrentWorld { get; set; }
@@ -50,22 +44,22 @@ namespace Game
             CurrentLocation = CurrentWorld.LocationAt(0, 0); // Starting position (home)
             Checkpoint = CurrentWorld.LocationAt(0, 0); // Starting checkpoint
 
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodStaff));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.WeaponIDWoodSword));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.WeaponIDWoodStaff));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.WeaponIDWoodSword));
 
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDNoHeadArmor));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDNoBodyArmor));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDNoLegsArmor));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDNoFeetArmor));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDSilkHat));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDSilkRobe));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDSilkPants));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ArmorIDSilkSandals));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ArmorIDNoHeadArmor));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ArmorIDNoBodyArmor));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ArmorIDNoLegsArmor));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ArmorIDNoFeetArmor));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ArmorIDSilkHat));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ArmorIDSilkRobe));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ArmorIDSilkPants));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ArmorIDSilkSandals));
 
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
-            Hero.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
 
             Hero.SkillBook.Add(World.SkillByID(World.MagicIDFireball));
             Hero.SkillBook.Add(World.SkillByID(World.MagicIDSmallHeal));
@@ -91,7 +85,7 @@ namespace Game
 
         public void MoveNorth()
         {
-            if(CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null)
+            if (CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null)
             {
                 CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1);
                 if (CurrentLocation.IsCheckpoint)
@@ -110,7 +104,7 @@ namespace Game
                 {
                     Checkpoint = CurrentLocation;
                 }
-            } 
+            }
         }
 
         public void MoveSouth()

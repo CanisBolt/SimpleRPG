@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Game;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Game;
 
 namespace SimpleRPG
 {
@@ -36,7 +25,7 @@ namespace SimpleRPG
         private void UseItem(object sender, MouseButtonEventArgs e)
         {
             Game.Items.GameItems selectedInventoryItem = (Game.Items.GameItems)dbInventory.SelectedItem;
-            if (selectedInventoryItem.Type.Equals(Game.Items.GameItems.ItemType.Consumable))
+            if (selectedInventoryItem.ItemType.Equals(Game.Items.GameItems.TypeOfItem.Consumable))
             {
                 if (selectedInventoryItem.Name.Contains("Healing"))
                 {
@@ -58,26 +47,26 @@ namespace SimpleRPG
                     gameSession.Hero.CurrentMP += (int)(gameSession.Hero.MaxMP * selectedInventoryItem.RecoveryAmount);
                     if (gameSession.Hero.CurrentMP >= gameSession.Hero.MaxMP) gameSession.Hero.CurrentMP = gameSession.Hero.MaxMP;
                 }
-                gameSession.Hero.Inventory.Remove(selectedInventoryItem);
+                gameSession.Hero.RemoveItemToInventory(selectedInventoryItem);
 
                 IsItemUsed = true;
             }
 
-            else if(selectedInventoryItem.Type.Equals(Game.Items.GameItems.ItemType.Weapon))
+            else if (selectedInventoryItem.ItemType.Equals(Game.Items.GameItems.TypeOfItem.Weapon))
             {
-                if(gameSession.Hero.CurrentWeapon != (Game.Items.GameItems)dbInventory.SelectedItem)
+                if (gameSession.Hero.CurrentWeapon != (Game.Items.GameItems)dbInventory.SelectedItem)
                 {
-                    gameSession.Hero.Inventory.Add(gameSession.Hero.CurrentWeapon);
+                    gameSession.Hero.AddItemToInventory(gameSession.Hero.CurrentWeapon);
                     gameSession.Hero.CurrentWeapon = (Game.Items.GameItems)dbInventory.SelectedItem;
-                    gameSession.Hero.Inventory.Remove(gameSession.Hero.CurrentWeapon);
+                    gameSession.Hero.RemoveItemToInventory(gameSession.Hero.CurrentWeapon);
                 }
 
                 IsItemUsed = true;
             }
 
-            else if(selectedInventoryItem.Type.Equals(Game.Items.GameItems.ItemType.Armor))
+            else if (selectedInventoryItem.ItemType.Equals(Game.Items.GameItems.TypeOfItem.Armor))
             {
-                switch(selectedInventoryItem.ArmorSlot)
+                switch (selectedInventoryItem.ArmorSlot)
                 {
                     case Game.Items.GameItems.ArmorType.Head:
                         if (gameSession.Hero.CurrentHeadArmor != (Game.Items.GameItems)dbInventory.SelectedItem)
@@ -114,7 +103,7 @@ namespace SimpleRPG
                 }
             }
 
-            if(IsItemUsed && IsInBattle)
+            if (IsItemUsed && IsInBattle)
             {
                 Close();
             }

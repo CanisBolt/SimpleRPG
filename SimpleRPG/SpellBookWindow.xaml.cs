@@ -1,18 +1,7 @@
 ﻿using Game;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Game.SpecialAttack;
+using System.Windows;
+using System.Windows.Input;
 
 namespace SimpleRPG
 {
@@ -21,7 +10,7 @@ namespace SimpleRPG
     /// </summary>
     public partial class SpellBookWindow : Window
     {
-        GameSession gameSession; 
+        GameSession gameSession;
         public bool IsSkillUsed { get; set; }
         public bool IsInBattle { get; set; }
         public SpellBookWindow(GameSession _gameSession, bool isInBattle)
@@ -38,7 +27,7 @@ namespace SimpleRPG
         {
             if (dgSkillBook.SelectedItem == null) return;
 
-            if(IsInBattle)
+            if (IsInBattle)
             {
                 Skills selectedSkill = (Skills)dgSkillBook.SelectedItem;
                 if (selectedSkill.RequiredWeapon.Equals(gameSession.Hero.CurrentWeapon.TypeOfWeapon) || selectedSkill.RequiredWeapon.Equals(Game.Items.GameItems.WeaponType.None))

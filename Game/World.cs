@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.GameLocations;
+﻿using Game.GameLocations;
 using Game.LivingCreatures;
 using Game.SpecialAttack;
+using System;
+using System.Collections.Generic;
 
 namespace Game
 {
     public class World
     {
         private static List<Race> allRaces = new List<Race>();
+        private static List<Quest> allQuests = new List<Quest>();
         private List<Location> allLocations = new List<Location>();
         private List<Region> allRegions = new List<Region>();
         private static List<Skills> allSpecialAttacks = new List<Skills>();
@@ -53,6 +51,12 @@ namespace Game
         public static int StatusEffectIDBurn = 0;
         public static int StatusEffectIDBleed = 1;
         public static int StatusEffectIDRegeneration = 2;
+
+        // Quests
+        public static int QuestIDWelcomeToVillage = 0;
+
+        // NPC
+        public static int NPCIDVillageElder = 0;
 
         // Shop
         public static int ShopIDVillageShop = 0;
@@ -107,7 +111,7 @@ namespace Game
             allRegions.Add(region);
         }
 
-        internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description, Region region, bool isCheckpoint, Shop shopOnLocation = null)
+        internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description, Region region, bool isCheckpoint, Shop shopOnLocation = null, NPC npcOnLocation = null)
         {
             Location loc = new Location
             {
@@ -117,10 +121,31 @@ namespace Game
                 Description = description,
                 Region = region,
                 IsCheckpoint = isCheckpoint,
-                ShopOnLocation = shopOnLocation
+                ShopOnLocation = shopOnLocation,
+                NPCOnLocation = npcOnLocation,
             };
 
             allLocations.Add(loc);
+        }
+
+        internal void AddQuest(string name, int id, string description, string startMessage, string inProgressMessage, string completeMessage, Items.GameItems requiredItems, int requiredCount, int rewardEXP, int rewardGold)
+        {
+            Quest quest = new Quest
+            {
+                Name = name,
+                ID = id,
+                Description = description,
+                StartMessage = startMessage,
+                InProgressMessage = inProgressMessage,
+                CompleteMessage = completeMessage,
+                RequiredItems = requiredItems,
+                RequiredCount = requiredCount,
+                RewardEXP = rewardEXP,
+                RewardGold = rewardGold,
+                QuestStatus = Quest.Status.Available,
+            };
+
+            allQuests.Add(quest);
         }
 
         internal void AddSpecialAttack(string name, int id, string description, float baseDamage, int manaCost, float attributeModificator, StatusEffect effect, Enum target, Enum modificator, Enum type, Enum requiredWeapon, int numberOfHits = 1)
@@ -176,7 +201,7 @@ namespace Game
 
             allRaces.Add(race);
         }
-        
+
         public Region RegionByID(int id)
         {
             foreach (var region in allRegions)
@@ -207,6 +232,18 @@ namespace Game
                 if (race.ID == id)
                 {
                     return race;
+                }
+            }
+            return null;
+        }
+
+        public static Quest QuestByID(int id)
+        {
+            foreach (var quest in allQuests)
+            {
+                if (quest.ID == id)
+                {
+                    return quest;
                 }
             }
             return null;

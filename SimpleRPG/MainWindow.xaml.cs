@@ -1,19 +1,9 @@
-﻿using System;
+﻿using Game;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Game;
-using Game.GameLocations;
 
 namespace SimpleRPG
 {
@@ -23,36 +13,72 @@ namespace SimpleRPG
     public partial class MainWindow : Window
     {
         GameSession gameSession;
+        List<string> HumanImages;
+        List<string> ElfImages;
+        List<string> DogfolkImages;
+        List<string> CatfolkImages;
+        int imageNumber = 0;
         public MainWindow()
         {
             InitializeComponent();
             gameSession = new GameSession();
             DataContext = gameSession;
 
-            rbHuman.IsChecked = true;
+            HumanImages = new List<string>()
+            {
+                @"/Images/Creatures/Heroes/Human1.jpg",
+                @"/Images/Creatures/Heroes/Human2.jpg",
+                @"/Images/Creatures/Heroes/Human3.jpg",
+            };
+
+            ElfImages = new List<string>()
+            {
+                @"/Images/Creatures/Heroes/Elf1.jpg",
+                @"/Images/Creatures/Heroes/Elf2.jpg",
+                @"/Images/Creatures/Heroes/Elf3.jpg",
+            };
+
+            DogfolkImages = new List<string>()
+            {
+                @"/Images/Creatures/Heroes/Dog1.jpg",
+                @"/Images/Creatures/Heroes/Dog2.jpg",
+                @"/Images/Creatures/Heroes/Dog3.jpg",
+            };
+
+
+            CatfolkImages = new List<string>()
+            {
+                @"/Images/Creatures/Heroes/Cat1.jpg",
+                @"/Images/Creatures/Heroes/Cat2.jpg",
+                @"/Images/Creatures/Heroes/Cat3.jpg",
+            };
+
+            rbHuman.IsChecked = true; // Default Race
 
             UpdateInfo();
         }
 
         private void UpdateInfo()
         {
-            tBoxStats.Clear();
-            tBoxStats.Text += $"HP: {gameSession.Hero.CurrentHP}/{gameSession.Hero.MaxHP}{Environment.NewLine}";
-            tBoxStats.Text += $"MP: {gameSession.Hero.CurrentMP}/{gameSession.Hero.MaxMP}{Environment.NewLine}";
-            tBoxStats.Text += $"Strength: {gameSession.Hero.Strength + gameSession.Hero.HeroRace.Strength}{Environment.NewLine}";
-            tBoxStats.Text += $"Agility: {gameSession.Hero.Agility + gameSession.Hero.HeroRace.Agility}{Environment.NewLine}";
-            tBoxStats.Text += $"Vitality: {gameSession.Hero.Vitality + gameSession.Hero.HeroRace.Vitality}{Environment.NewLine}";
-            tBoxStats.Text += $"Intelligence: {gameSession.Hero.Intelligence + gameSession.Hero.HeroRace.Intelligence}{Environment.NewLine}";
-            tBoxStats.Text += $"Mind: {gameSession.Hero.Mind + gameSession.Hero.HeroRace.Mind}{Environment.NewLine}";
-            tBoxStats.Text += $"Luck: {gameSession.Hero.Luck + gameSession.Hero.HeroRace.Luck}{Environment.NewLine}";
+            tbStrength.Text = $"{gameSession.Hero.Strength + gameSession.Hero.HeroRace.Strength}";
+            tbAgility.Text = $"{gameSession.Hero.Agility + gameSession.Hero.HeroRace.Agility}";
+            tbVitality.Text = $"{gameSession.Hero.Vitality + gameSession.Hero.HeroRace.Vitality}";
+            tbIntelligence.Text = $"{gameSession.Hero.Intelligence + gameSession.Hero.HeroRace.Intelligence}";
+            tbMind.Text = $"{gameSession.Hero.Mind + gameSession.Hero.HeroRace.Mind}";
+            tbLuck.Text = $"{gameSession.Hero.Luck + gameSession.Hero.HeroRace.Luck}";
+
+            tbHP.Text = $"{(gameSession.Hero.Vitality + gameSession.Hero.HeroRace.Vitality) * 10}";
+            tbMP.Text = $"{(gameSession.Hero.Mind + gameSession.Hero.HeroRace.Mind) * 10}";
+
+            imageNumber = 0;
         }
 
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            if(tbName.Text == "" || tbName.Text == "Enter Name (Max 20 chars)") { MessageBox.Show("Please enter the name"); return; }
-            if(tbName.Text.Length > 15) { MessageBox.Show("Name is too long (max 15 characters)"); return; }
-            if(tbName.Text.Length < 3) { MessageBox.Show("Name is too short (min 3 character)");  return; }
+            if (tbName.Text == "" || tbName.Text == "Enter Name (Max 20 chars)") { MessageBox.Show("Please enter the name"); return; }
+            if (tbName.Text.Length > 15) { MessageBox.Show("Name is too long (max 15 characters)"); return; }
+            if (tbName.Text.Length < 3) { MessageBox.Show("Name is too short (min 3 character)"); return; }
 
             gameSession.Hero.Name = tbName.Text;
             gameSession.Hero.Strength += gameSession.Hero.HeroRace.Strength;
@@ -62,6 +88,8 @@ namespace SimpleRPG
             gameSession.Hero.Mind += gameSession.Hero.HeroRace.Mind;
             gameSession.Hero.Luck += gameSession.Hero.HeroRace.Luck;
 
+            gameSession.Hero.Avatar = imgSelectedAvatar.Source.ToString();
+
             gameSession.Hero.RestoreHPMP();
 
             GameWindow gameWindow = new GameWindow(gameSession);
@@ -69,18 +97,20 @@ namespace SimpleRPG
             gameWindow.ShowDialog();
         }
 
-        
+
 
         private void rbHuman_Checked(object sender, RoutedEventArgs e)
         {
             gameSession.Hero.HeroRace = World.RaceByID(0);
             UpdateInfo();
+            imgSelectedAvatar.Source = new BitmapImage(new Uri(HumanImages[imageNumber], UriKind.Relative));
         }
 
         private void rbElf_Checked(object sender, RoutedEventArgs e)
         {
             gameSession.Hero.HeroRace = World.RaceByID(1);
             UpdateInfo();
+            imgSelectedAvatar.Source = new BitmapImage(new Uri(ElfImages[imageNumber], UriKind.Relative));
         }
 
         private void rbDwarf_Checked(object sender, RoutedEventArgs e)
@@ -93,12 +123,70 @@ namespace SimpleRPG
         {
             gameSession.Hero.HeroRace = World.RaceByID(3);
             UpdateInfo();
+            imgSelectedAvatar.Source = new BitmapImage(new Uri(DogfolkImages[imageNumber], UriKind.Relative));
         }
 
         private void rbCatFolk_Checked(object sender, RoutedEventArgs e)
         {
             gameSession.Hero.HeroRace = World.RaceByID(4);
             UpdateInfo();
+            imgSelectedAvatar.Source = new BitmapImage(new Uri(CatfolkImages[imageNumber], UriKind.Relative));
+        }
+
+        private void tbName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbName_GotFocus;
+        }
+
+        private void btnPreviousImage_Click(object sender, RoutedEventArgs e)
+        {
+            imageNumber--;
+            if (imageNumber < 0) imageNumber = 0;
+            switch (gameSession.Hero.HeroRace.Name)
+            {
+                case "Human":
+                    imgSelectedAvatar.Source = new BitmapImage(new Uri(HumanImages[imageNumber], UriKind.Relative));
+                    break;
+                case "Elf":
+                    imgSelectedAvatar.Source = new BitmapImage(new Uri(ElfImages[imageNumber], UriKind.Relative));
+                    break;
+                case "Dwarf":
+                    break;
+                case "DogFolk":
+                    imgSelectedAvatar.Source = new BitmapImage(new Uri(DogfolkImages[imageNumber], UriKind.Relative));
+                    break;
+                case "CatFolk":
+                    imgSelectedAvatar.Source = new BitmapImage(new Uri(CatfolkImages[imageNumber], UriKind.Relative));
+                    break;
+            }
+        }
+
+        private void btnNextImage_Click(object sender, RoutedEventArgs e)
+        {
+            imageNumber++;
+            switch (gameSession.Hero.HeroRace.Name)
+            {
+                case "Human":
+                    if (imageNumber >= HumanImages.Count) imageNumber = HumanImages.Count - 1;
+                    imgSelectedAvatar.Source = new BitmapImage(new Uri(HumanImages[imageNumber], UriKind.Relative));
+                    break;
+                case "Elf":
+                    if (imageNumber >= ElfImages.Count) imageNumber = ElfImages.Count - 1;
+                    imgSelectedAvatar.Source = new BitmapImage(new Uri(ElfImages[imageNumber], UriKind.Relative));
+                    break;
+                case "Dwarf":
+                    break;
+                case "DogFolk":
+                    if (imageNumber >= DogfolkImages.Count) imageNumber = DogfolkImages.Count - 1;
+                    imgSelectedAvatar.Source = new BitmapImage(new Uri(DogfolkImages[imageNumber], UriKind.Relative));
+                    break;
+                case "CatFolk":
+                    if (imageNumber >= CatfolkImages.Count) imageNumber = CatfolkImages.Count - 1;
+                    imgSelectedAvatar.Source = new BitmapImage(new Uri(CatfolkImages[imageNumber], UriKind.Relative));
+                    break;
+            }
         }
     }
 }

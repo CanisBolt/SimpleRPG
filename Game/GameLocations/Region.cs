@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Game.LivingCreatures;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.LivingCreatures;
 
 namespace Game.GameLocations
 {

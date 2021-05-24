@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Game.Items
 {
@@ -37,16 +35,16 @@ namespace Game.Items
             CreateConsumable("Big Mana Potion", World.ItemIDBigManaPotion, 100, 50, 0.75f);
             CreateConsumable("Max Mana Potion", World.ItemIDMaxManaPotion, 200, 100, 1f);
 
-            CreateJunkItem("Snake Skin", World.EnemyLootIDSnakeSkin, 0, 2, 50);
-            CreateJunkItem("Snake Fang", World.EnemyLootIDSnakeFang, 0, 5, 25);
-            CreateJunkItem("Snake Eye", World.EnemyLootIDSnakeEye, 0, 10, 10);
-            CreateJunkItem("Rat Skin", World.EnemyLootIDRatSkin, 0, 1, 80);
-            CreateJunkItem("Rat Tail", World.EnemyLootIDRatTail, 0, 2, 70);
-            CreateJunkItem("Goblin Skin", World.EnemyLootIDGoblinSkin, 0, 12, 30);
-            CreateJunkItem("Goblin Fang", World.EnemyLootIDGoblinFang, 0, 15, 25);
-            CreateJunkItem("Wolf Skin", World.EnemyLootIDWolfSkin, 0, 15, 30);
-            CreateJunkItem("Wolf Fanf", World.EnemyLootIDWolfFang, 0, 17, 20);
-            CreateJunkItem("Wisp Dust", World.EnemyLootIDWispDust, 0, 20, 10);
+            CreateEnemyLootItem("Snake Skin", World.EnemyLootIDSnakeSkin, 0, 2, 50, 1);
+            CreateEnemyLootItem("Snake Fang", World.EnemyLootIDSnakeFang, 0, 5, 25, 1);
+            CreateEnemyLootItem("Snake Eye", World.EnemyLootIDSnakeEye, 0, 10, 10, 1);
+            CreateEnemyLootItem("Rat Skin", World.EnemyLootIDRatSkin, 0, 1, 80, 1);
+            CreateEnemyLootItem("Rat Tail", World.EnemyLootIDRatTail, 0, 2, 70, 1);
+            CreateEnemyLootItem("Goblin Skin", World.EnemyLootIDGoblinSkin, 0, 12, 30, 1);
+            CreateEnemyLootItem("Goblin Fang", World.EnemyLootIDGoblinFang, 0, 15, 25, 1);
+            CreateEnemyLootItem("Wolf Skin", World.EnemyLootIDWolfSkin, 0, 15, 30, 1);
+            CreateEnemyLootItem("Wolf Fanf", World.EnemyLootIDWolfFang, 0, 17, 20, 1);
+            CreateEnemyLootItem("Wisp Dust", World.EnemyLootIDWispDust, 0, 20, 10, 1);
         }
 
         public static GameItems CreateGameItem(int itemID)
@@ -63,22 +61,34 @@ namespace Game.Items
 
         private static void CreateWeapon(string name, int id, int buyPrice, int sellPrice, int minDamage, int maxDamage, Enum weaponType)
         {
-            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.ItemType.Weapon, minDamage, maxDamage, weaponType));
+            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.Weapon, minDamage, maxDamage, weaponType));
         }
 
         private static void CreateArmor(string name, int id, int buyPrice, int sellPrice, int defence, Enum ArmorSlot)
         {
-            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.ItemType.Armor, defence, ArmorSlot));
+            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.Armor, defence, ArmorSlot));
         }
 
         private static void CreateConsumable(string name, int id, int buyPrice, int sellPrice, float recoveryAmount)
         {
-            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.ItemType.Consumable, recoveryAmount));
+            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.Consumable, recoveryAmount));
         }
 
-        private static void CreateJunkItem(string name, int id, int buyPrice, int sellPrice, int dropChance)
+        private static void CreateEnemyLootItem(string name, int id, int buyPrice, int sellPrice, int dropChance, int quantity)
         {
-            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.ItemType.Junk, dropChance));
+            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.EnemyLoot, dropChance, quantity));
+        }
+
+        public static GameItems ItemByID(int id)
+        {
+            foreach (var item in standardGameItems)
+            {
+                if (item.ID.Equals(id))
+                {
+                    return item;
+                }
+            }
+            return null;
         }
     }
 }

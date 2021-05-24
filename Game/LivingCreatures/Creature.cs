@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.Items;
+﻿using Game.Items;
 using Game.SpecialAttack;
+using System;
+using System.Collections.ObjectModel;
 
 namespace Game.LivingCreatures
 {
@@ -26,7 +22,7 @@ namespace Game.LivingCreatures
         protected float defence;
         private SpecialAttack.Skills currentSkill;
 
-        public string Name 
+        public string Name
         {
             get
             {
@@ -38,12 +34,12 @@ namespace Game.LivingCreatures
                 OnPropertyChanged(nameof(name));
             }
         }
-        public int Level 
-        { 
-            get 
+        public int Level
+        {
+            get
             {
                 return level;
-            } 
+            }
             set
             {
                 level = value;
@@ -193,8 +189,8 @@ namespace Game.LivingCreatures
         public float Evasion { get; set; }
         public bool IsCriticalHit { get; set; }
 
-
-        public SpecialAttack.Skills CurrentSkill
+        public string Avatar { get; set; }
+        public Skills CurrentSkill
         {
             get
             {
@@ -208,7 +204,7 @@ namespace Game.LivingCreatures
         }
 
         public ObservableCollection<GameItems> Inventory { get; set; }
-        public ObservableCollection<SpecialAttack.Skills> SkillBook { get; set; }
+        public ObservableCollection<Skills> SkillBook { get; set; }
         public ObservableCollection<StatusEffect> Effects { get; set; }
 
         public Creature(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck)
@@ -224,7 +220,7 @@ namespace Game.LivingCreatures
             Luck = luck;
 
             Inventory = new ObservableCollection<GameItems>();
-            SkillBook = new ObservableCollection<SpecialAttack.Skills>();
+            SkillBook = new ObservableCollection<Skills>();
             Effects = new ObservableCollection<StatusEffect>();
 
             RestoreHPMP();
@@ -237,7 +233,7 @@ namespace Game.LivingCreatures
 
         public float AddDamageModificator()
         {
-            if(CurrentSkill != null)
+            if (CurrentSkill != null)
             {
                 switch (CurrentSkill.Modificator)
                 {
@@ -265,7 +261,7 @@ namespace Game.LivingCreatures
 
         public virtual float SkillDamageCalculation()
         {
-            if(CurrentSkill == null) return 0;
+            if (CurrentSkill == null) return 0;
 
             if (CurrentSkill.NumberOfHits > 1)
             {
@@ -282,7 +278,7 @@ namespace Game.LivingCreatures
 
         public bool CalculateCriticalHitChance()
         {
-            if(Dice.rng.Next(100) + 1 <= Dice.rng.Next(Luck))
+            if (Dice.rng.Next(100) + 1 <= Dice.rng.Next(Luck))
             {
                 return IsCriticalHit = true;
             }
@@ -292,9 +288,9 @@ namespace Game.LivingCreatures
 
         public void ApplyStatusEffect(string name, int id, string description, float affectHP, float affectMP, int duration, Enum type)
         {
-            foreach(var effect in Effects)
+            foreach (var effect in Effects)
             {
-                if(effect.ID.Equals(id))
+                if (effect.ID.Equals(id))
                 {
                     effect.Duration = duration; // Update time of debuff
                     return;
@@ -324,7 +320,7 @@ namespace Game.LivingCreatures
         // For now, using this to remove expired status effects one by one
         private void RemoveEffects()
         {
-            for(int i = 0; i < Effects.Count; i++)
+            for (int i = 0; i < Effects.Count; i++)
             {
                 if (Effects[i].Duration == 0)
                 {
