@@ -166,5 +166,13 @@
     <Resource Include="Images\Creatures\Heroes\Human2.jpg" />
     <Resource Include="Images\Creatures\Heroes\Human3.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Creatures\Enemies\Forest\forestWisp.png" />
+    <Resource Include="Images\Creatures\Enemies\Forest\goblin.png" />
+    <Resource Include="Images\Creatures\Enemies\Forest\rogue.png" />
+    <Resource Include="Images\Creatures\Enemies\Forest\wolf.png" />
+    <Resource Include="Images\Creatures\Enemies\Village\rat.png" />
+    <Resource Include="Images\Creatures\Enemies\Village\snake.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

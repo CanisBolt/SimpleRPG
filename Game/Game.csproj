@@ -62,23 +62,5 @@
     <Compile Include="World.cs" />
     <Compile Include="GameLocations\WorldFactory.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\Enemies\Forest\forestWisp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\Enemies\Forest\goblin.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\Enemies\Forest\rogue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\Enemies\Forest\wolf.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\Enemies\Village\rat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\Enemies\Village\snake.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
