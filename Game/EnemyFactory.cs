@@ -21,12 +21,14 @@ namespace Game
                     snake.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDSnakeSkin));
                     snake.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDSnakeFang));
                     snake.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDSnakeEye));
+                    snake.Avatar = @"/Images/Enemies/Village/snake.png";
                     return snake;
                 case 1:
                     Enemy rat =
                         new Enemy("Rat", 1, 4, 5, 3, 1, 1, 4, 5, 0, 35, World.EnemyIDRat, false, 1);
                     rat.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDRatSkin));
                     rat.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDRatTail));
+                    rat.Avatar = @"/Images/Enemies/Village/rat.png";
                     return rat;
                 case 2:
                     Enemy goblin = 

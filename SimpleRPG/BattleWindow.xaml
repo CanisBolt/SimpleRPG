@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleRPG"
         mc:Ignorable="d"
-        Title="BattleWindow" Height="319" Width="500">
+        Title="BattleWindow" Height="450" Width="500">
     <Grid Margin="0,0,0,-1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="59*"/>
@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Hero Stats-->
-        <Grid Margin="0,1,0,139" Background="LightGreen">
+        <Grid Margin="0,197,0,139" Background="LightGreen">
             <TextBlock HorizontalAlignment="Left" Margin="4,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Name:" Height="16"/>
             <TextBlock HorizontalAlignment="Left" Margin="4,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="HP:" Height="16"/>
             <TextBlock HorizontalAlignment="Left" Margin="4,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="MP:" Height="16"/>
@@ -25,7 +25,7 @@
         </Grid>
 
         <!-- Enemy Stats-->
-        <Grid Grid.Column="2" Margin="0,0,0,139" Background="Red">
+        <Grid Grid.Column="2" Margin="0,197,0,139" Background="Red">
             <TextBlock HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Name:" Height="16"/>
             <TextBlock HorizontalAlignment="Left" Margin="2,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="HP:" Height="16"/>
             <TextBlock HorizontalAlignment="Left" Margin="2,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="MP:" Height="16"/>
@@ -55,12 +55,12 @@
         </Grid>
 
         <Grid HorizontalAlignment="Left" Height="139" Margin="0,150,0,0" VerticalAlignment="Top" Width="196" Grid.Column="1">
-            <TextBox x:Name="tbBattleLog" HorizontalAlignment="Left" Height="139" TextWrapping="Wrap" VerticalAlignment="Top" Width="196"/>
+            <TextBox x:Name="tbBattleLog" HorizontalAlignment="Left" Height="270" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Margin="0,0,0,-131"/>
         </Grid>
 
         <DataGrid x:Name="dgHeroStatusEffects" ItemsSource="{Binding Hero.Effects}"
                               AutoGenerateColumns="False"
-                              HeadersVisibility="Column" Margin="0,150,0,-2" ToolTip="All Status Effects on Hero" IsReadOnly="True">
+                              HeadersVisibility="Column" Margin="0,281,0,-2" ToolTip="All Status Effects on Hero" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"
                                                 Binding="{Binding Name}"
@@ -70,10 +70,10 @@
                                                 Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
         <DataGrid x:Name="dgEnemyStatusEffects" ItemsSource="{Binding CurrentEnemy.Effects}"
                               AutoGenerateColumns="False"
-                              HeadersVisibility="Column" Margin="0,150,0,-2" ToolTip="All Status Effects on Enemy" IsReadOnly="True" Grid.Column="2">
+                              HeadersVisibility="Column" Margin="0,281,0,-2" ToolTip="All Status Effects on Enemy" IsReadOnly="True" Grid.Column="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"
                                                 Binding="{Binding Name}"
@@ -83,5 +83,7 @@
                                                 Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Image x:Name="imgHero" Source="{Binding Hero.Avatar}" HorizontalAlignment="Left" Height="197" VerticalAlignment="Top" Width="148" Stretch="Fill"/>
+        <Image x:Name="imgEnemy" HorizontalAlignment="Left" Height="197" VerticalAlignment="Top" Width="148" Stretch="Fill" Grid.Column="2"/>
     </Grid>
 </Window>

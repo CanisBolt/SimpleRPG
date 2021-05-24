@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleRPG" xmlns:game="clr-namespace:Game;assembly=Game"
         mc:Ignorable="d"
-        Title="GameWindow" Height="450" Width="800">
+        Title="GameWindow" Height="550" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="143*"/>
@@ -17,31 +17,31 @@
         </Grid.ColumnDefinitions>
 
         <!--Character Status -->
-        <Grid HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="207" Background="LightGreen" Grid.RowSpan="2">
-            <TextBlock HorizontalAlignment="Left" Margin="4,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Name:" Height="16"/>
-            <TextBlock HorizontalAlignment="Left" Margin="4,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Level:" Height="16"/>
-            <TextBlock HorizontalAlignment="Left" Margin="4,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="HP:" Height="16"/>
-            <TextBlock HorizontalAlignment="Left" Margin="4,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="MP:" Height="16"/>
-            <TextBlock HorizontalAlignment="Left" Margin="4,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="EXP:" Height="16"/>
+        <Grid HorizontalAlignment="Left" Height="407" VerticalAlignment="Top" Width="207" Background="LightGreen" Grid.RowSpan="2">
+            <TextBlock HorizontalAlignment="Left" Margin="0,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Name:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Level:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,327,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="HP:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,355,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="MP:" Height="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,381,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="EXP:" Height="16"/>
 
-            <TextBlock x:Name="tbName" Text="{Binding Hero.Name}" HorizontalAlignment="Left" Margin="59,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"/>
-            <TextBlock x:Name="tbLevel" Text="{Binding Hero.Level}" HorizontalAlignment="Left" Margin="59,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"/>
-            <TextBlock x:Name="tbHP" HorizontalAlignment="Left" Margin="59,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentHP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxHP}"/></TextBlock>
-            <TextBlock x:Name="tbMP" HorizontalAlignment="Left" Margin="59,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentMP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxMP}"/></TextBlock>
-            <TextBlock x:Name="tbEXP" HorizontalAlignment="Left" Margin="59,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentEXP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.EXPToLevel}"/></TextBlock>
-            <Image x:Name="imgSelectedAvatar" HorizontalAlignment="Left" Height="170" Margin="4,0,0,0" VerticalAlignment="Top" Width="193"/>
+            <TextBlock x:Name="tbName" Text="{Binding Hero.Name}" HorizontalAlignment="Left" Margin="55,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"/>
+            <TextBlock x:Name="tbLevel" Text="{Binding Hero.Level}" HorizontalAlignment="Left" Margin="55,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"/>
+            <TextBlock x:Name="tbHP" HorizontalAlignment="Left" Margin="55,327,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentHP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxHP}"/></TextBlock>
+            <TextBlock x:Name="tbMP" HorizontalAlignment="Left" Margin="55,355,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentMP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxMP}"/></TextBlock>
+            <TextBlock x:Name="tbEXP" HorizontalAlignment="Left" Margin="55,381,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentEXP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.EXPToLevel}"/></TextBlock>
+            <Image x:Name="imgSelectedAvatar" Source="{Binding Hero.Avatar}" HorizontalAlignment="Left" Height="270" Margin="4,0,0,0" VerticalAlignment="Top" Width="193" Stretch="Fill"/>
         </Grid>
 
         <!--Character Buttons -->
-        <Grid HorizontalAlignment="Left" Height="112" Grid.Row="1" VerticalAlignment="Top" Width="207" Background="LightYellow" Margin="0,164,0,0">
-            <Image x:Name="imgCharacter" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="images/icons/characterIcon.png" ToolTip="Open Character's Screen" MouseLeftButtonDown="OpenCharacterScreen"/>
+        <Grid HorizontalAlignment="Left" Height="112" Grid.Row="1" VerticalAlignment="Top" Width="207" Background="LightYellow" Margin="0,230,0,0">
+            <Image x:Name="imgCharacter" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="Images/Icons/characterLevelUPIcon.png" ToolTip="Open Character's Screen" MouseLeftButtonDown="OpenCharacterScreen"/>
             <Image x:Name="imgInventory" HorizontalAlignment="Left" Height="50" Margin="65,10,0,0" VerticalAlignment="Top" Width="50" Source="Images/Icons/bagIcon.png" ToolTip="Open Character's Inventory" MouseLeftButtonDown="OpenInventory"/>
             <Image x:Name="imgMagic" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="43" Source="Images/Icons/Battle/spellBookIcon.png" Margin="120,10,0,0" ToolTip="Open Character's SpellBook" MouseLeftButtonDown="SpecialAttack"/>
 
         </Grid>
 
         <!--Movement Buttons -->
-        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="347,205,0,0" Grid.Row="1" VerticalAlignment="Top" Width="238" Background="Coral">
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="347,272,0,0" Grid.Row="1" VerticalAlignment="Top" Width="238" Background="Coral">
             <Button x:Name="btnNorth" Content="North" HorizontalAlignment="Left" Margin="82,4,0,0" VerticalAlignment="Top" Width="76" Click="btnNorth_Click"/>
             <Button x:Name="btnWest" Content="West" HorizontalAlignment="Left" Margin="6,24,0,0" VerticalAlignment="Top" Width="76" Click="btnWest_Click"/>
             <Button x:Name="btnEast" Content="East" HorizontalAlignment="Left" Margin="158,24,0,0" VerticalAlignment="Top" Width="76" Click="btnEast_Click"/>
@@ -49,17 +49,17 @@
         </Grid>
 
         <!--Locations info -->
-        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="244" Background="LightBlue" Grid.RowSpan="2">
-            <TextBlock Margin="3,4,175,114" Text="Location:"/>
-            <TextBlock Margin="3,34,175,84" Text="Region:"/>
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="177" VerticalAlignment="Top" Width="244" Background="LightBlue">
+            <TextBlock Margin="3,4,175,143" Text="Location:"/>
+            <TextBlock Margin="3,34,175,113" Text="Region:"/>
             <TextBlock x:Name="tbRegion" Text="{Binding CurrentLocation.Region.Name}" Margin="61,4,10,114" Width="160"/>
             <TextBlock x:Name="tbLocation" Text="{Binding CurrentLocation.Name}" Margin="61,34,10,84" Width="160"/>
             <TextBlock Text="{Binding CurrentLocation.Description}" TextWrapping="Wrap" Margin="3,64,17,29"/>
-            <Button x:Name="btnEnterShop" Content="EnterTheShop" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="87" Click="btnEnterShop_Click"/>
+            <Button x:Name="btnEnterShop" Content="EnterTheShop" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Width="87" Click="btnEnterShop_Click"/>
             <TextBlock x:Name="tbNPC" Text="{Binding CurrentLocation.NPCOnLocation.Name}" Margin="102,118,10,0" MouseLeftButtonDown="TalkToNPC"/>
         </Grid>
 
-        <TextBox x:Name="tbLog" HorizontalAlignment="Left" Height="160" Margin="0,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="347" Grid.Column="1" Grid.Row="1" IsReadOnly="True"/>
+        <TextBox x:Name="tbLog" HorizontalAlignment="Left" Height="245" Margin="0,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="347" Grid.Column="1" Grid.Row="1" IsReadOnly="True"/>
 
         <TextBlock x:Name="tbMonsterName" Text="{Binding CurrentEnemy.Name}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="121" Height="25" MouseLeftButtonDown="AttackEnemy"/>
 

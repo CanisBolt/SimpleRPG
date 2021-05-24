@@ -30,8 +30,6 @@ namespace SimpleRPG
             gameSession.Hero.SkillPoints = 5;
             DataContext = gameSession;
 
-            imgSelectedAvatar.Source = new BitmapImage(new Uri(gameSession.Hero.Avatar));
-
             ChangeImages();
         }
 

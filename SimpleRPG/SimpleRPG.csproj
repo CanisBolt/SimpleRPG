@@ -144,22 +144,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Icons\bagIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Icons\characterIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Icons\characterLevelUPIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Icons\Battle\basicAttackIcon.png" />
     <Resource Include="Images\Icons\Battle\escapeIcon.png" />
     <Resource Include="Images\Icons\Battle\specialAttackIcon.png" />
     <Resource Include="Images\Icons\Battle\spellBookIcon.png" />
     <Resource Include="Images\Icons\Battle\useItemIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\Creatures\Enemies\" />
+    <Resource Include="Images\Icons\characterIcon.png" />
+    <Resource Include="Images\Icons\characterLevelUPIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Creatures\Heroes\Cat1.jpg" />
@@ -168,8 +159,6 @@
     <Resource Include="Images\Creatures\Heroes\Dog1.jpg" />
     <Resource Include="Images\Creatures\Heroes\Dog2.jpg" />
     <Resource Include="Images\Creatures\Heroes\Dog3.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Creatures\Heroes\Elf1.jpg" />
     <Resource Include="Images\Creatures\Heroes\Elf2.jpg" />
     <Resource Include="Images\Creatures\Heroes\Elf3.jpg" />

@@ -30,6 +30,8 @@ namespace SimpleRPG
             gameSession = _gameSession;
             DataContext = gameSession;
 
+            imgEnemy.Source = new BitmapImage(new Uri(gameSession.CurrentEnemy.Avatar, UriKind.RelativeOrAbsolute));
+
             Battle();
         }
 
