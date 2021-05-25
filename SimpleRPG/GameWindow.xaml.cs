@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace SimpleRPG
 {
@@ -12,6 +13,7 @@ namespace SimpleRPG
     public partial class GameWindow : Window
     {
         GameSession gameSession;
+        DispatcherTimer aggroTimer;
         public GameWindow(GameSession _gameSession)
         {
             InitializeComponent();
@@ -20,11 +22,41 @@ namespace SimpleRPG
             gameSession.Hero.SkillPoints = 5;
             DataContext = gameSession;
 
-            ChangeImages();
+
+            UpdateLocationData();
         }
 
-        private void ChangeImages()
+        // Timer starts as soon as player encounter aggressive enemy on location
+        private void aggroTimer_Tick(object sender, EventArgs e)
         {
+            gameSession.CurrentEnemy.HasAdvantage = true;
+            BattleWindow battle = new BattleWindow(gameSession);
+            battle.ShowDialog();
+
+            BattleResult(battle);
+
+            gameSession.CurrentEnemy = null;
+
+            aggroTimer.Stop();
+        }
+
+        private void UpdateLocationData()
+        {
+            if(aggroTimer != null)
+            {
+                if (aggroTimer.IsEnabled) aggroTimer.Stop();
+            }
+            if (gameSession.CurrentEnemy != null)
+            {
+                if (gameSession.CurrentEnemy.IsAgressive)
+                {
+                    aggroTimer = new DispatcherTimer();
+                    aggroTimer.Tick += new EventHandler(aggroTimer_Tick);
+                    aggroTimer.Interval = new TimeSpan(0, 0, 3);
+                    aggroTimer.Start();
+                }
+            }
+
             if (gameSession.CurrentLocation.ShopOnLocation != null)
             {
                 btnEnterShop.Visibility = Visibility.Visible;
@@ -45,31 +77,31 @@ namespace SimpleRPG
         {
             CharacterWindow characterWindow = new CharacterWindow(gameSession);
             characterWindow.ShowDialog();
-            ChangeImages();
+            UpdateLocationData();
         }
 
         private void btnNorth_Click(object sender, RoutedEventArgs e)
         {
             gameSession.MoveNorth();
-            ChangeImages();
+            UpdateLocationData();
         }
 
         private void btnWest_Click(object sender, RoutedEventArgs e)
         {
             gameSession.MoveWest();
-            ChangeImages();
+            UpdateLocationData();
         }
 
         private void btnSouth_Click(object sender, RoutedEventArgs e)
         {
             gameSession.MoveSouth();
-            ChangeImages();
+            UpdateLocationData();
         }
 
         private void btnEast_Click(object sender, RoutedEventArgs e)
         {
             gameSession.MoveEast();
-            ChangeImages();
+            UpdateLocationData();
         }
 
         private void OpenInventory(object sender, MouseButtonEventArgs e)
@@ -80,33 +112,45 @@ namespace SimpleRPG
 
         private void AttackEnemy(object sender, MouseButtonEventArgs e)
         {
+            if (aggroTimer != null)
+            {
+                if (aggroTimer.IsEnabled) aggroTimer.Stop();
+            }
             if (gameSession.CurrentEnemy == null) return;
             BattleWindow battle = new BattleWindow(gameSession);
             battle.ShowDialog();
 
-            if (battle.BattleStatus.Equals(BattleWindow.Status.Victory))
-            {
-                tbLog.Text += $"{gameSession.Hero.Name} kill {gameSession.CurrentEnemy.Name}." + Environment.NewLine;
-                tbLog.Text += $"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardGold} gold." + Environment.NewLine;
-                gameSession.Hero.CurrentEXP += gameSession.CurrentEnemy.RewardEXP;
-                gameSession.Hero.Gold += gameSession.CurrentEnemy.RewardGold;
-                LootEnemy();
-
-                gameSession.Hero.LevelUP(); // Check for LevelUP
-                ChangeImages();
-            }
-            else if (battle.BattleStatus.Equals(BattleWindow.Status.Defeat))
-            {
-                tbLog.Text += $"{gameSession.CurrentEnemy.Name} kill {gameSession.Hero.Name}." + Environment.NewLine;
-                gameSession.CurrentLocation = gameSession.Checkpoint;
-                gameSession.Hero.HealingAfterDeath();
-            }
-            else
-            {
-                tbLog.Text += $"You successfully escaped from battle." + Environment.NewLine;
-            }
+            BattleResult(battle);
 
             gameSession.CurrentEnemy = null;
+        }
+
+        private void BattleResult(BattleWindow battle)
+        {
+            switch(battle.BattleStatus)
+            {
+                case BattleWindow.Status.Victory:
+                    tbLog.Text += $"{gameSession.Hero.Name} kill {gameSession.CurrentEnemy.Name}." + Environment.NewLine;
+                    tbLog.Text += $"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardGold} gold." + Environment.NewLine;
+                    gameSession.Hero.CurrentEXP += gameSession.CurrentEnemy.RewardEXP;
+                    gameSession.Hero.Gold += gameSession.CurrentEnemy.RewardGold;
+                    LootEnemy();
+
+                    gameSession.Hero.LevelUP(); // Check for LevelUP
+                    UpdateLocationData();
+                    break;
+                case BattleWindow.Status.Defeat:
+                    tbLog.Text += $"{gameSession.CurrentEnemy.Name} kill {gameSession.Hero.Name}." + Environment.NewLine;
+                    gameSession.CurrentLocation = gameSession.Checkpoint;
+                    gameSession.Hero.HealingAfterDeath();
+                    break;
+                case BattleWindow.Status.Escape:
+                    tbLog.Text += $"You successfully escaped from battle." + Environment.NewLine;
+                    break;
+                default:
+                    tbLog.Text += $"You coward! You closed the battle!" + Environment.NewLine;
+                    break;
+            }
         }
 
         private void LootEnemy()
@@ -122,6 +166,7 @@ namespace SimpleRPG
                 }
             }
         }
+
         private void SpecialAttack(object sender, MouseButtonEventArgs e)
         {
             SpellBookWindow spellbook = new SpellBookWindow(gameSession, false);

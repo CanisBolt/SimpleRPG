@@ -32,7 +32,12 @@ namespace SimpleRPG
             int heroRoll = Dice.rng.Next(1, 21) + gameSession.Hero.Agility;
             int enemyRoll = Dice.rng.Next(1, 21) + gameSession.CurrentEnemy.Agility;
 
-            if (heroRoll < enemyRoll)
+            if(gameSession.CurrentEnemy.HasAdvantage)
+            {
+                tbBattleLog.Text += $"{gameSession.CurrentEnemy.Name} caught {gameSession.Hero.Name} off guard and deals first strike!" + Environment.NewLine;
+                EnemyAttack();
+            }
+            else if (heroRoll < enemyRoll)
             {
                 // Enemy attack first
                 EnemyAttack();
