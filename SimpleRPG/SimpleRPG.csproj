@@ -55,12 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AlchemyWindow.xaml.cs">
+      <DependentUpon>AlchemyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShopWindow.xaml.cs">
       <DependentUpon>ShopWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SpellBookWindow.xaml.cs">
       <DependentUpon>SpellBookWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AlchemyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BattleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -173,6 +180,11 @@
     <Resource Include="Images\Creatures\Enemies\Forest\wolf.png" />
     <Resource Include="Images\Creatures\Enemies\Village\rat.png" />
     <Resource Include="Images\Creatures\Enemies\Village\snake.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Creatures\Heroes\dwarf1.png" />
+    <Resource Include="Images\Creatures\Heroes\dwarf2.png" />
+    <Resource Include="Images\Creatures\Heroes\dwarf3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

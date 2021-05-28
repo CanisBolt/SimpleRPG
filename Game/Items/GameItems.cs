@@ -122,6 +122,7 @@ namespace Game.Items
             Weapon,
             Armor,
             Consumable,
+            Material,
             EnemyLoot
         }
 

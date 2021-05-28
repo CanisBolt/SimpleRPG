@@ -14,7 +14,8 @@ namespace SimpleRPG
     {
         GameSession gameSession;
         List<string> HumanImages;
-        List<string> ElfImages;
+        List<string> ElfImages; 
+        List<string> DwarfImages;
         List<string> DogfolkImages;
         List<string> CatfolkImages;
         int imageNumber = 0;
@@ -36,6 +37,13 @@ namespace SimpleRPG
                 @"/Images/Creatures/Heroes/Elf1.jpg",
                 @"/Images/Creatures/Heroes/Elf2.jpg",
                 @"/Images/Creatures/Heroes/Elf3.jpg",
+            };
+
+            DwarfImages = new List<string>()
+            {
+                @"/Images/Creatures/Heroes/Dwarf1.png",
+                @"/Images/Creatures/Heroes/Dwarf2.png",
+                @"/Images/Creatures/Heroes/Dwarf3.png",
             };
 
             DogfolkImages = new List<string>()
@@ -117,6 +125,7 @@ namespace SimpleRPG
         {
             gameSession.Hero.HeroRace = World.RaceByID(2);
             UpdateInfo();
+            imgSelectedAvatar.Source = new BitmapImage(new Uri(DwarfImages[imageNumber], UriKind.Relative));
         }
 
         private void rbDogFolk_Checked(object sender, RoutedEventArgs e)
@@ -153,6 +162,7 @@ namespace SimpleRPG
                     imgSelectedAvatar.Source = new BitmapImage(new Uri(ElfImages[imageNumber], UriKind.Relative));
                     break;
                 case "Dwarf":
+                    imgSelectedAvatar.Source = new BitmapImage(new Uri(DwarfImages[imageNumber], UriKind.Relative));
                     break;
                 case "DogFolk":
                     imgSelectedAvatar.Source = new BitmapImage(new Uri(DogfolkImages[imageNumber], UriKind.Relative));
@@ -177,6 +187,7 @@ namespace SimpleRPG
                     imgSelectedAvatar.Source = new BitmapImage(new Uri(ElfImages[imageNumber], UriKind.Relative));
                     break;
                 case "Dwarf":
+                    imgSelectedAvatar.Source = new BitmapImage(new Uri(DwarfImages[imageNumber], UriKind.Relative));
                     break;
                 case "DogFolk":
                     if (imageNumber >= DogfolkImages.Count) imageNumber = DogfolkImages.Count - 1;

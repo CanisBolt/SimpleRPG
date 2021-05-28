@@ -132,6 +132,8 @@ namespace Game.LivingCreatures
 
         public ObservableCollection<GameLocations.Quest> QuestJournal { get; set; }
 
+        public ObservableCollection<Items.AlchemyRecipe> RecipeList { get; set; }
+
         public void AddItemToInventory(Items.GameItems item)
         {
             for (int i = 0; i < Inventory.Count; i++)
@@ -151,8 +153,12 @@ namespace Game.LivingCreatures
             {
                 if (Inventory[i].ID.Equals(item.ID))
                 {
-                    if (Inventory[i].Quantity > 1)
+                    if (Inventory[i].Quantity > quantity)
                     {
+                        if (Inventory[i].Quantity == quantity)
+                        {
+                            Inventory.Remove(item);
+                        }
                         Inventory[i].Quantity -= quantity;
                     }
                     else
@@ -170,6 +176,7 @@ namespace Game.LivingCreatures
             EXPToLevel = Level * (100 * (Level * 2));
             Gold = 0;
             QuestJournal = new ObservableCollection<GameLocations.Quest>();
+            RecipeList = new ObservableCollection<Items.AlchemyRecipe>();
         }
 
         public void LevelUP()

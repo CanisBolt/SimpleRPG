@@ -258,5 +258,11 @@ namespace SimpleRPG
             }
             return false;
         }
+
+        private void OpenAlchemyWindow(object sender, MouseButtonEventArgs e)
+        {
+            AlchemyWindow alcWindow = new AlchemyWindow(gameSession);
+            alcWindow.ShowDialog();
+        }
     }
 }

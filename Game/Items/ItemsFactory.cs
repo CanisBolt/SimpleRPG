@@ -35,6 +35,8 @@ namespace Game.Items
             CreateConsumable("Big Mana Potion", World.ItemIDBigManaPotion, 100, 50, 0.75f);
             CreateConsumable("Max Mana Potion", World.ItemIDMaxManaPotion, 200, 100, 1f);
 
+            CreateMaterial("Healing Grass", World.MaterialIDHealingGrass, 0, 2);
+
             CreateEnemyLootItem("Snake Skin", World.EnemyLootIDSnakeSkin, 0, 2, 50, 1);
             CreateEnemyLootItem("Snake Fang", World.EnemyLootIDSnakeFang, 0, 5, 25, 1);
             CreateEnemyLootItem("Snake Eye", World.EnemyLootIDSnakeEye, 0, 10, 10, 1);
@@ -72,6 +74,11 @@ namespace Game.Items
         private static void CreateConsumable(string name, int id, int buyPrice, int sellPrice, float recoveryAmount)
         {
             standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.Consumable, recoveryAmount));
+        }
+
+        private static void CreateMaterial(string name, int id, int buyPrice, int sellPrice)
+        {
+            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.Material));
         }
 
         private static void CreateEnemyLootItem(string name, int id, int buyPrice, int sellPrice, int dropChance, int quantity)

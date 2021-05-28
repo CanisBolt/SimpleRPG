@@ -88,6 +88,9 @@ namespace Game
         public static int ItemIDBigManaPotion = 16;
         public static int ItemIDMaxManaPotion = 17;
 
+        // Material (start from 300)
+        public static int MaterialIDHealingGrass = 300;
+
         // Enemy Loot (start from 1000)
         public static int EnemyLootIDSnakeSkin = 1000;
         public static int EnemyLootIDSnakeFang = 1001;
@@ -99,6 +102,9 @@ namespace Game
         public static int EnemyLootIDWolfSkin = 1007;
         public static int EnemyLootIDWolfFang = 1008;
         public static int EnemyLootIDWispDust = 1009;
+
+        // Alchemy (start from 2000)
+        public static int AlchemyRecipeIDSmallHealingPotion = 2000;
 
         internal void AddRegion(string name, int id)
         {
