@@ -66,7 +66,12 @@ namespace Game
             Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.MaterialIDHealingGrass));
             Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.MaterialIDHealingGrass));
 
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.EnemyLootIDRatTail));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.EnemyLootIDRatTail));
+            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.EnemyLootIDSnakeFang));
+
             Hero.RecipeList.Add(RecipeFactory.RecipeByID(World.AlchemyRecipeIDSmallHealingPotion));
+            Hero.RecipeList.Add(RecipeFactory.RecipeByID(World.AlchemyRecipeIDSmallManaPotion));
 
             Hero.SkillBook.Add(World.SkillByID(World.MagicIDFireball));
             Hero.SkillBook.Add(World.SkillByID(World.MagicIDSmallHeal));

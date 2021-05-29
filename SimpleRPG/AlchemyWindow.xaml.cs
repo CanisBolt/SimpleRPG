@@ -44,10 +44,11 @@ namespace SimpleRPG
             }
         }
 
-        // For now it's possible to craft item only from one igredient.
+        // That's one big bad code. Works for now, but want to rewrite it later
         private void btnCraft_Click(object sender, RoutedEventArgs e)
         {
             Game.Items.AlchemyRecipe selectedRecipe = (Game.Items.AlchemyRecipe)cbRecipeList.SelectedItem;
+            List<bool> isAllItemsAvailable = new List<bool>(); // list for checking purpose
 
             foreach (KeyValuePair<Game.Items.GameItems, int> recipe in selectedRecipe.RequiredToCraft)
             {
@@ -57,13 +58,34 @@ namespace SimpleRPG
                     {
                         if(item.Quantity >= recipe.Value)
                         {
-                            gameSession.Hero.AddItemToInventory(Game.Items.ItemsFactory.ItemByID(selectedRecipe.CraftingItem.ID));
-                            gameSession.Hero.RemoveItemToInventory(item, recipe.Value);
-                            return;
+                            isAllItemsAvailable.Add(true); // true if ingredient is available
                         }
                     }
                 }
-                MessageBox.Show("You don't have items to craft");
+            }
+
+            // moving through list once again to remove items that were used in crafting
+            if (isAllItemsAvailable.Count.Equals(selectedRecipe.RequiredToCraft.Count))
+            {
+                foreach (KeyValuePair<Game.Items.GameItems, int> recipe in selectedRecipe.RequiredToCraft)
+                {
+                    for(int i = 0; i < gameSession.Hero.Inventory.Count; i++)
+                    {
+                        if (gameSession.Hero.Inventory[i].ID.Equals(recipe.Key.ID))
+                        {
+                            if (gameSession.Hero.Inventory[i].Quantity >= recipe.Value)
+                            {
+                                gameSession.Hero.RemoveItemToInventory(gameSession.Hero.Inventory[i], recipe.Value);
+                                i = 0;
+                            }
+                        }
+                    }
+                }
+                gameSession.Hero.AddItemToInventory(Game.Items.ItemsFactory.ItemByID(selectedRecipe.CraftingItem.ID));
+            }
+            else
+            {
+                MessageBox.Show($"You don't have ingredients to craft {selectedRecipe.RecipeName}");
                 return;
             }
         }

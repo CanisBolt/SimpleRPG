@@ -105,6 +105,7 @@ namespace Game
 
         // Alchemy (start from 2000)
         public static int AlchemyRecipeIDSmallHealingPotion = 2000;
+        public static int AlchemyRecipeIDSmallManaPotion = 2001;
 
         internal void AddRegion(string name, int id)
         {

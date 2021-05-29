@@ -237,17 +237,17 @@ namespace Game.LivingCreatures
             {
                 switch (CurrentSkill.Modificator)
                 {
-                    case SpecialAttack.Skills.Attribute.Strength:
+                    case Skills.Attribute.Strength:
                         return Strength * CurrentSkill.AttributeModificator;
-                    case SpecialAttack.Skills.Attribute.Agility:
+                    case Skills.Attribute.Agility:
                         return Agility * CurrentSkill.AttributeModificator;
-                    case SpecialAttack.Skills.Attribute.Vitality:
+                    case Skills.Attribute.Vitality:
                         return Vitality * CurrentSkill.AttributeModificator;
-                    case SpecialAttack.Skills.Attribute.Intelligence:
+                    case Skills.Attribute.Intelligence:
                         return Intelligence * CurrentSkill.AttributeModificator;
-                    case SpecialAttack.Skills.Attribute.Mind:
+                    case Skills.Attribute.Mind:
                         return Mind * CurrentSkill.AttributeModificator;
-                    case SpecialAttack.Skills.Attribute.Luck:
+                    case Skills.Attribute.Luck:
                         return Luck * CurrentSkill.AttributeModificator;
                 }
             }

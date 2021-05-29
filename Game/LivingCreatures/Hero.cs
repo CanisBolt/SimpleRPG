@@ -157,13 +157,13 @@ namespace Game.LivingCreatures
                     {
                         if (Inventory[i].Quantity == quantity)
                         {
-                            Inventory.Remove(item);
+                            Inventory.Remove(Inventory[i]);
                         }
                         Inventory[i].Quantity -= quantity;
                     }
                     else
                     {
-                        Inventory.Remove(item);
+                        Inventory.Remove(Inventory[i]);
                     }
                     return;
                 }
