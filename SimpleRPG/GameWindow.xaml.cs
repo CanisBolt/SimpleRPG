@@ -22,7 +22,6 @@ namespace SimpleRPG
             gameSession.Hero.SkillPoints = 5;
             DataContext = gameSession;
 
-
             UpdateLocationData();
         }
 
@@ -57,11 +56,7 @@ namespace SimpleRPG
                 }
             }
 
-            if (gameSession.CurrentLocation.ShopOnLocation != null)
-            {
-                btnEnterShop.Visibility = Visibility.Visible;
-            }
-            else btnEnterShop.Visibility = Visibility.Hidden;
+            btnEnter.Visibility = Visibility.Visible;
 
             if (gameSession.CurrentLocation.NPCOnLocation != null)
             {
@@ -181,10 +176,20 @@ namespace SimpleRPG
             }
         }
 
-        private void btnEnterShop_Click(object sender, RoutedEventArgs e)
+        private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
-            ShopWindow window = new ShopWindow(gameSession);
-            window.ShowDialog();
+            switch(gameSession.CurrentLocation.Name)
+            {
+                case "Village Shop":
+                    ShopWindow window = new ShopWindow(gameSession);
+                    window.ShowDialog();
+                    break;
+                case "Garden":
+                    break;
+                default:
+                    MessageBox.Show("There is no place to Enter");
+                    break;
+            }
         }
 
         private void TalkToNPC(object sender, MouseButtonEventArgs e)

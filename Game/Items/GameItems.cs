@@ -38,6 +38,10 @@ namespace Game.Items
         // Enemy Loot
         public int DropChance { get; set; }
 
+        // Seeds
+        public int TimeToGrow { get; set; } // in seconds
+        public int HarvestPlantID { get; set; }
+
         // Basic Constructor
         public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int quantity = 1)
         {
@@ -100,6 +104,19 @@ namespace Game.Items
             Quantity = quantity;
         }
 
+        // Seeds Constructor
+        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int timeToGrow, int harvestPlantID, int quantity = 1)
+        {
+            Name = name;
+            ID = id;
+            BuyPrice = buyPrice;
+            SellPrice = sellPrice;
+            ItemType = type;
+            TimeToGrow = timeToGrow;
+            HarvestPlantID = harvestPlantID;
+            Quantity = quantity;
+        }
+
         public GameItems Clone()
         {
             switch (ItemType)
@@ -112,6 +129,8 @@ namespace Game.Items
                     return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, RecoveryAmount);
                 case TypeOfItem.EnemyLoot:
                     return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, DropChance, Quantity);
+                case TypeOfItem.Seed:
+                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, TimeToGrow, HarvestPlantID, Quantity);
                 default:
                     return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType);
             }
@@ -123,7 +142,8 @@ namespace Game.Items
             Armor,
             Consumable,
             Material,
-            EnemyLoot
+            EnemyLoot,
+            Seed
         }
 
         public enum WeaponType

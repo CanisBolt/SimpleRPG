@@ -48,6 +48,9 @@ namespace Game.GameLocations
             newWorld.AddSpecialAttack("Sword: Heavy Strike", World.SwordSKillIDHeavyStrike, "Deal heavy strike with sword. Base Damage: 5 + 1.5 for each Strength point. Mana Cost 15", 5, 15, 1.5f, World.StatusEffectByID(World.StatusEffectIDBleed), Skills.Target.Enemy, Skills.Attribute.Strength, Skills.SpecialAttackType.Skill, GameItems.WeaponType.Sword);
             newWorld.AddSpecialAttack("Sword: MultiHit", World.SwordSKillIDMultiHit, "Deals multiple hits (from 2 to 5). Base Damage from 1 hit: 2 + 0.5 for each Agility point. Mana Cost 10", 2, 10, 0.5f, null, Skills.Target.Enemy, Skills.Attribute.Agility, Skills.SpecialAttackType.Skill, GameItems.WeaponType.Sword);
 
+            newWorld.AddLocation(0, -1, "Garden",
+                "Your Garden", newWorld.RegionByID(World.RegionIDVillage), true);
+
             newWorld.AddLocation(0, 0, "Home",
                 "Home sweet home", newWorld.RegionByID(World.RegionIDVillage), true);
 

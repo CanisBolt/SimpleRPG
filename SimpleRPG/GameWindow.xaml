@@ -56,7 +56,7 @@
             <TextBlock x:Name="tbRegion" Text="{Binding CurrentLocation.Region.Name}" Margin="61,4,10,114" Width="160"/>
             <TextBlock x:Name="tbLocation" Text="{Binding CurrentLocation.Name}" Margin="61,34,10,84" Width="160"/>
             <TextBlock Text="{Binding CurrentLocation.Description}" TextWrapping="Wrap" Margin="3,64,17,29"/>
-            <Button x:Name="btnEnterShop" Content="EnterTheShop" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Width="87" Click="btnEnterShop_Click"/>
+            <Button x:Name="btnEnter" Content="Enter" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Width="87" Click="btnEnter_Click"/>
             <TextBlock x:Name="tbNPC" Text="{Binding CurrentLocation.NPCOnLocation.Name}" Margin="102,118,10,0" MouseLeftButtonDown="TalkToNPC"/>
         </Grid>
 

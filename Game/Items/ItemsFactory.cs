@@ -47,6 +47,8 @@ namespace Game.Items
             CreateEnemyLootItem("Wolf Skin", World.EnemyLootIDWolfSkin, 0, 15, 30, 1);
             CreateEnemyLootItem("Wolf Fanf", World.EnemyLootIDWolfFang, 0, 17, 20, 1);
             CreateEnemyLootItem("Wisp Dust", World.EnemyLootIDWispDust, 0, 20, 10, 1);
+
+            CreateSeed("Healing Grass Seed", World.SeedIDHealingGrass, 5, 2, 120, World.MaterialIDHealingGrass, 1);
         }
 
         public static GameItems CreateGameItem(int itemID)
@@ -84,6 +86,11 @@ namespace Game.Items
         private static void CreateEnemyLootItem(string name, int id, int buyPrice, int sellPrice, int dropChance, int quantity)
         {
             standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.EnemyLoot, dropChance, quantity));
+        }
+
+        private static void CreateSeed(string name, int id, int buyPrice, int sellPrice, int timeToGrow, int harvestPlant, int quantity)
+        {
+            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.EnemyLoot, timeToGrow, harvestPlant, quantity));
         }
 
         public static GameItems ItemByID(int id)

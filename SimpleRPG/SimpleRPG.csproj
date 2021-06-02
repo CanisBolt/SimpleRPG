@@ -58,6 +58,9 @@
     <Compile Include="AlchemyWindow.xaml.cs">
       <DependentUpon>AlchemyWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GardenWindow.xaml.cs">
+      <DependentUpon>GardenWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShopWindow.xaml.cs">
       <DependentUpon>ShopWindow.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GardenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

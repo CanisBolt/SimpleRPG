@@ -103,6 +103,9 @@ namespace Game
         public static int EnemyLootIDWolfFang = 1008;
         public static int EnemyLootIDWispDust = 1009;
 
+        // Seed (start from 1500)
+        public static int SeedIDHealingGrass = 1500;
+
         // Alchemy (start from 2000)
         public static int AlchemyRecipeIDSmallHealingPotion = 2000;
         public static int AlchemyRecipeIDSmallManaPotion = 2001;
