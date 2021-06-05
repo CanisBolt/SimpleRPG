@@ -133,6 +133,7 @@ namespace Game.LivingCreatures
         public ObservableCollection<GameLocations.Quest> QuestJournal { get; set; }
 
         public ObservableCollection<Items.AlchemyRecipe> RecipeList { get; set; }
+        public GameLocations.Garden PlayersGarden { get; set; }
 
         public void AddItemToInventory(Items.GameItems item)
         {
@@ -177,6 +178,7 @@ namespace Game.LivingCreatures
             Gold = 0;
             QuestJournal = new ObservableCollection<GameLocations.Quest>();
             RecipeList = new ObservableCollection<Items.AlchemyRecipe>();
+            PlayersGarden = new GameLocations.Garden();
         }
 
         public void LevelUP()
@@ -214,7 +216,7 @@ namespace Game.LivingCreatures
                 int numberOfHits = Dice.rng.Next(CurrentSkill.NumberOfHits) + 1;
                 for (int i = 0; i < numberOfHits; i++)
                 {
-                    damage += (CurrentSkill.BaseDamage + AddDamageModificator());
+                    damage += CurrentSkill.BaseDamage + AddDamageModificator();
                 }
                 return Dice.GetRandomModificator() * damage;
             }

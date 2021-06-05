@@ -269,5 +269,11 @@ namespace SimpleRPG
             AlchemyWindow alcWindow = new AlchemyWindow(gameSession);
             alcWindow.ShowDialog();
         }
+
+        private void OpenGardenWindow(object sender, MouseButtonEventArgs e)
+        {
+            GardenWindow gardenWindow = new GardenWindow(gameSession);
+            gardenWindow.ShowDialog();
+        }
     }
 }

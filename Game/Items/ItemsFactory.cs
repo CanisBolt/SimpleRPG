@@ -90,7 +90,7 @@ namespace Game.Items
 
         private static void CreateSeed(string name, int id, int buyPrice, int sellPrice, int timeToGrow, int harvestPlant, int quantity)
         {
-            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.EnemyLoot, timeToGrow, harvestPlant, quantity));
+            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.Seed, timeToGrow, harvestPlant, quantity));
         }
 
         public static GameItems ItemByID(int id)
