@@ -23,7 +23,11 @@ namespace SimpleRPG
             if (gameSession.Hero.Gold >= selectedInventoryItem.BuyPrice)
             {
                 gameSession.Hero.Gold -= selectedInventoryItem.BuyPrice;
-                gameSession.Hero.AddItemToInventory(selectedInventoryItem);
+                if(selectedInventoryItem.ItemType.Equals(Game.Items.GameItems.TypeOfItem.Seed))
+                {
+                    gameSession.Hero.PlayersGarden.AvailableSeeds.Add(selectedInventoryItem);
+                }
+                else gameSession.Hero.AddItemToInventory(selectedInventoryItem);
                 tbLog.Text = $"You bought {selectedInventoryItem.Name} for {selectedInventoryItem.BuyPrice} gold!"; // TODO add price * 2 to data grid
             }
             else

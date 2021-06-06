@@ -48,7 +48,7 @@ namespace Game.Items
             CreateEnemyLootItem("Wolf Fanf", World.EnemyLootIDWolfFang, 0, 17, 20, 1);
             CreateEnemyLootItem("Wisp Dust", World.EnemyLootIDWispDust, 0, 20, 10, 1);
 
-            CreateSeed("Healing Grass Seed", World.SeedIDHealingGrass, 5, 2, 120, World.MaterialIDHealingGrass, 1);
+            CreateSeed("Healing Grass Seed", World.SeedIDHealingGrass, 5, 2, 60, World.MaterialIDHealingGrass, 1);
         }
 
         public static GameItems CreateGameItem(int itemID)

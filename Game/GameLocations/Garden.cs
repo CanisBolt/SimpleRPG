@@ -9,12 +9,14 @@ namespace Game.GameLocations
     public class Garden
     {
         public Items.GameItems[] Slots { get; set; }
+        public List<Items.GameItems> AvailableSeeds { get; set; }
         public int Size { get; set; }
 
         public Garden()
         {
             Size = 3;
             Slots = new Items.GameItems[Size];
+            AvailableSeeds = new List<Items.GameItems>();
         }
     }
 }

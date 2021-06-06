@@ -70,9 +70,7 @@ namespace Game
             Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.EnemyLootIDRatTail));
             Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.EnemyLootIDSnakeFang));
 
-            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.SeedIDHealingGrass));
-            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.SeedIDHealingGrass));
-            Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.SeedIDHealingGrass));
+            Hero.PlayersGarden.AvailableSeeds.Add(ItemsFactory.CreateGameItem(World.SeedIDHealingGrass));
 
             Hero.RecipeList.Add(RecipeFactory.RecipeByID(World.AlchemyRecipeIDSmallHealingPotion));
             Hero.RecipeList.Add(RecipeFactory.RecipeByID(World.AlchemyRecipeIDSmallManaPotion));
@@ -95,6 +93,15 @@ namespace Game
             Hero.Inventory.Remove(Hero.CurrentBodyArmor);
             Hero.Inventory.Remove(Hero.CurrentLegsArmor);
             Hero.Inventory.Remove(Hero.CurrentFeetArmor);
+
+
+            for (int i = 0; i < Hero.PlayersGarden.Size; i++)
+            {
+                if (Hero.PlayersGarden.Slots[i] == null)
+                {
+                    Hero.PlayersGarden.Slots[i] = new GameItems("Empty Slot", -1, 0, 0, GameItems.TypeOfItem.Seed);
+                }
+            }
 
             GetEnemyAtRegion();
         }

@@ -187,6 +187,7 @@ namespace SimpleRPG
                     imgSelectedAvatar.Source = new BitmapImage(new Uri(ElfImages[imageNumber], UriKind.Relative));
                     break;
                 case "Dwarf":
+                    if (imageNumber >= DwarfImages.Count) imageNumber = DwarfImages.Count - 1;
                     imgSelectedAvatar.Source = new BitmapImage(new Uri(DwarfImages[imageNumber], UriKind.Relative));
                     break;
                 case "DogFolk":
