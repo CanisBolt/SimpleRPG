@@ -62,8 +62,6 @@
                     </Style>
                 </RichTextBox.Resources>
                 <FlowDocument>
-                    <Paragraph>
-                    </Paragraph>
                 </FlowDocument>
             </RichTextBox>
         </Grid>

@@ -203,7 +203,8 @@ namespace Game.LivingCreatures
 
         public override float PhysicalDamageCalculation()
         {
-            return Dice.GetRandomModificator() * (Strength + (Dice.rng.Next(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage) + 1));
+            Damage = Dice.GetRandomModificator() * (Strength + (Dice.rng.Next(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage) + 1)) * CalculateCriticalHitChance();
+            return Damage;
         }
 
         public override float SkillDamageCalculation()
@@ -218,16 +219,15 @@ namespace Game.LivingCreatures
                 {
                     damage += CurrentSkill.BaseDamage + AddDamageModificator();
                 }
-                return Dice.GetRandomModificator() * damage;
             }
-            else damage = Dice.GetRandomModificator() * (CurrentSkill.BaseDamage + AddDamageModificator());
+            else damage = CurrentSkill.BaseDamage + AddDamageModificator();
 
             if (CurrentWeapon.TypeOfWeapon.Equals(Items.GameItems.WeaponType.Staff) && CurrentSkill.Type.Equals(SpecialAttack.Skills.SpecialAttackType.Magic))
             {
                 damage *= 1.2f; // Increase magic damage by 20% if Hero is using a Staff Weapon
             }
 
-            return damage;
+            return Dice.GetRandomModificator() * damage * CalculateCriticalHitChance();
         }
 
         public void CalculateDefence()

@@ -51,8 +51,6 @@ namespace SimpleRPG
             // TODO change enemy stats to avoid low damage
             if (gameSession.CurrentEnemy.SkillBook.Count != 0) gameSession.CurrentEnemy.ChooseRandomSkill();
 
-            gameSession.CurrentEnemy.CalculateCriticalHitChance();
-
             if (gameSession.CurrentEnemy.CurrentSkill == null)
             {
                 EnemyBasicAttack(); // Basic Attack
@@ -69,7 +67,6 @@ namespace SimpleRPG
                         gameSession.CurrentEnemy.CurrentMP -= gameSession.CurrentEnemy.CurrentSkill.ManaCost;
                         if (gameSession.CurrentEnemy.IsCriticalHit)
                         {
-                            gameSession.CurrentEnemy.Damage *= 2;
                             tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} with {gameSession.CurrentEnemy.CurrentSkill.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage. CRITICAL HIT!" + Environment.NewLine)));
                         }
                         else tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} with {gameSession.CurrentEnemy.CurrentSkill.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine)));
@@ -87,7 +84,6 @@ namespace SimpleRPG
 
             if (gameSession.CurrentEnemy.IsCriticalHit)
             {
-                gameSession.CurrentEnemy.Damage *= 2;
                 tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage. CRITICAL HIT!" + Environment.NewLine)));
             }
             else tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine)));
@@ -121,7 +117,6 @@ namespace SimpleRPG
         private void BasicAttack(object sender, MouseButtonEventArgs e)
         {
             gameSession.Hero.Damage = gameSession.Hero.PhysicalDamageCalculation();
-            if (gameSession.Hero.CalculateCriticalHitChance()) gameSession.Hero.Damage *= 2;
             gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
             if (gameSession.Hero.IsCriticalHit)
             {
@@ -139,7 +134,6 @@ namespace SimpleRPG
             {
                 gameSession.Hero.CurrentMP -= gameSession.Hero.CurrentSkill.ManaCost;
                 gameSession.Hero.Damage = gameSession.Hero.SkillDamageCalculation();
-                if (gameSession.Hero.CalculateCriticalHitChance()) gameSession.Hero.Damage *= 2;
 
                 if (gameSession.Hero.CurrentSkill.AffectedTarger.Equals(Game.SpecialAttack.Skills.Target.Self))
                 {

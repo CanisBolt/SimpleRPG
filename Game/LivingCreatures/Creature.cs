@@ -256,34 +256,37 @@ namespace Game.LivingCreatures
 
         public virtual float PhysicalDamageCalculation()
         {
-            return Dice.GetRandomModificator() * Strength;
+            return Dice.GetRandomModificator() * Strength * CalculateCriticalHitChance();
         }
 
         public virtual float SkillDamageCalculation()
         {
+            float damage = 0;
             if (CurrentSkill == null) return 0;
 
             if (CurrentSkill.NumberOfHits > 1)
             {
-                float damage = 0;
                 int numberOfHits = Dice.rng.Next(CurrentSkill.NumberOfHits) + 1;
                 for (int i = 0; i < numberOfHits; i++)
                 {
                     damage += CurrentSkill.BaseDamage + AddDamageModificator();
                 }
-                return Dice.GetRandomModificator() * damage;
             }
-            return Dice.GetRandomModificator() * (CurrentSkill.BaseDamage + AddDamageModificator());
+            else damage = CurrentSkill.BaseDamage + AddDamageModificator();
+
+            return Dice.GetRandomModificator() * damage * CalculateCriticalHitChance();
         }
 
-        public bool CalculateCriticalHitChance()
+        public int CalculateCriticalHitChance()
         {
             if (Dice.rng.Next(100) + 1 <= Dice.rng.Next(Luck))
             {
-                return IsCriticalHit = true;
+                IsCriticalHit = true;
+                return 2;
             }
 
-            return IsCriticalHit = false;
+            IsCriticalHit = false;
+            return 1;
         }
 
         public void ApplyStatusEffect(string name, int id, string description, float affectHP, float affectMP, int duration, Enum type)
