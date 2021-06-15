@@ -61,9 +61,19 @@
             <TextBlock x:Name="tbNPC" Text="{Binding CurrentLocation.NPCOnLocation.Name}" Margin="102,118,10,0" MouseLeftButtonDown="TalkToNPC"/>
         </Grid>
 
-        <TextBox x:Name="tbLog" HorizontalAlignment="Left" Height="245" Margin="0,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="347" Grid.Column="1" Grid.Row="1" IsReadOnly="True"/>
-
         <TextBlock x:Name="tbMonsterName" Text="{Binding CurrentEnemy.Name}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="121" Height="25" MouseLeftButtonDown="AttackEnemy"/>
+        <RichTextBox x:Name="tbLog" Grid.Column="1" HorizontalAlignment="Left" Height="259" Margin="10,73,0,0" Grid.Row="1" VerticalAlignment="Top" Width="332" IsReadOnly="True">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </RichTextBox.Resources>
+            <FlowDocument>
+                <Paragraph>
+                    
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
 
 
 

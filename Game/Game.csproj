@@ -48,6 +48,7 @@
     <Compile Include="GameLocations\Quest.cs" />
     <Compile Include="GameLocations\Region.cs" />
     <Compile Include="GameLocations\Shop.cs" />
+    <Compile Include="GameMessageEventArgs.cs" />
     <Compile Include="Items\AlchemyRecipe.cs" />
     <Compile Include="Items\ItemsFactory.cs" />
     <Compile Include="Items\RecipeFactory.cs" />

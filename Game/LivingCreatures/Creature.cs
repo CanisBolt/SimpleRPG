@@ -20,7 +20,7 @@ namespace Game.LivingCreatures
         private int mind;
         private int luck;
         protected float defence;
-        private SpecialAttack.Skills currentSkill;
+        private Skills currentSkill;
 
         public string Name
         {
@@ -269,7 +269,7 @@ namespace Game.LivingCreatures
                 int numberOfHits = Dice.rng.Next(CurrentSkill.NumberOfHits) + 1;
                 for (int i = 0; i < numberOfHits; i++)
                 {
-                    damage += (CurrentSkill.BaseDamage + AddDamageModificator());
+                    damage += CurrentSkill.BaseDamage + AddDamageModificator();
                 }
                 return Dice.GetRandomModificator() * damage;
             }
@@ -306,11 +306,11 @@ namespace Game.LivingCreatures
             {
                 if (effect.Type.Equals(StatusEffect.StatusType.HealOverTime))
                 {
-                    CurrentHP += (int)((MaxHP * effect.AffectHP) / 100);
+                    CurrentHP += (int)(MaxHP * effect.AffectHP / 100);
                 }
                 if (effect.Type.Equals(StatusEffect.StatusType.DamageOverTime))
                 {
-                    CurrentHP -= (int)((MaxHP * effect.AffectHP) / 100);
+                    CurrentHP -= (int)(MaxHP * effect.AffectHP / 100);
                 }
                 effect.Duration--;
             }
