@@ -20,13 +20,13 @@ namespace SimpleRPG
             InitializeComponent();
 
             gameSession = _gameSession;
+            Game.LivingCreatures.Creature.OnMessageRaised += OnBattleMessageRaised;
             DataContext = gameSession;
 
             imgEnemy.Source = new BitmapImage(new Uri(gameSession.CurrentEnemy.Avatar, UriKind.Relative));
 
             Battle();
         }
-
 
         private void Battle()
         {
@@ -63,13 +63,8 @@ namespace SimpleRPG
                         EnemyBasicAttack();
                         break;
                     case 1:
-                        gameSession.CurrentEnemy.Damage = gameSession.CurrentEnemy.SkillDamageCalculation();
+                        gameSession.CurrentEnemy.SkillDamageCalculation();
                         gameSession.CurrentEnemy.CurrentMP -= gameSession.CurrentEnemy.CurrentSkill.ManaCost;
-                        if (gameSession.CurrentEnemy.IsCriticalHit)
-                        {
-                            tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} with {gameSession.CurrentEnemy.CurrentSkill.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage. CRITICAL HIT!" + Environment.NewLine)));
-                        }
-                        else tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} with {gameSession.CurrentEnemy.CurrentSkill.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine)));
                         break;
                 }
             }
@@ -88,7 +83,6 @@ namespace SimpleRPG
             }
             else tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine)));
         }
-
 
 
         private void CheckHPStatus()
@@ -133,21 +127,15 @@ namespace SimpleRPG
             if (spellbook.IsSkillUsed)
             {
                 gameSession.Hero.CurrentMP -= gameSession.Hero.CurrentSkill.ManaCost;
-                gameSession.Hero.Damage = gameSession.Hero.SkillDamageCalculation();
+                gameSession.Hero.SkillDamageCalculation();
 
                 if (gameSession.Hero.CurrentSkill.AffectedTarger.Equals(Game.SpecialAttack.Skills.Target.Self))
                 {
                     gameSession.Hero.CurrentHP += (int)gameSession.Hero.Damage;
                     if (gameSession.Hero.CurrentHP > gameSession.Hero.MaxHP) gameSession.Hero.CurrentHP = gameSession.Hero.MaxHP;
-                    tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} casting {gameSession.Hero.CurrentSkill.Name} and heal for {(int)gameSession.Hero.Damage} HP." + Environment.NewLine)));
                 }
                 else
                 {
-                    if (gameSession.Hero.IsCriticalHit)
-                    {
-                        tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSkill.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage. CRITICAL HIT!" + Environment.NewLine)));
-                    }
-                    else tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentSkill.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine)));
                     gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
                 }
 
@@ -155,7 +143,6 @@ namespace SimpleRPG
                 if (gameSession.Hero.CurrentSkill.Effect != null)
                 {
                     gameSession.CurrentEnemy.ApplyStatusEffect(gameSession.Hero.CurrentSkill.Effect.Name, gameSession.Hero.CurrentSkill.Effect.ID, gameSession.Hero.CurrentSkill.Effect.Description, gameSession.Hero.CurrentSkill.Effect.AffectHP, gameSession.Hero.CurrentSkill.Effect.AffectMP, gameSession.Hero.CurrentSkill.Effect.Duration, gameSession.Hero.CurrentSkill.Effect.Type);
-                    tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} applied {gameSession.Hero.CurrentSkill.Effect.Name} on {gameSession.CurrentEnemy.Name}" + Environment.NewLine)));
                 }
                 EnemyAttack();
             }
@@ -183,7 +170,7 @@ namespace SimpleRPG
             EnemyAttack();
         }
 
-        private void OnGameMessageRaised(object sender, GameMessageEventArgs e)
+        private void OnBattleMessageRaised(object sender, GameMessageEventArgs e)
         {
             tbBattleLog.Document.Blocks.Add(new Paragraph(new Run(e.Message)));
             tbBattleLog.ScrollToEnd();

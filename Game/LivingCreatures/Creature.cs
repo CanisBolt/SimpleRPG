@@ -5,8 +5,11 @@ using System.Collections.ObjectModel;
 
 namespace Game.LivingCreatures
 {
-    public class Creature : BaseNotificationClass
+    public abstract class Creature : BaseNotificationClass
     {
+        public static event EventHandler<GameMessageEventArgs> OnMessageRaised;
+
+        #region Properties
         private string name;
         private int level;
         private int currentHP;
@@ -20,8 +23,11 @@ namespace Game.LivingCreatures
         private int mind;
         private int luck;
         protected float defence;
+        private GameItems currentWeapon;
         private Skills currentSkill;
+        #endregion
 
+        #region Stats
         public string Name
         {
             get
@@ -172,6 +178,7 @@ namespace Game.LivingCreatures
                 OnPropertyChanged(nameof(luck));
             }
         } // Increase crit chance
+        #endregion
 
         public float Damage { get; set; }
         public float Defence
@@ -190,6 +197,19 @@ namespace Game.LivingCreatures
         public bool IsCriticalHit { get; set; }
 
         public string Avatar { get; set; }
+
+        public GameItems CurrentWeapon
+        {
+            get
+            {
+                return currentWeapon;
+            }
+            set
+            {
+                currentWeapon = value;
+                OnPropertyChanged(nameof(currentWeapon));
+            }
+        }
         public Skills CurrentSkill
         {
             get
@@ -259,10 +279,10 @@ namespace Game.LivingCreatures
             return Dice.GetRandomModificator() * Strength * CalculateCriticalHitChance();
         }
 
-        public virtual float SkillDamageCalculation()
+        public virtual void SkillDamageCalculation()
         {
             float damage = 0;
-            if (CurrentSkill == null) return 0;
+            if (CurrentSkill == null) return;
 
             if (CurrentSkill.NumberOfHits > 1)
             {
@@ -274,7 +294,28 @@ namespace Game.LivingCreatures
             }
             else damage = CurrentSkill.BaseDamage + AddDamageModificator();
 
-            return Dice.GetRandomModificator() * damage * CalculateCriticalHitChance();
+            if(currentWeapon != null)
+            {
+                if (CurrentWeapon.TypeOfWeapon.Equals(GameItems.WeaponType.Staff) && CurrentSkill.Type.Equals(Skills.SpecialAttackType.Magic))
+                {
+                    damage *= 1.2f; // Increase magic damage by 20% if Hero is using a Staff Weapon
+                }
+            }
+
+            Damage = Dice.GetRandomModificator() * damage * CalculateCriticalHitChance();
+
+            if(CurrentSkill.AffectedTarger.Equals(Skills.Target.Self))
+            {
+                RaiseMessage($"{Name} casted {CurrentSkill.Name} and healed {(int)Damage} HP");
+            }
+            else
+            {
+                if (IsCriticalHit)
+                {
+                    RaiseMessage($"{Name} used {CurrentSkill.Name} and dealed {(int)Damage} CRITICAL damage to enemy");
+                }
+                else RaiseMessage($"{Name} used {CurrentSkill.Name} and dealed {(int)Damage} damage to enemy");
+            }
         }
 
         public int CalculateCriticalHitChance()
@@ -300,20 +341,24 @@ namespace Game.LivingCreatures
                 }
             }
             Effects.Add(new StatusEffect(name, id, description, affectHP, affectMP, duration, type));
+            RaiseMessage($"{Name} is {name}ing");
         }
+
         public void StatusEffectsDamageCalculation()
         {
-            // TODO add text message for status effect
             if (Effects.Count == 0) return;
+
             foreach (var effect in Effects)
             {
                 if (effect.Type.Equals(StatusEffect.StatusType.HealOverTime))
                 {
                     CurrentHP += (int)(MaxHP * effect.AffectHP / 100);
+                    RaiseMessage($"{Name}: {effect.Name} restore {(int)(MaxHP * effect.AffectHP / 100)} HP");
                 }
                 if (effect.Type.Equals(StatusEffect.StatusType.DamageOverTime))
                 {
                     CurrentHP -= (int)(MaxHP * effect.AffectHP / 100);
+                    RaiseMessage($"{Name}: {effect.Name} damaged {(int)(MaxHP * effect.AffectHP / 100)} HP");
                 }
                 effect.Duration--;
             }
@@ -331,6 +376,11 @@ namespace Game.LivingCreatures
                     i = 0;
                 }
             }
+        }
+
+        private void RaiseMessage(string message)
+        {
+            OnMessageRaised?.Invoke(this, new GameMessageEventArgs(message));
         }
 
         public void RestoreHPMP()

@@ -21,7 +21,6 @@ namespace SimpleRPG
 
             gameSession = _gameSession;
             gameSession.Hero.SkillPoints = 5;
-            gameSession.OnMessageRaised += OnGameMessageRaised;
             DataContext = gameSession;
 
             UpdateLocationData();
@@ -134,7 +133,7 @@ namespace SimpleRPG
             if (spellbook.IsSkillUsed && gameSession.Hero.CurrentHP != gameSession.Hero.MaxHP)
             {
                 gameSession.Hero.CurrentMP -= gameSession.Hero.CurrentSkill.ManaCost;
-                gameSession.Hero.Damage = gameSession.Hero.SkillDamageCalculation();
+                gameSession.Hero.SkillDamageCalculation();
                 gameSession.Hero.CurrentHP += (int)gameSession.Hero.Damage;
                 if (gameSession.Hero.CurrentHP > gameSession.Hero.MaxHP) gameSession.Hero.CurrentHP = gameSession.Hero.MaxHP;
                 tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} casting {gameSession.Hero.CurrentSkill.Name} and heal for {(int)gameSession.Hero.Damage} HP." + Environment.NewLine)));

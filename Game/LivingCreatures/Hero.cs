@@ -8,7 +8,6 @@ namespace Game.LivingCreatures
         private int expToLevel;
         private int gold;
         private int skillPoints;
-        private Items.GameItems currentWeapon;
         private Items.GameItems currentHeadArmor;
         private Items.GameItems currentBodyArmor;
         private Items.GameItems currentLegsArmor;
@@ -65,18 +64,6 @@ namespace Game.LivingCreatures
         public Gender HeroGender { get; set; }
         public Race HeroRace { get; set; }
 
-        public Items.GameItems CurrentWeapon
-        {
-            get
-            {
-                return currentWeapon;
-            }
-            set
-            {
-                currentWeapon = value;
-                OnPropertyChanged(nameof(currentWeapon));
-            }
-        }
 
         public Items.GameItems CurrentHeadArmor
         {
@@ -205,29 +192,6 @@ namespace Game.LivingCreatures
         {
             Damage = Dice.GetRandomModificator() * (Strength + (Dice.rng.Next(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage) + 1)) * CalculateCriticalHitChance();
             return Damage;
-        }
-
-        public override float SkillDamageCalculation()
-        {
-            float damage = 0;
-            if (CurrentSkill == null) return 0;
-
-            if (CurrentSkill.NumberOfHits > 1)
-            {
-                int numberOfHits = Dice.rng.Next(CurrentSkill.NumberOfHits) + 1;
-                for (int i = 0; i < numberOfHits; i++)
-                {
-                    damage += CurrentSkill.BaseDamage + AddDamageModificator();
-                }
-            }
-            else damage = CurrentSkill.BaseDamage + AddDamageModificator();
-
-            if (CurrentWeapon.TypeOfWeapon.Equals(Items.GameItems.WeaponType.Staff) && CurrentSkill.Type.Equals(SpecialAttack.Skills.SpecialAttackType.Magic))
-            {
-                damage *= 1.2f; // Increase magic damage by 20% if Hero is using a Staff Weapon
-            }
-
-            return Dice.GetRandomModificator() * damage * CalculateCriticalHitChance();
         }
 
         public void CalculateDefence()

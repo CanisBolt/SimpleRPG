@@ -10,8 +10,6 @@ namespace Game
         private Location currentLocation;
         private Enemy currentEnemy;
 
-        public event EventHandler<GameMessageEventArgs> OnMessageRaised;
-
         public World CurrentWorld { get; set; }
         public Hero Hero { get; set; }
         public Location CurrentLocation
@@ -35,7 +33,6 @@ namespace Game
                 currentEnemy = value;
                 OnPropertyChanged(nameof(HasEnemy));
                 OnPropertyChanged(nameof(currentEnemy)); 
-                if(currentEnemy != null) RaiseMessage($"You see a {currentEnemy.Name} here!");
             }
         }
 
@@ -163,10 +160,6 @@ namespace Game
         private void GetEnemyAtRegion()
         {
             CurrentEnemy = CurrentLocation.Region.GetEnemy();
-        }
-        private void RaiseMessage(string message)
-        {
-            OnMessageRaised?.Invoke(this, new GameMessageEventArgs(message));
         }
     }
 }
