@@ -29,7 +29,7 @@
             <TextBlock x:Name="tbHP" HorizontalAlignment="Left" Margin="55,327,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentHP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxHP}"/></TextBlock>
             <TextBlock x:Name="tbMP" HorizontalAlignment="Left" Margin="55,355,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentMP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.MaxMP}"/></TextBlock>
             <TextBlock x:Name="tbEXP" HorizontalAlignment="Left" Margin="55,381,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="16"><Run Text="{Binding Hero.CurrentEXP}"/><Run Text=" "/><Run Text="/"/><Run Text=" "/><Run Text="{Binding Hero.EXPToLevel}"/></TextBlock>
-            <Image x:Name="imgSelectedAvatar" Source="{Binding Hero.Avatar}" HorizontalAlignment="Left" Height="270" Margin="4,0,0,0" VerticalAlignment="Top" Width="193" Stretch="Fill"/>
+            <Image x:Name="imgSelectedAvatar" Source="{Binding Hero.Avatar}" HorizontalAlignment="Left" Height="270" Margin="4,0,0,0" VerticalAlignment="Top" Width="190" Stretch="Fill"/>
         </Grid>
 
         <!--Character Buttons -->

@@ -18,11 +18,11 @@ namespace Game
         // ID's
 
         // Races
-        public static int RaceIDHuman = 0;
-        public static int RaceIDElf = 1;
-        public static int RaceIDDwarf = 2;
-        public static int RaceIDDogFolk = 3;
-        public static int RaceIDCatFolk = 4;
+        public const int RaceIDHuman = 0;
+        public const int RaceIDElf = 1;
+        public const int RaceIDDwarf = 2;
+        public const int RaceIDDogFolk = 3;
+        public const int RaceIDCatFolk = 4;
 
         // Regions
         public static int RegionIDVillage = 0;

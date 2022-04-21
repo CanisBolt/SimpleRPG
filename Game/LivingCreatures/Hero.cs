@@ -161,12 +161,14 @@ namespace Game.LivingCreatures
         public Hero(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck) : base(name, level, strength, agility, vitality, intelligence, mind, luck)
         {
             CurrentEXP = 0;
-            EXPToLevel = Level * (100 * (Level * 2));
+            SetNextLevelEXP();
             Gold = 0;
             QuestJournal = new ObservableCollection<GameLocations.Quest>();
             RecipeList = new ObservableCollection<Items.AlchemyRecipe>();
             PlayersGarden = new GameLocations.Garden();
         }
+
+        private void SetNextLevelEXP() => EXPToLevel = Level * (25 * (Level * 2));
 
         public void LevelUP()
         {
@@ -177,7 +179,7 @@ namespace Game.LivingCreatures
                 Level++;
                 SkillPoints += 5;
 
-                EXPToLevel = Level * (100 * (Level * 2));
+                SetNextLevelEXP();
             }
         }
 

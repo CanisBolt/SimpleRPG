@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Microsoft.Win32;
 
 namespace SimpleRPG
 {
@@ -109,44 +110,47 @@ namespace SimpleRPG
 
         private void rbHuman_Checked(object sender, RoutedEventArgs e)
         {
-            gameSession.Hero.HeroRace = World.RaceByID(0);
+            gameSession.Hero.HeroRace = World.RaceByID(World.RaceIDHuman);
             UpdateInfo();
             imgSelectedAvatar.Source = new BitmapImage(new Uri(HumanImages[imageNumber], UriKind.Relative));
         }
 
         private void rbElf_Checked(object sender, RoutedEventArgs e)
         {
-            gameSession.Hero.HeroRace = World.RaceByID(1);
+            gameSession.Hero.HeroRace = World.RaceByID(World.RaceIDElf);
             UpdateInfo();
             imgSelectedAvatar.Source = new BitmapImage(new Uri(ElfImages[imageNumber], UriKind.Relative));
         }
 
         private void rbDwarf_Checked(object sender, RoutedEventArgs e)
         {
-            gameSession.Hero.HeroRace = World.RaceByID(2);
+            gameSession.Hero.HeroRace = World.RaceByID(World.RaceIDDwarf);
             UpdateInfo();
             imgSelectedAvatar.Source = new BitmapImage(new Uri(DwarfImages[imageNumber], UriKind.Relative));
         }
 
         private void rbDogFolk_Checked(object sender, RoutedEventArgs e)
         {
-            gameSession.Hero.HeroRace = World.RaceByID(3);
+            gameSession.Hero.HeroRace = World.RaceByID(World.RaceIDDogFolk);
             UpdateInfo();
             imgSelectedAvatar.Source = new BitmapImage(new Uri(DogfolkImages[imageNumber], UriKind.Relative));
         }
 
         private void rbCatFolk_Checked(object sender, RoutedEventArgs e)
         {
-            gameSession.Hero.HeroRace = World.RaceByID(4);
-            UpdateInfo();
+            gameSession.Hero.HeroRace = World.RaceByID(World.RaceIDCatFolk);
+            //UpdateInfo();
             imgSelectedAvatar.Source = new BitmapImage(new Uri(CatfolkImages[imageNumber], UriKind.Relative));
         }
 
         private void tbName_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
-            tb.Text = string.Empty;
-            tb.GotFocus -= tbName_GotFocus;
+            if(tb.Text == "Enter Name (Max 20 chars)")
+            {
+                tb.Text = string.Empty;
+                tb.GotFocus -= tbName_GotFocus;
+            }
         }
 
         private void btnPreviousImage_Click(object sender, RoutedEventArgs e)
@@ -198,6 +202,19 @@ namespace SimpleRPG
                     if (imageNumber >= CatfolkImages.Count) imageNumber = CatfolkImages.Count - 1;
                     imgSelectedAvatar.Source = new BitmapImage(new Uri(CatfolkImages[imageNumber], UriKind.Relative));
                     break;
+            }
+        }
+
+        private void Upload_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
+            {
+                imgSelectedAvatar.Source = new BitmapImage(new Uri(op.FileName));
             }
         }
     }

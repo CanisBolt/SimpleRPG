@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleRPG"
         mc:Ignorable="d"
-        Title="Character Creation" Height="350" Width="545">
+        Title="Character Creation" Height="350" Width="560">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="168*"/>
@@ -25,6 +25,8 @@
             <RadioButton x:Name="rbMale" Content="Male" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" GroupName="Gender" Height="15" Width="58" IsChecked="True"/>
             <RadioButton x:Name="rbGender" Content="Female" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" GroupName="Gender" Height="15" Width="63"/>
             <Label Content="Gender:" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+            <Label Content="Upload Custom Avatar" HorizontalAlignment="Left" Margin="8,240,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="Upload" Content="Upload" HorizontalAlignment="Left" Margin="8,271,0,0" VerticalAlignment="Top" Width="76" Height="20" Click="Upload_Click"/>
         </Grid>
 
         <!-- Stats -->
@@ -47,13 +49,13 @@
             <TextBlock x:Name="tbMind" HorizontalAlignment="Left" Margin="74,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
             <TextBlock x:Name="tbLuck" HorizontalAlignment="Left" Margin="74,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Height="16" Grid.Column="1"/>
         </Grid>
-        
+
         <!-- Avatar -->
-        <Grid Grid.Column="2" HorizontalAlignment="Left" Height="318" Margin="0,1,0,0" VerticalAlignment="Top" Width="187">
-            <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="45,286,0,0" VerticalAlignment="Top" Width="75" Click="btnCreate_Click" Height="20" Grid.Column="2"/>
-            <Image x:Name="imgSelectedAvatar" Grid.Column="2" HorizontalAlignment="Left" Height="240" Margin="10,10,0,0" VerticalAlignment="Top" Width="143" Stretch="Fill"/>
-            <Button x:Name="btnPreviousImage" Content="&lt;-" Grid.Column="2" HorizontalAlignment="Left" Margin="45,261,0,0" VerticalAlignment="Top" Width="23" Click="btnPreviousImage_Click" Height="20"/>
-            <Button x:Name="btnNextImage" Content="-&gt;" Grid.Column="2" HorizontalAlignment="Left" Margin="100,261,0,0" VerticalAlignment="Top" Width="23" Click="btnNextImage_Click" Height="20"/>
+        <Grid Grid.Column="2" HorizontalAlignment="Left" Height="333" VerticalAlignment="Center" Width="187">
+            <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="45,303,0,0" VerticalAlignment="Top" Width="75" Click="btnCreate_Click" Height="20"/>
+            <Image x:Name="imgSelectedAvatar" HorizontalAlignment="Left" Height="270" Margin="0,1,0,0" VerticalAlignment="Top" Width="190" Stretch="Fill"/>
+            <Button x:Name="btnPreviousImage" Content="&lt;-" HorizontalAlignment="Left" Margin="45,278,0,0" VerticalAlignment="Top" Width="23" Click="btnPreviousImage_Click" Height="20"/>
+            <Button x:Name="btnNextImage" Content="-&gt;" HorizontalAlignment="Left" Margin="97,278,0,0" VerticalAlignment="Top" Width="23" Click="btnNextImage_Click" Height="20"/>
         </Grid>
     </Grid>
 </Window>
