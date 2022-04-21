@@ -68,11 +68,11 @@
         <TextBlock x:Name="tbLegs" Text="{Binding Hero.CurrentLegsArmor.Name}" HorizontalAlignment="Left" Margin="65,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="Feet:" Height="22"/>
         <TextBlock x:Name="tbFeet" Text="{Binding Hero.CurrentFeetArmor.Name}" HorizontalAlignment="Left" Margin="65,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
-        <TextBlock Text="Damage:" HorizontalAlignment="Left" Margin="190,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
+        <TextBlock Text="Damage:" HorizontalAlignment="Left" Margin="190,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22" ToolTip="Roll x number of y side dices. Example: 2D6 mean rolling 2 dices with six sides."/>
         <TextBlock HorizontalAlignment="Left" Margin="245,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22">
-            <Run Text="{Binding Hero.CurrentWeapon.MinimumDamage}"/>
-            <Run Text=" - "/>
-            <Run Text="{Binding Hero.CurrentWeapon.MaximumDamage}"/>
+            <Run Text="{Binding Hero.CurrentWeapon.NumberOfDices}"/>
+            <Run Text="D"/>
+            <Run Text="{Binding Hero.CurrentWeapon.NumberOfSides}"/>
         </TextBlock>
         <TextBlock Text="Defence:" HorizontalAlignment="Left" Margin="190,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
         <TextBlock Text="{Binding Hero.CurrentHeadArmor.Defence}" HorizontalAlignment="Left" Margin="245,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>

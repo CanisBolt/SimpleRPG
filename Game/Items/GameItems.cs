@@ -24,8 +24,8 @@ namespace Game.Items
         }
 
         // Weapon
-        public int MinimumDamage { get; set; }
-        public int MaximumDamage { get; set; }
+        public int NumberOfDices { get; set; }
+        public int NumberOfSides { get; set; }
         public Enum TypeOfWeapon { get; set; }
 
         // Armor
@@ -54,15 +54,15 @@ namespace Game.Items
         }
 
         // Weapon constructor
-        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int minDamage, int maxDamage, Enum typeOfWeapon, int quantity = 1)
+        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int numberOfDices, int numberOfSides, Enum typeOfWeapon, int quantity = 1)
         {
             Name = name;
             ID = id;
             BuyPrice = buyPrice;
             SellPrice = sellPrice;
             ItemType = type;
-            MinimumDamage = minDamage;
-            MaximumDamage = maxDamage;
+            NumberOfDices = numberOfDices;
+            NumberOfSides = numberOfSides;
             TypeOfWeapon = typeOfWeapon;
             Quantity = quantity;
         }
@@ -122,7 +122,7 @@ namespace Game.Items
             switch (ItemType)
             {
                 case TypeOfItem.Weapon:
-                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, MinimumDamage, MaximumDamage, TypeOfWeapon);
+                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, NumberOfDices, NumberOfSides, TypeOfWeapon);
                 case TypeOfItem.Armor:
                     return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, Defence, ArmorSlot);
                 case TypeOfItem.Consumable:

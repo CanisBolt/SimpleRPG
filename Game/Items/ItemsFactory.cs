@@ -12,8 +12,8 @@ namespace Game.Items
         {
             standardGameItems = new List<GameItems>();
 
-            CreateWeapon("Wood Staff", World.WeaponIDWoodStaff, 2, 1, 1, 2, GameItems.WeaponType.Staff);
-            CreateWeapon("Wood Sword", World.WeaponIDWoodSword, 2, 1, 2, 2, GameItems.WeaponType.Sword);
+            CreateWeapon("Wood Staff", World.WeaponIDWoodStaff, 2, 1, 1, 6, GameItems.WeaponType.Staff);
+            CreateWeapon("Wood Sword", World.WeaponIDWoodSword, 2, 1, 1, 4, GameItems.WeaponType.Sword);
 
             CreateArmor("No Head Armor", World.ArmorIDNoHeadArmor, 0, 0, 0, GameItems.ArmorType.Head);
             CreateArmor("No Body Armor", World.ArmorIDNoBodyArmor, 0, 0, 0, GameItems.ArmorType.Body);
@@ -63,9 +63,9 @@ namespace Game.Items
             return null;
         }
 
-        private static void CreateWeapon(string name, int id, int buyPrice, int sellPrice, int minDamage, int maxDamage, Enum weaponType)
+        private static void CreateWeapon(string name, int id, int buyPrice, int sellPrice, int numberOfDices, int numberOfSides, Enum weaponType)
         {
-            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.Weapon, minDamage, maxDamage, weaponType));
+            standardGameItems.Add(new GameItems(name, id, buyPrice, sellPrice, GameItems.TypeOfItem.Weapon, numberOfDices, numberOfSides, weaponType));
         }
 
         private static void CreateArmor(string name, int id, int buyPrice, int sellPrice, int defence, Enum ArmorSlot)

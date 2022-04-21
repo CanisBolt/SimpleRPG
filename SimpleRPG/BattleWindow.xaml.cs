@@ -30,8 +30,8 @@ namespace SimpleRPG
 
         private void Battle()
         {
-            int heroRoll = Dice.rng.Next(1, 21) + gameSession.Hero.Agility;
-            int enemyRoll = Dice.rng.Next(1, 21) + gameSession.CurrentEnemy.Agility;
+            int heroRoll = (int)Dice.RollDice(1, 20) + gameSession.Hero.Agility;
+            int enemyRoll = (int)Dice.RollDice(1, 20) + gameSession.CurrentEnemy.Agility;
 
             if(gameSession.CurrentEnemy.HasAdvantage)
             {
@@ -64,12 +64,11 @@ namespace SimpleRPG
                         break;
                     case 1:
                         gameSession.CurrentEnemy.SkillDamageCalculation();
-                        gameSession.CurrentEnemy.CurrentMP -= gameSession.CurrentEnemy.CurrentSkill.ManaCost;
+                        gameSession.CurrentEnemy.DecreaseMP(gameSession.CurrentEnemy.CurrentSkill.ManaCost);
                         break;
                 }
             }
-
-            gameSession.Hero.CurrentHP -= (int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence);
+            gameSession.Hero.DecreaseHP((int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence));
             CheckHPStatus();
         }
 
@@ -111,7 +110,7 @@ namespace SimpleRPG
         private void BasicAttack(object sender, MouseButtonEventArgs e)
         {
             gameSession.Hero.Damage = gameSession.Hero.PhysicalDamageCalculation();
-            gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
+            gameSession.CurrentEnemy.DecreaseHP((int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence));
             if (gameSession.Hero.IsCriticalHit)
             {
                 tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage. CRITICAL HIT!" + Environment.NewLine)));
@@ -131,12 +130,12 @@ namespace SimpleRPG
 
                 if (gameSession.Hero.CurrentSkill.AffectedTarger.Equals(Game.SpecialAttack.Skills.Target.Self))
                 {
-                    gameSession.Hero.CurrentHP += (int)gameSession.Hero.Damage;
+                    gameSession.Hero.RestoreHP((int)gameSession.Hero.Damage);
                     if (gameSession.Hero.CurrentHP > gameSession.Hero.MaxHP) gameSession.Hero.CurrentHP = gameSession.Hero.MaxHP;
                 }
                 else
                 {
-                    gameSession.CurrentEnemy.CurrentHP -= (int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence);
+                    gameSession.CurrentEnemy.DecreaseHP((int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence));
                 }
 
                 // Apply Status Effect

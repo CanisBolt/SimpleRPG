@@ -190,7 +190,7 @@ namespace Game.LivingCreatures
 
         public override float PhysicalDamageCalculation()
         {
-            Damage = Dice.GetRandomModificator() * (Strength + (Dice.rng.Next(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage) + 1)) * CalculateCriticalHitChance();
+            Damage = Dice.GetRandomModificator() * (Strength + (Dice.RollDice(CurrentWeapon.NumberOfDices, CurrentWeapon.NumberOfSides)) * CalculateCriticalHitChance());
             return Damage;
         }
 

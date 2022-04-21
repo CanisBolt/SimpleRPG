@@ -377,16 +377,19 @@ namespace Game.LivingCreatures
                 }
             }
         }
-
-        private void RaiseMessage(string message)
-        {
-            OnMessageRaised?.Invoke(this, new GameMessageEventArgs(message));
-        }
-
         public void RestoreHPMP()
         {
             CurrentHP = MaxHP;
             CurrentMP = MaxMP;
         }
+        public void DecreaseHP(int value) => CurrentHP -= value;
+        public void DecreaseMP(int value) => CurrentMP -= value;
+        public void RestoreHP(int value) => CurrentHP += value;
+        public void RestoreMP(int value) => CurrentMP += value;
+        private void RaiseMessage(string message)
+        {
+            OnMessageRaised?.Invoke(this, new GameMessageEventArgs(message));
+        }
+
     }
 }
