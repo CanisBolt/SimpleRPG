@@ -64,6 +64,6 @@
                 </TabItem>
             </TabControl>
         </Grid>
-        <TextBox x:Name="tbLog" HorizontalAlignment="Left" Height="35" Margin="10,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="617"/>
+        <TextBox x:Name="tbLog" Text="Left Mouse Double Click to buy or sell item" HorizontalAlignment="Left" Height="35" Margin="10,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="617" IsReadOnly="True"/>
     </Grid>
 </Window>

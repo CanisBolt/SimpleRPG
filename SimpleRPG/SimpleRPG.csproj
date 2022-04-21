@@ -193,5 +193,8 @@
     <Resource Include="Images\Creatures\Heroes\dwarf2.png" />
     <Resource Include="Images\Creatures\Heroes\dwarf3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\alchemyIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

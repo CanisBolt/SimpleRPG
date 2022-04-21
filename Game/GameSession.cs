@@ -71,7 +71,7 @@ namespace Game
             Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.EnemyLootIDRatTail));
             Hero.AddItemToInventory(ItemsFactory.CreateGameItem(World.EnemyLootIDSnakeFang));
 
-            Hero.PlayersGarden.AvailableSeeds.Add(ItemsFactory.CreateGameItem(World.SeedIDHealingGrass));
+            //Hero.PlayersGarden.AvailableSeeds.Add(ItemsFactory.CreateGameItem(World.SeedIDHealingGrass));
 
             Hero.RecipeList.Add(RecipeFactory.RecipeByID(World.AlchemyRecipeIDSmallHealingPotion));
             Hero.RecipeList.Add(RecipeFactory.RecipeByID(World.AlchemyRecipeIDSmallManaPotion));

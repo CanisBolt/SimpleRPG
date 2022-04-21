@@ -32,7 +32,7 @@ namespace SimpleRPG
             }
             else
             {
-                MessageBox.Show($"Not enough gold to buy {selectedInventoryItem.Name}.");
+                tbLog.Text = $"Not enough gold to buy {selectedInventoryItem.Name}.";
             }
         }
 
@@ -41,7 +41,7 @@ namespace SimpleRPG
             Game.Items.GameItems selectedInventoryItem = (Game.Items.GameItems)dbInventory.SelectedItem;
             if (selectedInventoryItem.SellPrice == 0)
             {
-                MessageBox.Show("This item cannot be sold!");
+                tbLog.Text = "This item cannot be sold!";
                 return;
             }
             else

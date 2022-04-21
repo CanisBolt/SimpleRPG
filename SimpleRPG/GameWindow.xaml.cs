@@ -57,13 +57,11 @@ namespace SimpleRPG
                 }
             }
 
-            btnEnter.Visibility = Visibility.Visible;
-
-            if (gameSession.CurrentLocation.NPCOnLocation != null)
-            {
-                tbNPC.Text = gameSession.CurrentLocation.NPCOnLocation.Name;
-            }
+            if (gameSession.CurrentLocation.NPCOnLocation != null) tbNPC.Text = gameSession.CurrentLocation.NPCOnLocation.Name;
             else tbNPC.Text = null;
+
+            if (gameSession.CurrentLocation.ShopOnLocation != null) btnEnter.Visibility = Visibility.Visible;
+            else btnEnter.Visibility = Visibility.Hidden;
 
             if (gameSession.Hero.SkillPoints > 0) imgCharacter.Source = new BitmapImage(new Uri(@"/Images/Icons/characterLevelUPIcon.png", UriKind.Relative));
             else imgCharacter.Source = new BitmapImage(new Uri(@"/Images/Icons/characterIcon.png", UriKind.Relative));
@@ -234,8 +232,7 @@ namespace SimpleRPG
 
         private void OpenGardenWindow(object sender, MouseButtonEventArgs e)
         {
-            GardenWindow gardenWindow = new GardenWindow(gameSession);
-            gardenWindow.ShowDialog();
+            // Garden currently not working. Sorry.
         }
 
         private void OpenInventory(object sender, MouseButtonEventArgs e)
@@ -278,9 +275,6 @@ namespace SimpleRPG
                     window.ShowDialog();
                     break;
                 case "Garden":
-                    break;
-                default:
-                    MessageBox.Show("There is no place to Enter");
                     break;
             }
         }

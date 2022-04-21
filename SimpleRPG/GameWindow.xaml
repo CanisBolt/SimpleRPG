@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleRPG" xmlns:game="clr-namespace:Game;assembly=Game"
         mc:Ignorable="d"
-        Title="GameWindow" Height="550" Width="800">
+        Title="GameWindow" Height="570" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="143*"/>
@@ -36,10 +36,8 @@
         <Grid HorizontalAlignment="Left" Height="112" Grid.Row="1" VerticalAlignment="Top" Width="207" Background="LightYellow" Margin="0,230,0,0">
             <Image x:Name="imgCharacter" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="Images/Icons/characterLevelUPIcon.png" ToolTip="Open Character's Screen" MouseLeftButtonDown="OpenCharacterScreen"/>
             <Image x:Name="imgInventory" HorizontalAlignment="Left" Height="50" Margin="65,10,0,0" VerticalAlignment="Top" Width="50" Source="Images/Icons/bagIcon.png" ToolTip="Open Character's Inventory" MouseLeftButtonDown="OpenInventory"/>
-            <Image x:Name="imgMagic" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="43" Source="Images/Icons/Battle/spellBookIcon.png" Margin="120,10,0,0" ToolTip="Open Character's SpellBook" MouseLeftButtonDown="SpecialAttack"/>
-            <Label Content="alchemy" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" MouseLeftButtonDown="OpenAlchemyWindow"/>
-            <Label Content="garden" HorizontalAlignment="Left" Margin="109,80,0,0" VerticalAlignment="Top" MouseLeftButtonDown="OpenGardenWindow"/>
-
+            <Image x:Name="imgMagic" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Source="Images/Icons/Battle/spellBookIcon.png" Margin="120,10,0,0" ToolTip="Open Character's SpellBook" MouseLeftButtonDown="SpecialAttack"/>
+            <Image HorizontalAlignment="Left" Height="50" Margin="10,60,0,0" VerticalAlignment="Top" Width="50" MouseLeftButtonDown="OpenAlchemyWindow" Source="/Images/Icons/alchemyIcon.png" ToolTip="Open Alchemy Window" Stretch="Uniform"/>
         </Grid>
 
         <!--Movement Buttons -->
