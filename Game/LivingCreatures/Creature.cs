@@ -386,7 +386,7 @@ namespace Game.LivingCreatures
         public void DecreaseMP(int value) => CurrentMP -= value;
         public void RestoreHP(int value) => CurrentHP += value;
         public void RestoreMP(int value) => CurrentMP += value;
-        private void RaiseMessage(string message)
+        protected void RaiseMessage(string message)
         {
             OnMessageRaised?.Invoke(this, new GameMessageEventArgs(message));
         }

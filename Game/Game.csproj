@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseNotificationClass.cs" />
-    <Compile Include="EnemyFactory.cs" />
+    <Compile Include="Factory\EnemyFactory.cs" />
     <Compile Include="GameLocations\Garden.cs" />
     <Compile Include="GameLocations\NPC.cs" />
     <Compile Include="GameLocations\Quest.cs" />
@@ -50,8 +50,8 @@
     <Compile Include="GameLocations\Shop.cs" />
     <Compile Include="GameMessageEventArgs.cs" />
     <Compile Include="Items\AlchemyRecipe.cs" />
-    <Compile Include="Items\ItemsFactory.cs" />
-    <Compile Include="Items\RecipeFactory.cs" />
+    <Compile Include="Factory\ItemsFactory.cs" />
+    <Compile Include="Factory\RecipeFactory.cs" />
     <Compile Include="LivingCreatures\Creature.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="LivingCreatures\Enemy.cs" />
@@ -64,7 +64,7 @@
     <Compile Include="SpecialAttack\StatusEffect.cs" />
     <Compile Include="SpecialAttack\Skills.cs" />
     <Compile Include="World.cs" />
-    <Compile Include="GameLocations\WorldFactory.cs" />
+    <Compile Include="Factory\WorldFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

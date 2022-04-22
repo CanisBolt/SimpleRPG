@@ -1,7 +1,7 @@
 ﻿using Game.GameLocations;
 using Game.Items;
 using Game.LivingCreatures;
-using System;
+using Game.Factory;
 
 namespace Game
 {

@@ -1,10 +1,7 @@
-﻿using System;
+﻿using Game.Items;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Game.Items
+namespace Game.Factory
 {
     public class RecipeFactory
     {

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 
 namespace Game.LivingCreatures
 {
@@ -176,18 +177,27 @@ namespace Game.LivingCreatures
             {
                 CurrentEXP -= EXPToLevel;
 
-                Level++;
+                Level++; 
+                RaiseMessage($"{Name} now Level {Level}!");
                 SkillPoints += 5;
+                NewSkills();
 
                 SetNextLevelEXP();
             }
         }
 
-        public enum Gender
+        private void NewSkills()
         {
-            Male,
-            Female,
-            Other
+            switch(Level)
+            {
+                case 2:
+                    SkillBook.Add(World.SkillByID(World.MagicIDIceArrow));
+                    RaiseMessage($"Learned new Spell: {World.SkillByID(World.MagicIDIceArrow).Name}!");
+                    break;
+                case 3:
+                    SkillBook.Add(World.SkillByID(World.SwordSKillIDHeavyStrike));
+                    break;
+            }
         }
 
         public override float PhysicalDamageCalculation()
@@ -205,6 +215,13 @@ namespace Game.LivingCreatures
         {
             CurrentHP = MaxHP / 2;
             CurrentMP = MaxMP / 2;
+        }
+
+        public enum Gender
+        {
+            Male,
+            Female,
+            Other
         }
     }
 }

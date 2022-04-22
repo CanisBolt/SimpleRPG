@@ -1,7 +1,8 @@
-﻿using Game.Items;
+﻿using Game.GameLocations;
+using Game.Items;
 using Game.SpecialAttack;
 
-namespace Game.GameLocations
+namespace Game.Factory
 {
     internal class WorldFactory
     {

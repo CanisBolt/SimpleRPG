@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Game.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Game.Items
+namespace Game.Factory
 {
     public class ItemsFactory
     {

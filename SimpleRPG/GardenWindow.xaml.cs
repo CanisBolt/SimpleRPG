@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Game;
+using Game.Factory;
 
 namespace SimpleRPG
 {
@@ -54,7 +55,7 @@ namespace SimpleRPG
                         {
                             Dispatcher.Invoke(new Action(() =>
                             {
-                                gameSession.Hero.AddItemToInventory(Game.Items.ItemsFactory.ItemByID(gameSession.Hero.PlayersGarden.Slots[i].HarvestPlantID));
+                                gameSession.Hero.AddItemToInventory(ItemsFactory.ItemByID(gameSession.Hero.PlayersGarden.Slots[i].HarvestPlantID));
                                 gameSession.Hero.PlayersGarden.Slots[i] = new Game.Items.GameItems("Empty Slot", -1, 0, 0, Game.Items.GameItems.TypeOfItem.Seed);
                             }));
                         }

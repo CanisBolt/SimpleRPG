@@ -1,4 +1,5 @@
 ﻿using Game;
+using Game.Factory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +66,7 @@ namespace SimpleRPG
             if (CheckForRequiredIngredients())
             {
                 CraftingItem();
-                gameSession.Hero.AddItemToInventory(Game.Items.ItemsFactory.ItemByID(selectedRecipe.CraftingItem.ID));
+                gameSession.Hero.AddItemToInventory(ItemsFactory.ItemByID(selectedRecipe.CraftingItem.ID));
             }
             else
             {

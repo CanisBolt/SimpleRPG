@@ -20,6 +20,7 @@ namespace SimpleRPG
             InitializeComponent();
 
             gameSession = _gameSession;
+            Game.LivingCreatures.Creature.OnMessageRaised += OnGameMessageRaised;
             gameSession.Hero.SkillPoints = 5;
             DataContext = gameSession;
 
@@ -87,8 +88,8 @@ namespace SimpleRPG
             switch(battle.BattleStatus)
             {
                 case BattleWindow.Status.Victory:
-                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} kill {gameSession.CurrentEnemy.Name}." + Environment.NewLine)));
-                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardGold} gold." + Environment.NewLine)));
+                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} kill {gameSession.CurrentEnemy.Name}.")));
+                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardGold} gold.")));
                     gameSession.Hero.CurrentEXP += gameSession.CurrentEnemy.RewardEXP;
                     gameSession.Hero.Gold += gameSession.CurrentEnemy.RewardGold;
                     LootEnemy();
@@ -97,15 +98,15 @@ namespace SimpleRPG
                     UpdateLocationData();
                     break;
                 case BattleWindow.Status.Defeat:
-                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} kill {gameSession.Hero.Name}." + Environment.NewLine)));
+                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} kill {gameSession.Hero.Name}.")));
                     gameSession.CurrentLocation = gameSession.Checkpoint;
                     gameSession.Hero.HealingAfterDeath();
                     break;
                 case BattleWindow.Status.Escape:
-                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"You successfully escaped from battle." + Environment.NewLine)));
+                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"You successfully escaped from battle.")));
                     break;
                 default:
-                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"You coward! You closed the battle!" + Environment.NewLine)));
+                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"You coward! You closed the battle!")));
                     break;
             }
         }
@@ -118,7 +119,7 @@ namespace SimpleRPG
                 roll = Dice.rng.Next(0, 101);
                 if (roll <= item.DropChance)
                 {
-                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} searched the enemie's body and found {item.Name}!" + Environment.NewLine)));
+                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} searched the enemie's body and found {item.Name}!")));
                     gameSession.Hero.AddItemToInventory(item);
                 }
             }
@@ -134,10 +135,11 @@ namespace SimpleRPG
                 gameSession.Hero.SkillDamageCalculation();
                 gameSession.Hero.CurrentHP += (int)gameSession.Hero.Damage;
                 if (gameSession.Hero.CurrentHP > gameSession.Hero.MaxHP) gameSession.Hero.CurrentHP = gameSession.Hero.MaxHP;
-                tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} casting {gameSession.Hero.CurrentSkill.Name} and heal for {(int)gameSession.Hero.Damage} HP." + Environment.NewLine)));
+                tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} casting {gameSession.Hero.CurrentSkill.Name} and heal for {(int)gameSession.Hero.Damage} HP.")));
             }
         }
 
+        // TODO rewrite
         private void TalkToNPC(object sender, MouseButtonEventArgs e)
         {
             if (gameSession.CurrentLocation.NPCOnLocation != null)
@@ -150,8 +152,8 @@ namespace SimpleRPG
                         {
                             if (CheckQuestForCompletition())
                             {
-                                tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.CompleteMessage + Environment.NewLine)));
-                                tbLog.Document.Blocks.Add(new Paragraph(new Run($"Quest: {gameSession.Hero.QuestJournal[i].Name} Complete! Reward: {gameSession.Hero.QuestJournal[i].RewardEXP} EXP and {gameSession.Hero.QuestJournal[i].RewardGold} gold!" + Environment.NewLine)));
+                                tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.CompleteMessage)));
+                                tbLog.Document.Blocks.Add(new Paragraph(new Run($"Quest: {gameSession.Hero.QuestJournal[i].Name} Complete! Reward: {gameSession.Hero.QuestJournal[i].RewardEXP} EXP and {gameSession.Hero.QuestJournal[i].RewardGold} gold!")));
 
                                 gameSession.Hero.CurrentEXP += gameSession.Hero.QuestJournal[i].RewardEXP;
                                 gameSession.Hero.Gold += gameSession.Hero.QuestJournal[i].RewardGold;
@@ -162,12 +164,12 @@ namespace SimpleRPG
                             }
                             else
                             {
-                                tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.InProgressMessage + Environment.NewLine)));
+                                tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.InProgressMessage)));
                             }
                         }
                         else
                         {
-                            tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.StartMessage + Environment.NewLine)));
+                            tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.StartMessage)));
                             gameSession.Hero.QuestJournal.Add(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest);
                             gameSession.Hero.QuestJournal[++i].QuestStatus = Game.GameLocations.Quest.Status.InProgress;
                         }
@@ -178,11 +180,11 @@ namespace SimpleRPG
                 {
                     if (gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.QuestStatus.Equals(Game.GameLocations.Quest.Status.Completed))
                     {
-                        tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.HelloMessage + Environment.NewLine)));
+                        tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.HelloMessage)));
                     }
                     else
                     {
-                        tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.StartMessage + Environment.NewLine)));
+                        tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.StartMessage)));
                         gameSession.Hero.QuestJournal.Add(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest);
                         gameSession.Hero.QuestJournal[0].QuestStatus = Game.GameLocations.Quest.Status.InProgress;
                     }

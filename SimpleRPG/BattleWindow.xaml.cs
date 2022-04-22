@@ -35,7 +35,7 @@ namespace SimpleRPG
 
             if(gameSession.CurrentEnemy.HasAdvantage)
             {
-                tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} caught {gameSession.Hero.Name} off guard and deals first strike!" + Environment.NewLine)));
+                tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} caught {gameSession.Hero.Name} off guard and deals first strike!")));
                 EnemyAttack();
             }
             else if (heroRoll < enemyRoll)
@@ -78,9 +78,9 @@ namespace SimpleRPG
 
             if (gameSession.CurrentEnemy.IsCriticalHit)
             {
-                tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage. CRITICAL HIT!" + Environment.NewLine)));
+                tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage. CRITICAL HIT!")));
             }
-            else tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage." + Environment.NewLine)));
+            else tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage.")));
         }
 
 
@@ -113,9 +113,9 @@ namespace SimpleRPG
             gameSession.CurrentEnemy.DecreaseHP((int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence));
             if (gameSession.Hero.IsCriticalHit)
             {
-                tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage. CRITICAL HIT!" + Environment.NewLine)));
+                tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage. CRITICAL HIT!")));
             }
-            else tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage." + Environment.NewLine)));
+            else tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage.")));
             EnemyAttack();
         }
 
@@ -165,7 +165,7 @@ namespace SimpleRPG
                 BattleStatus = Status.Escape;
                 Close();
             }
-            tbBattleLog.Document.Blocks.Add(new Paragraph(new Run("You tried to escape from battle and failed." + Environment.NewLine)));
+            tbBattleLog.Document.Blocks.Add(new Paragraph(new Run("You tried to escape from battle and failed.")));
             EnemyAttack();
         }
 

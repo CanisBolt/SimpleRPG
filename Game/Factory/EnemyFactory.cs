@@ -1,8 +1,7 @@
-﻿using Game.Items;
-using Game.LivingCreatures;
+﻿using Game.LivingCreatures;
 using System;
 
-namespace Game
+namespace Game.Factory
 {
     public class EnemyFactory
     {
