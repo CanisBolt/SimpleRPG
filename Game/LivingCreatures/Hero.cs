@@ -12,6 +12,10 @@ namespace Game.LivingCreatures
         private float swordSkill;
         private float daggerSkill;
         private float staffSkill;
+        private float fireMagic;
+        private float iceMagic;
+        private float lightningMagic;
+        private float healingMagic;
         private Items.GameItems currentHeadArmor;
         private Items.GameItems currentBodyArmor;
         private Items.GameItems currentLegsArmor;
@@ -99,6 +103,54 @@ namespace Game.LivingCreatures
             {
                 staffSkill = value;
                 OnPropertyChanged(nameof(staffSkill));
+            }
+        }
+        public float FireMagic
+        {
+            get
+            {
+                return fireMagic;
+            }
+            set
+            {
+                fireMagic = value;
+                OnPropertyChanged(nameof(fireMagic));
+            }
+        }
+        public float IceMagic
+        {
+            get
+            {
+                return iceMagic;
+            }
+            set
+            {
+                iceMagic = value;
+                OnPropertyChanged(nameof(iceMagic));
+            }
+        }
+        public float LightningMagic
+        {
+            get
+            {
+                return lightningMagic;
+            }
+            set
+            {
+                lightningMagic = value;
+                OnPropertyChanged(nameof(lightningMagic));
+            }
+        }
+        public float HealingMagic
+        {
+            get
+            {
+                return healingMagic;
+            }
+            set
+            {
+                healingMagic = value;
+                OnPropertyChanged(nameof(healingMagic));
             }
         }
         public Gender HeroGender { get; set; }
@@ -203,6 +255,10 @@ namespace Game.LivingCreatures
             swordSkill = 1f;
             daggerSkill = 1f;
             staffSkill = 1f;
+            fireMagic = 1f;
+            iceMagic = 1f;
+            lightningMagic = 1f;
+            healingMagic = 1f;
             CurrentEXP = 0;
             SetNextLevelEXP();
             Gold = 0;
@@ -255,11 +311,50 @@ namespace Game.LivingCreatures
             }
             return 1;
         }
+        private float GetMagicType()
+        {
+            switch (CurrentSkill.Type)
+            {
+                case SpecialAttack.Skills.SpecialAttackType.FireMagic:
+                    return FireMagic;
+                case SpecialAttack.Skills.SpecialAttackType.IceMagic:
+                    return IceMagic;
+                case SpecialAttack.Skills.SpecialAttackType.LightningMagic:
+                    return LightningMagic;
+                case SpecialAttack.Skills.SpecialAttackType.HealingMagic:
+                    return HealingMagic;
+            }
+            return 1;
+        }
 
         public override float PhysicalDamageCalculation()
         {
             Damage = Dice.GetRandomModificator() * (Strength + (Dice.RollDice(CurrentWeapon.NumberOfDices, CurrentWeapon.NumberOfSides) * GetWeaponType()) * CalculateCriticalHitChance());
             return Damage;
+        }
+
+        public override void SkillDamageCalculation()
+        {
+            float damage = 0;
+            if (CurrentSkill == null) return;
+
+            if (CurrentSkill.NumberOfHits > 1)
+            {
+                int numberOfHits = Dice.rng.Next(CurrentSkill.NumberOfHits) + 1;
+                for (int i = 0; i < numberOfHits; i++)
+                {
+                    damage += CurrentSkill.BaseDamage + AddDamageModificator(); // For now only weapon skills using multiple strikes
+                }
+            }
+            else damage = CurrentSkill.BaseDamage + AddDamageModificator() * GetMagicType();
+
+            if (CurrentWeapon.TypeOfWeapon.Equals(Items.GameItems.WeaponType.Staff) && !CurrentSkill.Type.Equals(SpecialAttack.Skills.SpecialAttackType.PhysicalSkill))
+            {
+                damage *= 1.2f; // Increase magic damage by 20% if Hero is using a Staff Weapon
+            }
+
+            Damage = Dice.GetRandomModificator() * damage * CalculateCriticalHitChance();
+            MagicDamageText();
         }
 
         public void CalculateDefence()

@@ -294,17 +294,13 @@ namespace Game.LivingCreatures
             }
             else damage = CurrentSkill.BaseDamage + AddDamageModificator();
 
-            if(currentWeapon != null)
-            {
-                if (CurrentWeapon.TypeOfWeapon.Equals(GameItems.WeaponType.Staff) && CurrentSkill.Type.Equals(Skills.SpecialAttackType.Magic))
-                {
-                    damage *= 1.2f; // Increase magic damage by 20% if Hero is using a Staff Weapon
-                }
-            }
-
             Damage = Dice.GetRandomModificator() * damage * CalculateCriticalHitChance();
+            MagicDamageText();
+        }
 
-            if(CurrentSkill.AffectedTarger.Equals(Skills.Target.Self))
+        protected void MagicDamageText()
+        {
+            if (CurrentSkill.AffectedTarger.Equals(Skills.Target.Self))
             {
                 RaiseMessage($"{Name} casted {CurrentSkill.Name} and healed {(int)Damage} HP");
             }

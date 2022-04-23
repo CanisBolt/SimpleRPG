@@ -91,5 +91,14 @@
         <TextBlock HorizontalAlignment="Left" Margin="96,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="{Binding Hero.SwordSkill}" Height="22"/>
         <TextBlock HorizontalAlignment="Left" Margin="96,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="{Binding Hero.DaggerSkill}" Height="22"/>
         <TextBlock HorizontalAlignment="Left" Margin="96,426,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="{Binding Hero.StaffSkill}" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="Magic Skills:" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="Fire:" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="Ice:" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,426,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="Lightning:" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="190,449,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="Healing:" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="276,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="{Binding Hero.FireMagic}" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="276,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="{Binding Hero.IceMagic}" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="276,427,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="{Binding Hero.LightningMagic}" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="276,449,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="{Binding Hero.HealingMagic}" Height="22"/>
     </Grid>
 </Window>

@@ -18,7 +18,6 @@ namespace Game.SpecialAttack
         public Enum Type { get; set; }
 
         // TODO add weapon damage to skill damage
-        // TODO add damage based on different modificators (like agility)
 
         public enum Target
         {
@@ -38,8 +37,11 @@ namespace Game.SpecialAttack
 
         public enum SpecialAttackType
         {
-            Skill,
-            Magic
+            PhysicalSkill,
+            FireMagic,
+            IceMagic,
+            LightningMagic,
+            HealingMagic
         }
     }
 }

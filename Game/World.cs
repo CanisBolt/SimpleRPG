@@ -39,8 +39,9 @@ namespace Game
         // Magic
         public static int MagicIDFireball = 0;
         public static int MagicIDIceArrow = 1;
-        public static int MagicIDThunderStrike = 2;
+        public static int MagicIDThunderBolt = 2;
         public static int MagicIDSmallHeal = 3;
+        public static int MagicIDRegeneration = 4;
 
         // Skills
         public static int SwordSKillIDFastStrike = 30;

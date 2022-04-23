@@ -132,10 +132,12 @@ namespace SimpleRPG
                 {
                     gameSession.Hero.RestoreHP((int)gameSession.Hero.Damage);
                     if (gameSession.Hero.CurrentHP > gameSession.Hero.MaxHP) gameSession.Hero.CurrentHP = gameSession.Hero.MaxHP;
+                    IncreaseMagicSkill();
                 }
                 else
                 {
-                    IncreaseWeaponSkill();
+                    if(gameSession.Hero.CurrentSkill.Type.Equals(Game.SpecialAttack.Skills.SpecialAttackType.PhysicalSkill)) IncreaseWeaponSkill();
+                    else IncreaseMagicSkill();
                     gameSession.CurrentEnemy.DecreaseHP((int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence));
                 }
 
@@ -161,6 +163,26 @@ namespace SimpleRPG
                     break;
                 case Game.Items.GameItems.WeaponType.Staff:
                     gameSession.Hero.StaffSkill += increase;
+                    break;
+            }
+        }
+
+        private void IncreaseMagicSkill()
+        {
+            float increase = 0.01f * gameSession.CurrentEnemy.Level - ((gameSession.Hero.Level - gameSession.CurrentEnemy.Level) / 100);
+            switch(gameSession.Hero.CurrentSkill.Type)
+            {
+                case Game.SpecialAttack.Skills.SpecialAttackType.FireMagic:
+                    gameSession.Hero.FireMagic += increase;
+                    break;
+                case Game.SpecialAttack.Skills.SpecialAttackType.IceMagic:
+                    gameSession.Hero.IceMagic += increase;
+                    break;
+                case Game.SpecialAttack.Skills.SpecialAttackType.LightningMagic:
+                    gameSession.Hero.LightningMagic += increase;
+                    break;
+                case Game.SpecialAttack.Skills.SpecialAttackType.HealingMagic:
+                    gameSession.Hero.HealingMagic += increase;
                     break;
             }
         }
