@@ -84,5 +84,12 @@
         <TextBlock Text="{Binding Hero.CurrentFeetArmor.Defence}" HorizontalAlignment="Left" Margin="245,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
         <TextBlock Text="Total Defence:" HorizontalAlignment="Left" Margin="10,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Height="22"/>
         <TextBlock Text="{Binding Hero.Defence}" HorizontalAlignment="Left" Margin="96,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="Weapon Skills:" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="Sword:" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="Dagger:" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,426,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="Staff:" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="96,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="{Binding Hero.SwordSkill}" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="96,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="{Binding Hero.DaggerSkill}" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="96,426,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Text="{Binding Hero.StaffSkill}" Height="22"/>
     </Grid>
 </Window>

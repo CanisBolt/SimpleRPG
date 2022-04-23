@@ -150,8 +150,6 @@ namespace Game.Items
         {
             None,
             Sword,
-            Axe,
-            Spear,
             Dagger,
             Staff
         }

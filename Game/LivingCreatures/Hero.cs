@@ -9,6 +9,9 @@ namespace Game.LivingCreatures
         private int expToLevel;
         private int gold;
         private int skillPoints;
+        private float swordSkill;
+        private float daggerSkill;
+        private float staffSkill;
         private Items.GameItems currentHeadArmor;
         private Items.GameItems currentBodyArmor;
         private Items.GameItems currentLegsArmor;
@@ -60,6 +63,42 @@ namespace Game.LivingCreatures
             {
                 skillPoints = value;
                 OnPropertyChanged(nameof(skillPoints));
+            }
+        }
+        public float SwordSkill
+        {
+            get
+            {
+                return swordSkill;
+            }
+            set
+            {
+                swordSkill = value;
+                OnPropertyChanged(nameof(swordSkill));
+            }
+        }
+        public float DaggerSkill
+        {
+            get
+            {
+                return daggerSkill;
+            }
+            set
+            {
+                daggerSkill = value;
+                OnPropertyChanged(nameof(daggerSkill));
+            }
+        }
+        public float StaffSkill
+        {
+            get
+            {
+                return staffSkill;
+            }
+            set
+            {
+                staffSkill = value;
+                OnPropertyChanged(nameof(staffSkill));
             }
         }
         public Gender HeroGender { get; set; }
@@ -161,6 +200,9 @@ namespace Game.LivingCreatures
 
         public Hero(string name, int level, int strength, int agility, int vitality, int intelligence, int mind, int luck) : base(name, level, strength, agility, vitality, intelligence, mind, luck)
         {
+            swordSkill = 1f;
+            daggerSkill = 1f;
+            staffSkill = 1f;
             CurrentEXP = 0;
             SetNextLevelEXP();
             Gold = 0;
@@ -200,9 +242,23 @@ namespace Game.LivingCreatures
             }
         }
 
+        private float GetWeaponType()
+        {
+            switch (CurrentWeapon.TypeOfWeapon)
+            {
+                case Items.GameItems.WeaponType.Sword:
+                    return SwordSkill;
+                case Items.GameItems.WeaponType.Dagger:
+                    return DaggerSkill;
+                case Items.GameItems.WeaponType.Staff:
+                    return StaffSkill;
+            }
+            return 1;
+        }
+
         public override float PhysicalDamageCalculation()
         {
-            Damage = Dice.GetRandomModificator() * (Strength + (Dice.RollDice(CurrentWeapon.NumberOfDices, CurrentWeapon.NumberOfSides)) * CalculateCriticalHitChance());
+            Damage = Dice.GetRandomModificator() * (Strength + (Dice.RollDice(CurrentWeapon.NumberOfDices, CurrentWeapon.NumberOfSides) * GetWeaponType()) * CalculateCriticalHitChance());
             return Damage;
         }
 

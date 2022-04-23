@@ -83,7 +83,6 @@ namespace SimpleRPG
             else tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.CurrentEnemy.Name} attack {gameSession.Hero.Name} and deals {(int)(gameSession.CurrentEnemy.Damage - gameSession.Hero.Defence)} damage.")));
         }
 
-
         private void CheckHPStatus()
         {
             gameSession.Hero.CalculateDefence();
@@ -111,6 +110,7 @@ namespace SimpleRPG
         {
             gameSession.Hero.Damage = gameSession.Hero.PhysicalDamageCalculation();
             gameSession.CurrentEnemy.DecreaseHP((int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence));
+            IncreaseWeaponSkill();
             if (gameSession.Hero.IsCriticalHit)
             {
                 tbBattleLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} attack {gameSession.CurrentEnemy.Name} with {gameSession.Hero.CurrentWeapon.Name} and deals {(int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence)} damage. CRITICAL HIT!")));
@@ -135,6 +135,7 @@ namespace SimpleRPG
                 }
                 else
                 {
+                    IncreaseWeaponSkill();
                     gameSession.CurrentEnemy.DecreaseHP((int)(gameSession.Hero.Damage - gameSession.CurrentEnemy.Defence));
                 }
 
@@ -144,6 +145,23 @@ namespace SimpleRPG
                     gameSession.CurrentEnemy.ApplyStatusEffect(gameSession.Hero.CurrentSkill.Effect.Name, gameSession.Hero.CurrentSkill.Effect.ID, gameSession.Hero.CurrentSkill.Effect.Description, gameSession.Hero.CurrentSkill.Effect.AffectHP, gameSession.Hero.CurrentSkill.Effect.AffectMP, gameSession.Hero.CurrentSkill.Effect.Duration, gameSession.Hero.CurrentSkill.Effect.Type);
                 }
                 EnemyAttack();
+            }
+        }
+
+        private void IncreaseWeaponSkill()
+        {
+            float increase = 0.01f * gameSession.CurrentEnemy.Level - ((gameSession.Hero.Level - gameSession.CurrentEnemy.Level) / 100);
+            switch (gameSession.Hero.CurrentWeapon.TypeOfWeapon)
+            {
+                case Game.Items.GameItems.WeaponType.Sword:
+                    gameSession.Hero.SwordSkill += increase;
+                    break;
+                case Game.Items.GameItems.WeaponType.Dagger:
+                    gameSession.Hero.DaggerSkill += increase;
+                    break;
+                case Game.Items.GameItems.WeaponType.Staff:
+                    gameSession.Hero.StaffSkill += increase;
+                    break;
             }
         }
 
