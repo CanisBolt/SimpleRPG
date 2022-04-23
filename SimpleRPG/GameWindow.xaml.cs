@@ -88,12 +88,12 @@ namespace SimpleRPG
             switch(battle.BattleStatus)
             {
                 case BattleWindow.Status.Victory:
-                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} kill {gameSession.CurrentEnemy.Name}.")));
-                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} got {gameSession.CurrentEnemy.RewardEXP} exp and {gameSession.CurrentEnemy.RewardGold} gold.")));
-                    gameSession.Hero.CurrentEXP += gameSession.CurrentEnemy.RewardEXP;
-                    gameSession.Hero.Gold += gameSession.CurrentEnemy.RewardGold;
+                    int levelDifference = gameSession.Hero.Level - gameSession.CurrentEnemy.Level;
+                    var reward = CheckLevelDifference(gameSession.CurrentEnemy.RewardEXP, gameSession.CurrentEnemy.RewardGold, levelDifference);
+                    gameSession.Hero.CurrentEXP += reward.Item1;
+                    gameSession.Hero.Gold += reward.Item2;
+                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} got {reward.Item1} exp and {reward.Item2} gold.")));
                     LootEnemy();
-
                     gameSession.Hero.LevelUP(); // Check for LevelUP
                     UpdateLocationData();
                     break;
@@ -109,6 +109,36 @@ namespace SimpleRPG
                     tbLog.Document.Blocks.Add(new Paragraph(new Run($"You coward! You closed the battle!")));
                     break;
             }
+        }
+
+        public static Tuple<int, int> CheckLevelDifference(int rewardEXP, int rewardGold, int levelDifference)
+        {
+            if (levelDifference < 0)
+            {
+                // Increase EXP reward
+                rewardEXP = (int)(rewardEXP + (rewardEXP * 0.5 * (levelDifference * -1)));
+                rewardGold = (int)(rewardGold + (rewardGold * 0.5 * (levelDifference * -1)));
+            }
+            else if (levelDifference == 0)
+            {
+                // Normal EXP reward
+            }
+            else
+            {
+                // Reduce EXP reward
+                rewardEXP = (int)(rewardEXP - (rewardEXP * 0.5 * levelDifference));
+                rewardGold = (int)(rewardGold - (rewardGold * 0.5 * levelDifference));
+                if (rewardEXP <= 0)
+                {
+                    rewardEXP = 0;
+                }
+            }
+            if (rewardGold < 0)
+            {
+                // Animals don't reward Gold, so strict < 0
+                rewardGold = 1;
+            }
+            return Tuple.Create(rewardEXP, rewardGold);
         }
 
         private void LootEnemy()
