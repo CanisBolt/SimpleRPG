@@ -29,24 +29,52 @@ namespace Game
         public static int RegionIDForest = 1;
 
         // Enemies
-        public static int EnemyIDSnake = 0;
-        public static int EnemyIDRat = 1;
-        public static int EnemyIDGoblin = 2;
-        public static int EnemyIDWolf = 3;
-        public static int EnemyIDRogue = 4;
-        public static int EnemyIDForestWisp = 5;
+        public const int EnemyIDSnake = 0;
+        public const int EnemyIDRat = 1;
+        public const int EnemyIDGoblin = 2;
+        public const int EnemyIDWolf = 3;
+        public const int EnemyIDRogue = 4;
+        public const int EnemyIDForestWisp = 5;
 
         // Magic
+        // Fire
         public static int MagicIDFireball = 0;
-        public static int MagicIDIceArrow = 1;
-        public static int MagicIDThunderBolt = 2;
-        public static int MagicIDSmallHeal = 3;
-        public static int MagicIDRegeneration = 4;
+        public static int MagicIDFireball2 = 1;
+        public static int MagicIDFlameWhip = 2;
+        public static int MagicIDFireBurst = 3;
+        public static int MagicIDFireball3 = 4;
+
+        // Ice
+        public static int MagicIDIceArrow = 5;
+        public static int MagicIDIceArrow2 = 6;
+        public static int MagicIDIcicle = 7;
+        public static int MagicIDBlizzard = 8;
+        public static int MagicIDFrostWind = 9;
+
+        // Lightning
+        public static int MagicIDThunderBolt = 10;
+        public static int MagicIDLightningCharge = 11;
+        public static int MagicIDOvercharge = 12;
+        public static int MagicIDThunderBolt2 = 13;
+        public static int MagicIDStorm = 14;
+
+        // Healing
+        public static int MagicIDSmallHeal = 15;
+        public static int MagicIDRegeneration = 16;
+        public static int MagicIDMediumHeal = 17;
+        public static int MagicIDRegeneration2 = 18;
+        public static int MagicIDPowerfulHeal = 19;
 
         // Skills
+        // Sword
         public static int SwordSKillIDFastStrike = 30;
         public static int SwordSKillIDHeavyStrike = 31;
         public static int SwordSKillIDMultiHit = 32;
+
+        // Dagger
+
+        // Staff
+        public static int StaffSkillIDHeadBash = 40;
 
         // Status Effects
         public static int StatusEffectIDBurn = 0;

@@ -8,6 +8,7 @@ namespace Game.LivingCreatures
     public abstract class Creature : BaseNotificationClass
     {
         public static event EventHandler<GameMessageEventArgs> OnMessageRaised;
+        public static event EventHandler<GameMessageEventArgs> OnBattleMessageRaised;
 
         #region Properties
         private string name;
@@ -308,9 +309,9 @@ namespace Game.LivingCreatures
             {
                 if (IsCriticalHit)
                 {
-                    RaiseMessage($"{Name} used {CurrentSkill.Name} and dealed {(int)Damage} CRITICAL damage to enemy");
+                    RaiseBattleMessage($"{Name} used {CurrentSkill.Name} and dealed {(int)Damage} CRITICAL damage to enemy");
                 }
-                else RaiseMessage($"{Name} used {CurrentSkill.Name} and dealed {(int)Damage} damage to enemy");
+                else RaiseBattleMessage($"{Name} used {CurrentSkill.Name} and dealed {(int)Damage} damage to enemy");
             }
         }
 
@@ -386,6 +387,10 @@ namespace Game.LivingCreatures
         {
             OnMessageRaised?.Invoke(this, new GameMessageEventArgs(message));
         }
-
+        // Separate event to avoid texting both in game window and battle window when casting a spell. Not appling to healing
+        protected void RaiseBattleMessage(string message)
+        {
+            OnBattleMessageRaised?.Invoke(this, new GameMessageEventArgs(message));
+        }
     }
 }

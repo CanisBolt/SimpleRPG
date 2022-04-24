@@ -165,7 +165,6 @@ namespace SimpleRPG
                 gameSession.Hero.SkillDamageCalculation();
                 gameSession.Hero.CurrentHP += (int)gameSession.Hero.Damage;
                 if (gameSession.Hero.CurrentHP > gameSession.Hero.MaxHP) gameSession.Hero.CurrentHP = gameSession.Hero.MaxHP;
-                tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} casting {gameSession.Hero.CurrentSkill.Name} and heal for {(int)gameSession.Hero.Damage} HP.")));
             }
         }
 
@@ -182,15 +181,7 @@ namespace SimpleRPG
                         {
                             if (CheckQuestForCompletition())
                             {
-                                tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.CompleteMessage)));
-                                tbLog.Document.Blocks.Add(new Paragraph(new Run($"Quest: {gameSession.Hero.QuestJournal[i].Name} Complete! Reward: {gameSession.Hero.QuestJournal[i].RewardEXP} EXP and {gameSession.Hero.QuestJournal[i].RewardGold} gold!")));
-
-                                gameSession.Hero.CurrentEXP += gameSession.Hero.QuestJournal[i].RewardEXP;
-                                gameSession.Hero.Gold += gameSession.Hero.QuestJournal[i].RewardGold;
-                                gameSession.Hero.LevelUP();
-
-                                gameSession.Hero.QuestJournal.Remove(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest);
-                                gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.QuestStatus = Game.GameLocations.Quest.Status.Completed;
+                                RewardForQuest(i);
                             }
                             else
                             {
@@ -220,6 +211,19 @@ namespace SimpleRPG
                     }
                 }
             }
+        }
+
+        private void RewardForQuest(int i)
+        {
+            tbLog.Document.Blocks.Add(new Paragraph(new Run(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.CompleteMessage)));
+            tbLog.Document.Blocks.Add(new Paragraph(new Run($"Quest: {gameSession.Hero.QuestJournal[i].Name} Complete! Reward: {gameSession.Hero.QuestJournal[i].RewardEXP} EXP and {gameSession.Hero.QuestJournal[i].RewardGold} gold!")));
+
+            gameSession.Hero.CurrentEXP += gameSession.Hero.QuestJournal[i].RewardEXP;
+            gameSession.Hero.Gold += gameSession.Hero.QuestJournal[i].RewardGold;
+            gameSession.Hero.LevelUP();
+
+            gameSession.Hero.QuestJournal.Remove(gameSession.CurrentLocation.NPCOnLocation.AvailableQuest);
+            gameSession.CurrentLocation.NPCOnLocation.AvailableQuest.QuestStatus = Game.GameLocations.Quest.Status.Completed;
         }
 
         private bool CheckQuestForCompletition()
