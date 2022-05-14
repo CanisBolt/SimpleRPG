@@ -20,7 +20,7 @@ namespace Game.Items
 
         public void AddIngredient(int itemID, int quantity)
         {
-            RequiredToCraft.Add(ItemsFactory.ItemByID(itemID), quantity);
+            RequiredToCraft.Add(ItemsFactory.CreateGameItem(itemID), quantity);
         }
     }
 }

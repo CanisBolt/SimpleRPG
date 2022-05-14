@@ -34,7 +34,7 @@ namespace SimpleRPG
                         MessageBox.Show("Your HP is Full");
                         return;
                     }
-                    gameSession.Hero.CurrentHP += (int)(gameSession.Hero.MaxHP * selectedInventoryItem.RecoveryAmount);
+                    gameSession.Hero.CurrentHP += selectedInventoryItem.RecoveryAmount;
                     if (gameSession.Hero.CurrentHP >= gameSession.Hero.MaxHP) gameSession.Hero.CurrentHP = gameSession.Hero.MaxHP;
                 }
                 else if (selectedInventoryItem.Name.Contains("Mana"))
@@ -44,7 +44,7 @@ namespace SimpleRPG
                         MessageBox.Show("Your MP is Full");
                         return;
                     }
-                    gameSession.Hero.CurrentMP += (int)(gameSession.Hero.MaxMP * selectedInventoryItem.RecoveryAmount);
+                    gameSession.Hero.CurrentMP += selectedInventoryItem.RecoveryAmount;
                     if (gameSession.Hero.CurrentMP >= gameSession.Hero.MaxMP) gameSession.Hero.CurrentMP = gameSession.Hero.MaxMP;
                 }
                 gameSession.Hero.RemoveItemToInventory(selectedInventoryItem);

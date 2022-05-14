@@ -66,7 +66,7 @@ namespace SimpleRPG
             if (CheckForRequiredIngredients())
             {
                 CraftingItem();
-                gameSession.Hero.AddItemToInventory(ItemsFactory.ItemByID(selectedRecipe.CraftingItem.ID));
+                gameSession.Hero.AddItemToInventory(ItemsFactory.CreateGameItem(selectedRecipe.CraftingItem.ID));
             }
             else
             {

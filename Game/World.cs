@@ -9,7 +9,7 @@ namespace Game
     public class World
     {
         private static List<Race> allRaces = new List<Race>();
-        private static List<Quest> allQuests = new List<Quest>();
+        private List<Quest> allQuests = new List<Quest>();
         private List<Location> allLocations = new List<Location>();
         private List<Region> allRegions = new List<Region>();
         private static List<Skills> allSpecialAttacks = new List<Skills>();
@@ -276,7 +276,7 @@ namespace Game
             return null;
         }
 
-        public static Quest QuestByID(int id)
+        public Quest QuestByID(int id)
         {
             foreach (var quest in allQuests)
             {

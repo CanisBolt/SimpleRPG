@@ -33,17 +33,10 @@ namespace Game.Items
         public Enum ArmorSlot { get; set; }
 
         // Healing items
-        public float RecoveryAmount { get; set; } // % from Hero MaxHP or MP
-
-        // Enemy Loot
-        public int DropChance { get; set; }
-
-        // Seeds
-        public int TimeToGrow { get; set; } // in seconds
-        public int HarvestPlantID { get; set; }
+        public int RecoveryAmount { get; set; }
 
         // Basic Constructor
-        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int quantity = 1)
+        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int quantity)
         {
             Name = name;
             ID = id;
@@ -54,7 +47,7 @@ namespace Game.Items
         }
 
         // Weapon constructor
-        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int numberOfDices, int numberOfSides, Enum typeOfWeapon, int quantity = 1)
+        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int quantity, int numberOfDices, int numberOfSides, Enum typeOfWeapon)
         {
             Name = name;
             ID = id;
@@ -68,7 +61,7 @@ namespace Game.Items
         }
 
         // Armor constructor
-        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int defence, Enum armorSlot, int quantity = 1)
+        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int quantity, int defence, Enum armorSlot)
         {
             Name = name;
             ID = id;
@@ -81,7 +74,7 @@ namespace Game.Items
         }
 
         // Consumable Constructor
-        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, float recoveryAmount, int quantity = 1)
+        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int quantity, int recoveryAmount)
         {
             Name = name;
             ID = id;
@@ -92,47 +85,20 @@ namespace Game.Items
             Quantity = quantity;
         }
 
-        // EnemyLoot Constructor
-        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int dropChance, int quantity = 1)
-        {
-            Name = name;
-            ID = id;
-            BuyPrice = buyPrice;
-            SellPrice = sellPrice;
-            ItemType = type;
-            DropChance = dropChance;
-            Quantity = quantity;
-        }
-
-        // Seeds Constructor
-        public GameItems(string name, int id, int buyPrice, int sellPrice, Enum type, int timeToGrow, int harvestPlantID, int quantity = 1)
-        {
-            Name = name;
-            ID = id;
-            BuyPrice = buyPrice;
-            SellPrice = sellPrice;
-            ItemType = type;
-            TimeToGrow = timeToGrow;
-            HarvestPlantID = harvestPlantID;
-            Quantity = quantity;
-        }
-
         public GameItems Clone()
         {
             switch (ItemType)
             {
                 case TypeOfItem.Weapon:
-                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, NumberOfDices, NumberOfSides, TypeOfWeapon);
+                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, Quantity, NumberOfDices, NumberOfSides, TypeOfWeapon);
                 case TypeOfItem.Armor:
-                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, Defence, ArmorSlot);
+                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, Quantity, Defence, ArmorSlot);
                 case TypeOfItem.Consumable:
-                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, RecoveryAmount);
+                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, Quantity, RecoveryAmount);
                 case TypeOfItem.EnemyLoot:
-                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, DropChance, Quantity);
-                case TypeOfItem.Seed:
-                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, TimeToGrow, HarvestPlantID, Quantity);
+                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, Quantity);
                 default:
-                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType);
+                    return new GameItems(Name, ID, BuyPrice, SellPrice, ItemType, Quantity);
             }
         }
 
@@ -143,6 +109,7 @@ namespace Game.Items
             Consumable,
             Material,
             EnemyLoot,
+            Miscellaneous,
             Seed
         }
 

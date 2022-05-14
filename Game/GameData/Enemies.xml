@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Enemies RootAvatarPath="/Images/Enemies/">
+	<Enemy Name="Snake" Level="1" Strength="5" Agility="3" Vitality="3" Intelligence="1" Mind="1" Luck="3" RewardEXP="10" RewardGold="0" EncounterChance="65" ID="0" IsAgressive="false" Defence="1" Avatar="snake.png">
+		<LootItems>
+			<LootItem ID="1000" Percentage="50"/>
+			<LootItem ID="1001" Percentage="25"/>
+			<LootItem ID="1002" Percentage="10"/>
+		</LootItems>
+	</Enemy>
+	<Enemy Name="Rat" Level="1" Strength="4" Agility="5" Vitality="3" Intelligence="1" Mind="1" Luck="4" RewardEXP="5" RewardGold="0" EncounterChance="35" ID="1" IsAgressive="false" Defence="1" Avatar="rat.png">
+		<LootItems>
+			<LootItem ID="1003" Percentage="80"/>
+			<LootItem ID="1004" Percentage="70"/>
+		</LootItems>
+	</Enemy>
+	<Enemy Name="Goblin" Level="2" Strength="7" Agility="4" Vitality="4" Intelligence="1" Mind="1" Luck="3" RewardEXP="10" RewardGold="10" EncounterChance="45" ID="2" IsAgressive="true" Defence="3" Avatar="goblin.png">
+		<LootItems>
+			<LootItem ID="1005" Percentage="30"/>
+			<LootItem ID="1006" Percentage="25"/>
+		</LootItems>
+	</Enemy>
+	<Enemy Name="Wolf" Level="2" Strength="8" Agility="8" Vitality="4" Intelligence="1" Mind="1" Luck="3" RewardEXP="20" RewardGold="0" EncounterChance="55" ID="3" IsAgressive="true" Defence="5" Avatar="wolf.png">
+		<LootItems>
+			<LootItem ID="1007" Percentage="30"/>
+			<LootItem ID="1008" Percentage="20"/>
+		</LootItems>
+	</Enemy>
+	<Enemy Name="Rogue" Level="3" Strength="6" Agility="5" Vitality="6" Intelligence="1" Mind="1" Luck="6" RewardEXP="40" RewardGold="20" EncounterChance="35" ID="4" IsAgressive="true" Defence="5" Avatar="rogue.png"/>
+	<Enemy Name="Forest Wisp" Level="3" Strength="5" Agility="3" Vitality="5" Intelligence="10" Mind="7" Luck="5" RewardEXP="30" RewardGold="0" EncounterChance="25" ID="5" IsAgressive="false" Defence="3" Avatar="forestWisp.png">
+		<LootItems>
+			<LootItem ID="1009" Percentage="10"/>
+		</LootItems>
+	</Enemy>
+</Enemies>

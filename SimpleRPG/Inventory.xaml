@@ -21,7 +21,7 @@
                         <DataGridTextColumn Header="Name"
                                                 Binding="{Binding Name}"
                                                 Width="*"/>
-                        <DataGridTextColumn Header="Recovery Amount (%)"
+                        <DataGridTextColumn Header="Recovery Amount"
                                                 Binding="{Binding RecoveryAmount}"
                                                 Width="Auto"/>
                         <DataGridTextColumn Header="Quantity"

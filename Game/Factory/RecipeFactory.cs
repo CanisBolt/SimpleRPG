@@ -11,10 +11,10 @@ namespace Game.Factory
         {
             recipeList = new List<AlchemyRecipe>();
 
-            AlchemyRecipe smallHealingPotion = new AlchemyRecipe("Small Healing Potion", World.AlchemyRecipeIDSmallHealingPotion, ItemsFactory.ItemByID(World.ItemIDSmallHealingPotion));
+            AlchemyRecipe smallHealingPotion = new AlchemyRecipe("Small Healing Potion", World.AlchemyRecipeIDSmallHealingPotion, ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
             smallHealingPotion.AddIngredient(World.MaterialIDHealingGrass, 2);
 
-            AlchemyRecipe smallManaPotion = new AlchemyRecipe("Small Mana Potion", World.AlchemyRecipeIDSmallManaPotion, ItemsFactory.ItemByID(World.ItemIDSmallManaPotion));
+            AlchemyRecipe smallManaPotion = new AlchemyRecipe("Small Mana Potion", World.AlchemyRecipeIDSmallManaPotion, ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
             smallManaPotion.AddIngredient(World.EnemyLootIDRatTail, 2);
             smallManaPotion.AddIngredient(World.EnemyLootIDSnakeFang, 1);
 

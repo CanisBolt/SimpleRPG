@@ -37,7 +37,7 @@
             <Image x:Name="imgCharacter" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="Images/Icons/characterLevelUPIcon.png" ToolTip="Open Character's Screen" MouseLeftButtonDown="OpenCharacterScreen"/>
             <Image x:Name="imgInventory" HorizontalAlignment="Left" Height="50" Margin="65,10,0,0" VerticalAlignment="Top" Width="50" Source="Images/Icons/bagIcon.png" ToolTip="Open Character's Inventory" MouseLeftButtonDown="OpenInventory"/>
             <Image x:Name="imgMagic" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Source="Images/Icons/Battle/spellBookIcon.png" Margin="120,10,0,0" ToolTip="Open Character's SpellBook" MouseLeftButtonDown="SpecialAttack"/>
-            <Image HorizontalAlignment="Left" Height="50" Margin="10,60,0,0" VerticalAlignment="Top" Width="50" MouseLeftButtonDown="OpenAlchemyWindow" Source="/Images/Icons/alchemyIcon.png" ToolTip="Open Alchemy Window" Stretch="Uniform"/>
+            <Image x:Name="imgAlchemy" HorizontalAlignment="Left" Height="50" Margin="10,60,0,0" VerticalAlignment="Top" Width="50" MouseLeftButtonDown="OpenAlchemyWindow" Source="/Images/Icons/alchemyIcon.png" ToolTip="Open Alchemy Window" Stretch="Uniform"/>
         </Grid>
 
         <!--Movement Buttons -->

@@ -1,60 +1,79 @@
 ﻿using Game.LivingCreatures;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml;
 
 namespace Game.Factory
 {
     public class EnemyFactory
     {
-        public static Enemy GetMonster(int enemyID)
+        private const string GAME_DATA_FILENAME = ".\\GameData\\Enemies.xml";
+        private static readonly List<Enemy> _baseEnemies = new List<Enemy>();
+
+        static EnemyFactory()
         {
-            // Animal enemies only drop items (like skins, fangs etc). Gold only from humanoid enemies
-            switch (enemyID)
+            if (File.Exists(GAME_DATA_FILENAME))
             {
-                case 0:
-                    Enemy snake =
-                        new Enemy("Snake", 1, 5, 3, 3, 1, 1, 3, 10, 0, 65, World.EnemyIDSnake, false, 1);
-                    snake.Avatar = @"/Images/Creatures/Enemies/Village/snake.png";
-                    snake.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDSnakeSkin));
-                    snake.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDSnakeFang));
-                    snake.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDSnakeEye));
-                    return snake;
-                case 1:
-                    Enemy rat =
-                        new Enemy("Rat", 1, 4, 5, 3, 1, 1, 4, 5, 0, 35, World.EnemyIDRat, false, 1);
-                    rat.Avatar = @"/Images/Creatures/Enemies/Village/rat.png";
-                    rat.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDRatSkin));
-                    rat.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDRatTail));
-                    return rat;
-                case 2:
-                    Enemy goblin =
-                        new Enemy("Goblin", 2, 7, 4, 4, 1, 1, 3, 10, 10, 45, World.EnemyIDGoblin, true, 3);
-                    goblin.Avatar = @"/Images/Creatures/Enemies/Forest/goblin.png";
-                    goblin.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDGoblinSkin));
-                    goblin.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDGoblinFang));
-                    return goblin;
-                case 3:
-                    Enemy wolf =
-                        new Enemy("Wolf", 2, 8, 8, 4, 1, 1, 3, 20, 0, 55, World.EnemyIDWolf, true, 5);
-                    wolf.Avatar = @"/Images/Creatures/Enemies/Forest/wolf.png";
-                    wolf.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDWolfSkin));
-                    wolf.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDWolfFang));
-                    return wolf;
-                case 4:
-                    Enemy rogue =
-                        new Enemy("Rogue", 3, 6, 5, 6, 1, 2, 5, 30, 20, 35, World.EnemyIDRogue, true, 5);
-                    rogue.Avatar = @"/Images/Creatures/Enemies/Forest/rogue.png";
-                    rogue.SkillBook.Add(World.SkillByID(World.SwordSKillIDHeavyStrike));
-                    return rogue;
-                case 5:
-                    Enemy forestWisp =
-                        new Enemy("Forest Wisp", 3, 5, 3, 5, 10, 7, 5, 30, 0, 25, 5, false, 3);
-                    forestWisp.Avatar = @"/Images/Creatures/Enemies/Forest/forestWisp.png";
-                    forestWisp.SkillBook.Add(World.SkillByID(World.MagicIDFireball));
-                    forestWisp.Inventory.Add(ItemsFactory.CreateGameItem(World.EnemyLootIDWispDust));
-                    return forestWisp;
-                default:
-                    throw new ArgumentException(string.Format("MonsterType '{0}' does not exist", enemyID));
+                XmlDocument data = new XmlDocument();
+                data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME)); 
+                
+                string rootImagePath =
+                     data.SelectSingleNode("/Enemies")
+                         .AttributeAsString("RootAvatarPath");
+
+                LoadEnemiesFromNodes(data.SelectNodes("/Enemies/Enemy"), rootImagePath);
             }
+            else
+            {
+                throw new FileNotFoundException($"Missing data file: {GAME_DATA_FILENAME}");
+            }
+        }
+
+        private static void LoadEnemiesFromNodes(XmlNodeList nodes, string rootImagePath)
+        {
+            if (nodes == null)
+            {
+                return;
+            }
+
+            foreach (XmlNode node in nodes)
+            {
+                Enemy enemy =
+                    new Enemy(node.AttributeAsString("Name"),
+                    node.AttributeAsInt("Level"),
+                    node.AttributeAsInt("Strength"),
+                    node.AttributeAsInt("Agility"),
+                    node.AttributeAsInt("Vitality"),
+                    node.AttributeAsInt("Intelligence"),
+                    node.AttributeAsInt("Mind"),
+                    node.AttributeAsInt("Luck"),
+                    node.AttributeAsInt("RewardEXP"),
+                    node.AttributeAsInt("RewardGold"),
+                    node.AttributeAsInt("EncounterChance"),
+                    node.AttributeAsInt("ID"),
+                    node.AttributeAsBool("IsAgressive"),
+                    node.AttributeAsInt("Defence"),
+                    $".{rootImagePath}{node.AttributeAsString("Avatar")}");
+
+                XmlNodeList lootItemNodes = node.SelectNodes("./Loots/EnemyLoot");
+                if (lootItemNodes != null)
+                {
+                    foreach (XmlNode lootItemNode in lootItemNodes)
+                    {
+                        enemy.AddItemToLootTable(lootItemNode.AttributeAsInt("ID"),
+                                                   lootItemNode.AttributeAsInt("Percentage"));
+                    }
+                }
+
+                _baseEnemies.Add(enemy);
+            }
+        }
+
+        public static Enemy GetEnemy(int id)
+        {
+            return _baseEnemies.FirstOrDefault(m => m.ID == id)?.GetNewInstance();
         }
     }
 }

@@ -92,6 +92,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Image x:Name="imgHero" Source="{Binding Hero.Avatar}" HorizontalAlignment="Left" Height="197" VerticalAlignment="Top" Width="148" Stretch="Fill"/>
-        <Image x:Name="imgEnemy"  HorizontalAlignment="Left" Height="197" VerticalAlignment="Top" Width="148" Stretch="Fill" Grid.Column="2"/>
+        <Image x:Name="imgEnemy" Source="{Binding CurrentEnemy.Avatar}" HorizontalAlignment="Left" Height="197" VerticalAlignment="Top" Width="148" Stretch="Fill" Grid.Column="2"/>
     </Grid>
 </Window>

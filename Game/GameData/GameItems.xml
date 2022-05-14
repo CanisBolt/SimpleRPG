@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GameItems>
+	<Weapons>
+		<Weapon Name="Wood Staff" ID="0"  BuyPrice="2" SellPrice="1" ItemType="Weapon" Quantity="1" NumberOfDices="1" NumberOfSides="4" WeaponType="Staff"/>
+		<Weapon Name="Wood Sword" ID="1" BuyPrice="2" SellPrice="1" ItemType="Weapon" Quantity="1" NumberOfDices="1" NumberOfSides="6" WeaponType="Sword"/>
+	</Weapons>
+	<Armors>
+		<Armor Name="No Head Armor" ID="2" BuyPrice="0" SellPrice="0" ItemType="Armor" Quantity="1" Defence="0" ArmorSlot="Head"/>
+		<Armor Name="No Body Armor" ID="3" BuyPrice="0" SellPrice="0" ItemType="Armor" Quantity="1" Defence="0" ArmorSlot="Body"/>
+		<Armor Name="No Leg Armor" ID="4" BuyPrice="0" SellPrice="0" ItemType="Armor" Quantity="1" Defence="0" ArmorSlot="Legs"/>
+		<Armor Name="No Feet Armor" ID="5" BuyPrice="0" SellPrice="0" ItemType="Armor" Quantity="1" Defence="0" ArmorSlot="Feet"/>
+		<Armor Name="Silk Hat" ID="6" BuyPrice="2" SellPrice="1" ItemType="Armor" Quantity="1" Defence="1" ArmorSlot="Head"/>
+		<Armor Name="Silk Robe" ID="7" BuyPrice="2" SellPrice="1" ItemType="Armor" Quantity="1" Defence="1" ArmorSlot="Body"/>
+		<Armor Name="Silk Pants" ID="8" BuyPrice="2" SellPrice="1" ItemType="Armor" Quantity="1" Defence="1" ArmorSlot="Legs"/>
+		<Armor Name="Silk Sandals" ID="9" BuyPrice="2" SellPrice="1" ItemType="Armor" Quantity="1" Defence="1" ArmorSlot="Feet"/>
+	</Armors>
+	<Consumables>
+		<Consumable Name="Small Healing Potion" ID ="10" BuyPrice="20" SellPrice="10" ItemType="Consumable" Quantity="1" RecoveryAmount="25"/>
+		<Consumable Name="Medium Healing Potion" ID ="11" BuyPrice="60" SellPrice="30" ItemType="Consumable" Quantity="1" RecoveryAmount="50"/>
+		<Consumable Name="Big Healing Potion" ID ="12" BuyPrice="100" SellPrice="50" ItemType="Consumable" Quantity="1" RecoveryAmount="75"/>
+		<Consumable Name="Max Healing Potion" ID ="13" BuyPrice="200" SellPrice="100" ItemType="Consumable" Quantity="1" RecoveryAmount="100"/>
+		<Consumable Name="Small Mana Potion" ID ="14" BuyPrice="20" SellPrice="10" ItemType="Consumable" Quantity="1" RecoveryAmount="25"/>
+		<Consumable Name="Medium Mana Potion" ID ="15" BuyPrice="60" SellPrice="30" ItemType="Consumable" Quantity="1" RecoveryAmount="50"/>
+		<Consumable Name="Big Mana Potion" ID ="16" BuyPrice="100" SellPrice="50" ItemType="Consumable" Quantity="1" RecoveryAmount="75"/>
+		<Consumable Name="Max Mana Potion" ID ="17" BuyPrice="200" SellPrice="100" ItemType="Consumable" Quantity="1" RecoveryAmount="100"/>
+	</Consumables>
+	<Materials>
+		<Material Name="Healing Grass" ID="300" BuyPrice="0" SellPrice="2" ItemType="Material" Quantity="1"/>
+	</Materials>
+	<Loot>
+		<EnemyLoot Name="Snake Skin" ID="1000" BuyPrice="0" SellPrice="2" ItemType="EnemyLoot" Quantity="1"/>
+		<EnemyLoot Name="Snake Fang" ID="1001" BuyPrice="0" SellPrice="5" ItemType="EnemyLoot" Quantity="1"/>
+		<EnemyLoot Name="Snake Eye" ID="1002" BuyPrice="0" SellPrice="10" ItemType="EnemyLoot" Quantity="1"/>
+		<EnemyLoot Name="Rat Skin" ID="1003" BuyPrice="0" SellPrice="1" ItemType="EnemyLoot" Quantity="1"/>
+		<EnemyLoot Name="Rat Tail" ID="1004" BuyPrice="0" SellPrice="2" ItemType="EnemyLoot" Quantity="1"/>
+		<EnemyLoot Name="Goblin Skin" ID="1005" BuyPrice="0" SellPrice="12" ItemType="EnemyLoot" Quantity="1"/>
+		<EnemyLoot Name="Goblin Fang" ID="1006" BuyPrice="0" SellPrice="15" ItemType="EnemyLoot" Quantity="1"/>
+		<EnemyLoot Name="Wolf Skin" ID="1007" BuyPrice="0" SellPrice="15" ItemType="EnemyLoot" Quantity="1"/>
+		<EnemyLoot Name="Wolf Fang" ID="1008" BuyPrice="0" SellPrice="17" ItemType="EnemyLoot" Quantity="1"/>
+		<EnemyLoot Name="Wisp Dust" ID="1009" BuyPrice="0" SellPrice="20" ItemType="EnemyLoot" Quantity="1"/>
+	</Loot>
+</GameItems>

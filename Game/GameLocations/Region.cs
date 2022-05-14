@@ -19,7 +19,7 @@ namespace Game.GameLocations
             if (!EnemiesHere.Exists(e => e.ID == enemy.ID))
             {
                 // if enemy is not in the list, add it to the list
-                EnemiesHere.Add(new Enemy(enemy.Name, enemy.Level, enemy.Strength, enemy.Agility, enemy.Vitality, enemy.Intelligence, enemy.Mind, enemy.Luck, enemy.RewardEXP, enemy.RewardGold, enemy.EncounterChance, enemy.ID, enemy.IsAgressive, enemy.Defence));
+                EnemiesHere.Add(new Enemy(enemy.Name, enemy.Level, enemy.Strength, enemy.Agility, enemy.Vitality, enemy.Intelligence, enemy.Mind, enemy.Luck, enemy.RewardEXP, enemy.RewardGold, enemy.EncounterChance, enemy.ID, enemy.IsAgressive, enemy.Defence, enemy.Avatar));
             }
         }
 
@@ -50,12 +50,12 @@ namespace Game.GameLocations
 
                 if (randomNumber <= runningTotal)
                 {
-                    return EnemyFactory.GetMonster(enemyEncounter.ID);
+                    return EnemyFactory.GetEnemy(enemyEncounter.ID);
                 }
             }
 
             // if there's a problem in foreach loop, return last enemy in the list
-            return EnemyFactory.GetMonster(EnemiesHere.Last().ID);
+            return EnemyFactory.GetEnemy(EnemiesHere.Last().ID);
         }
     }
 }

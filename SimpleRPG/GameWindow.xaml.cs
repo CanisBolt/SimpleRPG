@@ -143,16 +143,16 @@ namespace SimpleRPG
 
         private void LootEnemy()
         {
-            int roll;
-            foreach (Game.Items.GameItems item in gameSession.CurrentEnemy.Inventory)
-            {
-                roll = Dice.rng.Next(0, 101);
-                if (roll <= item.DropChance)
-                {
-                    tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} searched the enemie's body and found {item.Name}!")));
-                    gameSession.Hero.AddItemToInventory(item);
-                }
-            }
+            //int roll;
+            //foreach (Game.Items.GameItems item in gameSession.CurrentEnemy.Inventory)
+            //{
+            //    roll = Dice.rng.Next(0, 101);
+            //    if (roll <= item.DropChance)
+            //    {
+            //        tbLog.Document.Blocks.Add(new Paragraph(new Run($"{gameSession.Hero.Name} searched the enemie's body and found {item.Name}!")));
+            //        gameSession.Hero.AddItemToInventory(item);
+            //    }
+            //}
         }
 
         private void SpecialAttack(object sender, MouseButtonEventArgs e)

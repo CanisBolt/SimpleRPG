@@ -10,23 +10,23 @@ namespace Game.Factory
         {
             World newWorld = new World();
 
-            newWorld.AddQuest("Welcome to the Village", World.QuestIDWelcomeToVillage, "Elder wants me to kill rat and bring 5 rat skins", "Bring me 5 rat skins", "I'm still waiting for 5 rat skins", "Finally, now rats will stop bothering this village, for now.", ItemsFactory.ItemByID(World.EnemyLootIDRatSkin), 5, 100, 50);
+            //newWorld.AddQuest("Welcome to the Village", World.QuestIDWelcomeToVillage, "Elder wants me to kill rat and bring 5 rat skins", "Bring me 5 rat skins", "I'm still waiting for 5 rat skins", "Finally, now rats will stop bothering this village, for now.", ItemsFactory.CreateGameItem(World.EnemyLootIDRatSkin), 5, 100, 50);
 
-            NPC villageElder = new NPC("Village Elder", World.NPCIDVillageElder, "Welcome to our humble village, traveller.", World.QuestByID(World.QuestIDWelcomeToVillage));
+            NPC villageElder = new NPC("Village Elder", World.NPCIDVillageElder, "Welcome to our humble village, traveller.", newWorld.QuestByID(World.QuestIDWelcomeToVillage));
 
             Shop villageShop = new Shop(World.ShopIDVillageShop);
-            villageShop.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
-            villageShop.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
+            //villageShop.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallHealingPotion));
+            //villageShop.Inventory.Add(ItemsFactory.CreateGameItem(World.ItemIDSmallManaPotion));
 
             newWorld.AddRegion("Village", World.RegionIDVillage);
-            newWorld.RegionByID(World.RegionIDVillage).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDRat));
-            newWorld.RegionByID(World.RegionIDVillage).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDSnake));
+            newWorld.RegionByID(World.RegionIDVillage).AddEnemy(EnemyFactory.GetEnemy(World.EnemyIDRat));
+            newWorld.RegionByID(World.RegionIDVillage).AddEnemy(EnemyFactory.GetEnemy(World.EnemyIDSnake));
 
             newWorld.AddRegion("Forest", World.RegionIDForest);
-            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDGoblin));
-            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDWolf));
-            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDRogue));
-            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetMonster(World.EnemyIDForestWisp));
+            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetEnemy(World.EnemyIDGoblin));
+            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetEnemy(World.EnemyIDWolf));
+            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetEnemy(World.EnemyIDRogue));
+            newWorld.RegionByID(World.RegionIDForest).AddEnemy(EnemyFactory.GetEnemy(World.EnemyIDForestWisp));
 
             newWorld.AddRace("Human", 0, 0, 0, 0, 0, 0, World.RaceIDHuman);
             newWorld.AddRace("Elf", -2, 2, -2, 1, 0, 1, World.RaceIDElf);

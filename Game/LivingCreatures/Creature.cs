@@ -252,6 +252,19 @@ namespace Game.LivingCreatures
         {
         }
 
+        public void AddItemToInventory(Items.GameItems item)
+        {
+            for (int i = 0; i < Inventory.Count; i++)
+            {
+                if (Inventory[i].ID.Equals(item.ID))
+                {
+                    Inventory[i].Quantity++;
+                    return;
+                }
+            }
+            Inventory.Add(item);
+        }
+
         public float AddDamageModificator()
         {
             if (CurrentSkill != null)

@@ -214,18 +214,6 @@ namespace Game.LivingCreatures
         public ObservableCollection<Items.AlchemyRecipe> RecipeList { get; set; }
         public GameLocations.Garden PlayersGarden { get; set; }
 
-        public void AddItemToInventory(Items.GameItems item)
-        {
-            for (int i = 0; i < Inventory.Count; i++)
-            {
-                if (Inventory[i].ID.Equals(item.ID))
-                {
-                    Inventory[i].Quantity++;
-                    return;
-                }
-            }
-            Inventory.Add(item);
-        }
 
         public void RemoveItemToInventory(Items.GameItems item, int quantity = 1)
         {
