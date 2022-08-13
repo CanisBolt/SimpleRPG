@@ -288,10 +288,7 @@ namespace Game.LivingCreatures
             return 1;
         }
 
-        public virtual float PhysicalDamageCalculation()
-        {
-            return Dice.GetRandomModificator() * Strength * CalculateCriticalHitChance();
-        }
+        public virtual float PhysicalDamageCalculation() => Dice.GetRandomModificator() * Strength * CalculateCriticalHitChance();
 
         public virtual void SkillDamageCalculation()
         {
@@ -330,7 +327,7 @@ namespace Game.LivingCreatures
 
         public int CalculateCriticalHitChance()
         {
-            if (Dice.rng.Next(100) + 1 <= Dice.rng.Next(Luck))
+            if (Dice.Roll20() + (Luck / 5) >= 20)
             {
                 IsCriticalHit = true;
                 return 2;
@@ -375,7 +372,7 @@ namespace Game.LivingCreatures
             RemoveEffects();
         }
 
-        // For now, using this to remove expired status effects one by one
+        // Remove expired status effects one by one
         private void RemoveEffects()
         {
             for (int i = 0; i < Effects.Count; i++)

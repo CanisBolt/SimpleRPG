@@ -266,22 +266,42 @@ namespace Game.LivingCreatures
                 Level++; 
                 RaiseMessage($"{Name} now Level {Level}!");
                 SkillPoints += 5;
-                NewSkills();
 
                 SetNextLevelEXP();
             }
         }
 
-        private void NewSkills()
+        public void IncreaseWeaponSkill(float increaseSkill)
         {
-            switch(Level)
+            switch (CurrentWeapon.TypeOfWeapon)
             {
-                case 2:
-                    SkillBook.Add(World.SkillByID(World.MagicIDIceArrow));
-                    RaiseMessage($"Learned new Spell: {World.SkillByID(World.MagicIDIceArrow).Name}!");
+                case Items.GameItems.WeaponType.Sword:
+                    SwordSkill += increaseSkill;
                     break;
-                case 3:
-                    SkillBook.Add(World.SkillByID(World.SwordSKillIDHeavyStrike));
+                case Items.GameItems.WeaponType.Dagger:
+                    DaggerSkill += increaseSkill;
+                    break;
+                case Items.GameItems.WeaponType.Staff:
+                    StaffSkill += increaseSkill;
+                    break;
+            }
+        }
+
+        public void IncreaseMagicSkill(float increaseSkill)
+        {
+            switch (CurrentSkill.Type)
+            {
+                case SpecialAttack.Skills.SpecialAttackType.FireMagic:
+                    FireMagic += increaseSkill;
+                    break;
+                case SpecialAttack.Skills.SpecialAttackType.IceMagic:
+                    IceMagic += increaseSkill;
+                    break;
+                case SpecialAttack.Skills.SpecialAttackType.LightningMagic:
+                    LightningMagic += increaseSkill;
+                    break;
+                case SpecialAttack.Skills.SpecialAttackType.HealingMagic:
+                    HealingMagic += increaseSkill;
                     break;
             }
         }

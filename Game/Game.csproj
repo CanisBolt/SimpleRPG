@@ -90,12 +90,24 @@
     <Content Include="GameData\GameItems.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Enemies\snake.png" />
-    <Resource Include="Images\Enemies\rat.png" />
-    <Resource Include="Images\Enemies\wolf.png" />
-    <Resource Include="Images\Enemies\rogue.png" />
-    <Resource Include="Images\Enemies\goblin.png" />
-    <Resource Include="Images\Enemies\forestWisp.png" />
+    <Resource Include="Images\Enemies\snake.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Enemies\rat.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Enemies\wolf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Enemies\rogue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Enemies\goblin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Enemies\forestWisp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

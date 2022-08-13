@@ -33,6 +33,7 @@ namespace Game.LivingCreatures
 
             lootTable.Add(new Items.ItemPercentage(id, percentage));
         }
+
         public Enemy GetNewInstance()
         {
             // "Clone" this monster to a new Monster object
